@@ -61,7 +61,6 @@
   body {
     background: var(--cream);
     color: var(--ink-soft);
-    overflow-x: hidden;
     font-family: var(--font-sans), system-ui, sans-serif;
   }
 
