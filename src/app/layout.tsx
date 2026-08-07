@@ -27,30 +27,40 @@ const lato = Lato({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://thediago.com"),
-  title: "DIAGO | Fine Gold × Natural Diamonds",
+  title: {
+    default: "DIAGO | The Natural Diamond Delite",
+    template: "%s | DIAGO",
+  },
   description:
-    "Redefining gold jewellery for the modern era — fine gold artistry paired with certified natural diamonds. Real Diamond, Real You.",
+    "Fine gold jewellery paired with certified natural diamonds. BIS hallmarked. Real Diamond, Real You.",
+  keywords: [
+    "DIAGO", "natural diamond jewellery", "gold jewellery", "BIS hallmarked",
+    "certified diamonds", "fine gold", "Dishaa Gold", "luxury jewellery India",
+    "diamond rings", "diamond earrings", "diamond necklace", "diamond pendant",
+    "diamond bracelet", "diamond mangalsutra",
+  ],
   openGraph: {
     type: "website",
     siteName: "DIAGO",
-    title: "DIAGO | Fine Gold × Natural Diamonds",
+    title: "DIAGO | The Natural Diamond Delite",
     description:
-      "Redefining gold jewellery for the modern era — fine gold artistry paired with certified natural diamonds. Real Diamond, Real You.",
+      "Fine gold jewellery paired with certified natural diamonds. BIS hallmarked. Real Diamond, Real You.",
     url: "https://thediago.com",
+    locale: "en_IN",
     images: [
       {
         url: "/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: "DIAGO — Real Diamond, Real You",
+        alt: "DIAGO - Real Diamond, Real You",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DIAGO | Fine Gold × Natural Diamonds",
+    title: "DIAGO | The Natural Diamond Delite",
     description:
-      "Redefining gold jewellery for the modern era — fine gold artistry paired with certified natural diamonds.",
+      "Fine gold jewellery paired with certified natural diamonds. BIS hallmarked. Real Diamond, Real You.",
     images: ["/images/og-image.png"],
   },
   alternates: {
