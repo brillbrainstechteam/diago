@@ -26,9 +26,33 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  title: "DIAGO — Real Diamond, Real You | Fine Gold x Natural Diamonds",
+  metadataBase: new URL("https://thediago.com"),
+  title: "DIAGO | Fine Gold × Natural Diamonds",
   description:
-    "DIAGO redefines gold jewellery for the modern consumer by pairing fine gold artistry with the authentic brilliance of certified natural diamonds.",
+    "Redefining gold jewellery for the modern era — fine gold artistry paired with certified natural diamonds. Real Diamond, Real You.",
+  openGraph: {
+    type: "website",
+    siteName: "DIAGO",
+    title: "DIAGO | Fine Gold × Natural Diamonds",
+    description:
+      "Redefining gold jewellery for the modern era — fine gold artistry paired with certified natural diamonds. Real Diamond, Real You.",
+    url: "https://thediago.com",
+    images: [
+      {
+        url: "/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "DIAGO — Real Diamond, Real You",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "DIAGO | Fine Gold × Natural Diamonds",
+    description:
+      "Redefining gold jewellery for the modern era — fine gold artistry paired with certified natural diamonds.",
+    images: ["/images/og-image.png"],
+  },
   icons: {
     icon: [
       { url: withBase("/favicon.ico"), sizes: "any" },
