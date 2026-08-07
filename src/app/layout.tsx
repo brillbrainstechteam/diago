@@ -53,6 +53,9 @@ export const metadata: Metadata = {
       "Redefining gold jewellery for the modern era — fine gold artistry paired with certified natural diamonds.",
     images: ["/images/og-image.png"],
   },
+  alternates: {
+    canonical: "https://thediago.com",
+  },
   icons: {
     icon: [
       { url: withBase("/favicon.ico"), sizes: "any" },
@@ -67,6 +70,27 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${playfair.variable} ${cormorant.variable} ${lato.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col" style={{ fontFamily: "var(--font-sans), sans-serif" }}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "JewelryStore",
+              name: "DIAGO",
+              description: "Fine gold jewellery paired with certified natural diamonds. A brand by Dishaa Gold and Platinum.",
+              url: "https://thediago.com",
+              logo: "https://thediago.com/images/logo.webp",
+              image: "https://thediago.com/images/og-image.png",
+              email: "diago@dishaplatinum.com",
+              telephone: "+912268936666",
+              sameAs: [
+                "https://www.instagram.com/thediago09",
+                "https://www.facebook.com/profile.php?id=61593246591561",
+                "https://www.youtube.com/channel/UCJvvisZdsdFvCA6kk_Y6T2w",
+              ],
+            }),
+          }}
+        />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
