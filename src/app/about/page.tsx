@@ -1,0 +1,227 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import {
+  Container, Section, Reveal, Eyebrow, GoldRule, Heading, Prose, FramedImage, PageHeader,
+} from "@/components/ui";
+
+/* ── Story ──────────────────────────────────────────────────────────── */
+
+function Story() {
+  return (
+    <Section tone="cream">
+      <Container>
+        <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+          <Reveal>
+            <FramedImage
+              src="/images/texture-diamonds.webp"
+              alt="Loose certified diamonds on a gold thread"
+              ratio="4/5"
+              inset
+            />
+          </Reveal>
+
+          <Reveal delay={120}>
+            <Heading eyebrow="The Brand" title="Gold, rewritten for" accent="how we live now" />
+            <Prose className="mt-8">
+              <p>
+                DIAGO redefines gold jewellery for the modern consumer by pairing fine gold
+                artistry with the authentic brilliance of certified natural diamonds. Crafted by
+                Dishaa in a strategic alliance with INDRA, the house bridges traditional gold
+                reverence with contemporary luxury.
+              </p>
+              <p>
+                Where heritage jewellery was made to be stored, DIAGO is made to be worn. Every
+                creation offers lightweight elegance and modern aesthetics — designed for fast
+                retail shelf mobility and genuine high turnover potential at the counter.
+              </p>
+            </Prose>
+          </Reveal>
+        </div>
+      </Container>
+    </Section>
+  );
+}
+
+/* ── Pillars ────────────────────────────────────────────────────────── */
+
+const pillars = [
+  {
+    n: "01",
+    title: "Fine Gold",
+    body: "Exquisite gold craftsmanship that honours tradition while embracing contemporary design. Every piece carries the BIS hallmark, certifying metal purity to Indian standards.",
+    icon: (
+      <svg viewBox="0 0 64 64" className="w-11 h-11 text-gold" fill="none" stroke="currentColor" strokeWidth="1.1">
+        <ellipse cx="32" cy="38" rx="19" ry="7.5" />
+        <ellipse cx="32" cy="32" rx="19" ry="7.5" />
+        <ellipse cx="32" cy="26" rx="19" ry="7.5" />
+      </svg>
+    ),
+  },
+  {
+    n: "02",
+    title: "Certified Natural Diamonds",
+    body: "Every diamond is graded and certified for cut, colour, clarity and carat — never simulated, never treated. Brilliance that holds its value across generations.",
+    icon: (
+      <svg viewBox="0 0 64 64" className="w-11 h-11 text-gold" fill="none" stroke="currentColor" strokeWidth="1.1">
+        <path d="M32 9 L45 24 L56 24 L45 41 L49 56 L32 45 L15 56 L19 41 L8 24 L19 24 Z" />
+      </svg>
+    ),
+  },
+  {
+    n: "03",
+    title: "Magic of the Modern Era",
+    body: "Where timeless artistry meets modern luxury — designs that speak to the contemporary soul while honouring heritage. Lightweight, wearable, unmistakably elegant.",
+    icon: (
+      <svg viewBox="0 0 64 64" className="w-11 h-11 text-gold" fill="none" stroke="currentColor" strokeWidth="1.1">
+        <path d="M32 6 L37 27 L58 32 L37 37 L32 58 L27 37 L6 32 L27 27 Z" />
+      </svg>
+    ),
+  },
+];
+
+function Pillars() {
+  return (
+    <Section tone="cream-light">
+      <div className="absolute inset-0 grain-ink opacity-[0.025]" />
+      <Container className="relative z-10">
+        <Reveal>
+          <Heading eyebrow="What We Stand For" title="Three" accent="core pillars" center className="max-w-xl mx-auto" />
+        </Reveal>
+
+        <div className="mt-16 grid gap-px bg-gold/20 md:grid-cols-3 border border-gold/20">
+          {pillars.map((p, i) => (
+            <Reveal key={p.n} delay={i * 130}>
+              <article className="h-full bg-cream-light p-9 lg:p-11 group">
+                <div className="flex items-start justify-between">
+                  <span className="transition-transform duration-700 group-hover:scale-110">{p.icon}</span>
+                  <span className="text-gold-dark/80 text-3xl font-bold leading-none" style={{ fontFamily: "var(--font-display)" }}>
+                    {p.n}
+                  </span>
+                </div>
+                <h3 className="mt-8 text-xl font-bold text-burgundy leading-snug">{p.title}</h3>
+                <span className="mt-5 block w-9 h-px bg-gold transition-all duration-500 group-hover:w-20" />
+                <p className="mt-5 text-[15px] leading-[1.8] text-ink-soft" style={{ fontFamily: "var(--font-serif)" }}>
+                  {p.body}
+                </p>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </Container>
+    </Section>
+  );
+}
+
+/* ── Alliance ───────────────────────────────────────────────────────── */
+
+function Alliance() {
+  return (
+    <Section tone="burgundy">
+      <div className="absolute inset-0 grain-gold opacity-[0.07]" />
+      <Container className="relative z-10">
+        <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+          <Reveal>
+            <Heading eyebrow="The Alliance" title="Crafted by Dishaa," accent="in alliance with INDRA" light />
+            <Prose light className="mt-8">
+              <p>
+                DIAGO is the product of two disciplines meeting. Dishaa brings decades of gold and
+                platinum expertise and a distribution network that reaches India&apos;s most
+                established showrooms. INDRA brings the design language.
+              </p>
+              <p>
+                Together they produce jewellery that satisfies the traditional buyer&apos;s
+                expectations of purity and the modern buyer&apos;s expectations of wearability.
+              </p>
+            </Prose>
+
+            <div className="mt-10 flex flex-wrap gap-x-10 gap-y-5">
+              {["Pure", "Precious", "Progressive"].map((w) => (
+                <span key={w} className="text-gold text-lg italic" style={{ fontFamily: "var(--font-serif)" }}>
+                  {w}
+                </span>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal delay={120}>
+            <div className="grid grid-cols-2 gap-5">
+              {[
+                { src: "/images/lifestyle-2.webp", ratio: "3/4", pad: "" },
+                { src: "/images/product-necklace.webp", ratio: "3/4", pad: "mt-10" },
+              ].map((im) => (
+                <div key={im.src} className={`relative overflow-hidden ${im.pad}`} style={{ aspectRatio: im.ratio }}>
+                  <Image
+                    src={im.src}
+                    alt=""
+                    fill
+                    sizes="25vw"
+                    className={im.src.includes("product") ? "object-contain bg-cream-light p-6" : "object-cover"}
+                  />
+                  <span className="pointer-events-none absolute inset-3 border border-gold/30" />
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </Container>
+    </Section>
+  );
+}
+
+/* ── Distribution ───────────────────────────────────────────────────── */
+
+function Distribution() {
+  return (
+    <Section tone="cream">
+      <Container>
+        <Reveal>
+          <div className="max-w-2xl mx-auto text-center">
+            <Eyebrow center>Distribution</Eyebrow>
+            <h2 className="mt-6 text-[2rem] sm:text-4xl lg:text-5xl font-bold leading-[1.12] text-burgundy">
+              Reaching India&apos;s top
+              <span className="block mt-2 font-normal italic text-gold-dark" style={{ fontFamily: "var(--font-serif)" }}>
+                jewellery showrooms
+              </span>
+            </h2>
+            <GoldRule center className="mt-7" />
+            <p className="mt-8 text-[1.0625rem] leading-[1.85] text-ink-soft" style={{ fontFamily: "var(--font-serif)" }}>
+              DIAGO holds exclusive sales and distribution rights with Dishaa Gold and Platinum.
+              Our mandate is straightforward — bring certified natural diamond jewellery to the
+              finest retail counters across the country.
+            </p>
+            <p className="mt-9 text-burgundy text-xl italic" style={{ fontFamily: "var(--font-serif)" }}>
+              Your showroom is the next.
+            </p>
+            <Link
+              href="/contact"
+              className="group mt-10 inline-flex items-center gap-3 px-9 py-4 bg-burgundy text-cream text-[11px] font-bold tracking-[0.22em] uppercase hover:bg-burgundy-dark transition-colors duration-300"
+            >
+              Talk to Our Team
+              <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+            </Link>
+          </div>
+        </Reveal>
+      </Container>
+    </Section>
+  );
+}
+
+export default function AboutPage() {
+  return (
+    <>
+      <PageHeader
+        eyebrow="About DIAGO"
+        title="Real diamond,"
+        accent="real you"
+        intro="Bridging traditional gold reverence with contemporary luxury — a house built for the way jewellery is actually worn today."
+        image="/images/lifestyle-3.webp"
+      />
+      <Story />
+      <Pillars />
+      <Alliance />
+      <Distribution />
+    </>
+  );
+}
