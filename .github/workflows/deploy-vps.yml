@@ -43,11 +43,13 @@ jobs:
           ssh -i ~/.ssh/deploy_key -p "$VPS_PORT" -o StrictHostKeyChecking=no -o BatchMode=yes \
             "$VPS_USER@$VPS_HOST" "echo SSH connection OK, whoami=\$(whoami)"
 
-          # --omit-dir-times: the deploy user only has group write access to
-          # the docroot (owned by the site's primary "diago" user), so it
-          # can't backdate the directory's own mtime — only its owner can.
-          # File content and timestamps are unaffected; this just stops
-          # rsync from failing on that one non-essential metadata write.
-          rsync -avz --delete --omit-dir-times \
+          # --omit-dir-times / --no-perms: the deploy user only has group
+          # write access to the docroot itself (owned by the site's primary
+          # "diago" user, not by our deploy user), so it can't chmod or
+          # backdate the mtime on that one pre-existing top-level folder —
+          # only its owner can. Every file and subfolder rsync creates is
+          # owned by our deploy user, so this only ever applies to that one
+          # directory. File content is unaffected either way.
+          rsync -avz --delete --omit-dir-times --no-perms \
             -e "ssh -i ~/.ssh/deploy_key -p $VPS_PORT -o StrictHostKeyChecking=no" \
             out/ "$VPS_USER@$VPS_HOST:$VPS_PATH/"
