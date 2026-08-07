@@ -10,7 +10,52 @@ const nav = [
   { l: "Contact", href: "/contact" },
 ];
 
-const socials = ["Instagram", "Facebook", "YouTube", "LinkedIn"];
+// TODO: swap "#" for the real profile URLs once they're available.
+const socials = [
+  {
+    name: "Instagram",
+    href: "#",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4.2" />
+        <circle cx="17.35" cy="6.65" r="1.05" fill="currentColor" stroke="none" />
+      </svg>
+    ),
+  },
+  {
+    name: "Facebook",
+    href: "#",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round">
+        <path d="M15.5 8.5h-2a1.5 1.5 0 0 0-1.5 1.5v2h3.4l-.5 3H12v7h-3v-7H7v-3h2v-2.3C9 7.7 10.7 6 13.2 6h2.3v2.5Z" />
+      </svg>
+    ),
+  },
+  {
+    name: "YouTube",
+    href: "#",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round">
+        <rect x="3" y="6" width="18" height="12" rx="4" />
+        <path d="M10.5 9.7v4.6l4-2.3-4-2.3Z" fill="currentColor" stroke="none" />
+      </svg>
+    ),
+  },
+  {
+    name: "LinkedIn",
+    href: "#",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="3" />
+        <line x1="7.3" y1="10.2" x2="7.3" y2="16.8" />
+        <circle cx="7.3" cy="7.1" r="0.15" fill="currentColor" />
+        <path d="M11.3 16.8v-4.1c0-1.5 1-2.5 2.35-2.5s2.35 1 2.35 2.5v4.1" />
+        <line x1="11.3" y1="10.2" x2="11.3" y2="16.8" />
+      </svg>
+    ),
+  },
+];
 
 export default function Footer() {
   return (
@@ -72,13 +117,15 @@ export default function Footer() {
 
             <div className="flex gap-2.5 mt-7">
               {socials.map((s) => (
-                <span
-                  key={s}
-                  title={s}
-                  className="w-9 h-9 border border-cream/15 flex items-center justify-center text-cream/85 text-[11px] hover:border-gold hover:text-gold transition-all duration-300 cursor-pointer"
+                <a
+                  key={s.name}
+                  href={s.href}
+                  aria-label={s.name}
+                  title={s.name}
+                  className="w-9 h-9 border border-cream/15 flex items-center justify-center text-cream/85 hover:border-gold hover:text-gold transition-all duration-300"
                 >
-                  {s[0]}
-                </span>
+                  <span className="w-[18px] h-[18px]">{s.icon}</span>
+                </a>
               ))}
             </div>
           </div>
