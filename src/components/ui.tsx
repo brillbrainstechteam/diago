@@ -35,7 +35,7 @@ export function Section({
     white: "bg-white",
   };
   return (
-    <section id={id} className={`relative py-20 md:py-28 lg:py-32 ${tones[tone]} ${className}`}>
+    <section id={id} className={`relative py-16 md:py-20 lg:py-24 ${tones[tone]} ${className}`}>
       {children}
     </section>
   );

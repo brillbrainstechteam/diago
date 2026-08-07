@@ -93,6 +93,7 @@ function EverydayElegance() {
               alt="Model wearing a DIAGO pendant and earrings"
               ratio="4/5"
               inset
+              className="shadow-[0_30px_60px_-25px_rgba(67,15,34,0.35)]"
             />
           </Reveal>
         </div>
@@ -153,7 +154,7 @@ function Materials() {
             <div className="relative">
               <span className="pointer-events-none absolute -top-4 -left-4 w-20 h-20 border-t border-l border-gold/60 z-10" />
               <span className="pointer-events-none absolute -bottom-4 -right-4 w-20 h-20 border-b border-r border-gold/60 z-10" />
-              <div className="relative aspect-[4/5] overflow-hidden">
+              <div className="relative aspect-[4/5] overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.45)]">
                 <Image
                   src={withBase("/images/texture-diamonds.webp")}
                   alt="Certified natural diamonds"

@@ -11,16 +11,20 @@ import { withBase } from "@/lib/basePath";
 
 function Story() {
   return (
-    <Section tone="cream">
+    <Section tone="cream-light">
       <Container>
         <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
           <Reveal>
-            <FramedImage
-              src={withBase("/images/texture-diamonds.webp")}
-              alt="Loose certified diamonds on a gold thread"
-              ratio="4/5"
-              inset
-            />
+            <div className="relative">
+              <div className="pointer-events-none absolute -inset-10 rounded-full bg-[radial-gradient(closest-side,var(--gold-pale)_0%,transparent_70%)] opacity-70 blur-2xl" />
+              <FramedImage
+                src={withBase("/images/texture-diamonds.webp")}
+                alt="Loose certified diamonds on a gold thread"
+                ratio="4/5"
+                inset
+                className="shadow-[0_30px_60px_-25px_rgba(67,15,34,0.35)]"
+              />
+            </div>
           </Reveal>
 
           <Reveal delay={120}>
@@ -152,7 +156,11 @@ function Alliance() {
                 { src: withBase("/images/lifestyle-2.webp"), ratio: "3/4", pad: "" },
                 { src: withBase("/images/product-necklace.webp"), ratio: "3/4", pad: "mt-10" },
               ].map((im) => (
-                <div key={im.src} className={`relative overflow-hidden ${im.pad}`} style={{ aspectRatio: im.ratio }}>
+                <div
+                  key={im.src}
+                  className={`relative overflow-hidden shadow-[0_20px_45px_-18px_rgba(0,0,0,0.5)] ${im.pad}`}
+                  style={{ aspectRatio: im.ratio }}
+                >
                   <Image
                     src={im.src}
                     alt=""
