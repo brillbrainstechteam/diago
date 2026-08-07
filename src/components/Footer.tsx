@@ -144,7 +144,7 @@ export default function Footer() {
           <p className="text-cream/60 text-[10px] tracking-[0.14em]">
             Powered By{" "}
             <a
-              href="https://brillbrainsconsultants.com/"
+              href="https://www.brillbrainsconsultants.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-gold transition-colors duration-300"

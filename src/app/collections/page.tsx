@@ -204,7 +204,7 @@ export default function CollectionsPage() {
         title="Seven categories,"
         accent="one standard"
         intro="Rings, bracelets, pendants, earrings, necklaces and mangalsutras — each crafted in hallmarked fine gold and set with certified natural diamonds."
-        image={withBase("/images/product-necklace.webp")}
+        image={withBase("/images/earrings-feature.webp")}
       />
       <CategoryIndex />
       {categories.map((cat, i) => (

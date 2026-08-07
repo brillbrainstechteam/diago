@@ -269,7 +269,7 @@ export function PageHeader({
   image?: string;
 }) {
   return (
-    <header className="relative surface-burgundy overflow-hidden pt-[calc(var(--nav-h)+4.5rem)] pb-20 md:pt-[calc(var(--nav-h)+6rem)] md:pb-28">
+    <header className="relative surface-burgundy overflow-hidden pt-[calc(var(--nav-h)+2.25rem)] pb-14 md:pt-[calc(var(--nav-h)+3rem)] md:pb-16">
       <div className="absolute inset-0 grain-gold opacity-[0.07]" />
       {image && (
         <div className="absolute inset-y-0 right-0 w-1/2 hidden lg:block">

@@ -217,7 +217,7 @@ export default function AboutPage() {
         title="Real diamond,"
         accent="real you"
         intro="Bridging traditional gold reverence with contemporary luxury — a house built for the way jewellery is actually worn today."
-        image={withBase("/images/lifestyle-3.webp")}
+        image={withBase("/images/portrait-earrings.webp")}
       />
       <Story />
       <Pillars />

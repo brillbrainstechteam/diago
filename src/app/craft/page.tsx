@@ -105,6 +105,7 @@ function EverydayElegance() {
                 { src: withBase("/images/lifestyle-3.webp"), cap: "Every morning" },
                 { src: withBase("/images/lifestyle-2.webp"), cap: "After hours" },
                 { src: withBase("/images/product-earring.webp"), cap: "Halo studs", contain: true },
+                { src: withBase("/images/earrings-feature.webp"), cap: "Signature studs" },
               ].map((s) => (
                 <figure key={s.cap} className="group">
                   <div className="relative aspect-[3/4] overflow-hidden bg-cream-dark">
