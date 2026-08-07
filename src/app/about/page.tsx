@@ -5,6 +5,7 @@ import Link from "next/link";
 import {
   Container, Section, Reveal, Eyebrow, GoldRule, Heading, Prose, FramedImage, PageHeader,
 } from "@/components/ui";
+import { withBase } from "@/lib/basePath";
 
 /* ── Story ──────────────────────────────────────────────────────────── */
 
@@ -15,7 +16,7 @@ function Story() {
         <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
           <Reveal>
             <FramedImage
-              src="/images/texture-diamonds.webp"
+              src={withBase("/images/texture-diamonds.webp")}
               alt="Loose certified diamonds on a gold thread"
               ratio="4/5"
               inset
@@ -148,8 +149,8 @@ function Alliance() {
           <Reveal delay={120}>
             <div className="grid grid-cols-2 gap-5">
               {[
-                { src: "/images/lifestyle-2.webp", ratio: "3/4", pad: "" },
-                { src: "/images/product-necklace.webp", ratio: "3/4", pad: "mt-10" },
+                { src: withBase("/images/lifestyle-2.webp"), ratio: "3/4", pad: "" },
+                { src: withBase("/images/product-necklace.webp"), ratio: "3/4", pad: "mt-10" },
               ].map((im) => (
                 <div key={im.src} className={`relative overflow-hidden ${im.pad}`} style={{ aspectRatio: im.ratio }}>
                   <Image
@@ -216,7 +217,7 @@ export default function AboutPage() {
         title="Real diamond,"
         accent="real you"
         intro="Bridging traditional gold reverence with contemporary luxury — a house built for the way jewellery is actually worn today."
-        image="/images/lifestyle-3.webp"
+        image={withBase("/images/lifestyle-3.webp")}
       />
       <Story />
       <Pillars />

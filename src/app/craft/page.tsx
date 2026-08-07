@@ -6,6 +6,7 @@ import Carousel from "@/components/Carousel";
 import {
   Container, Section, Reveal, Eyebrow, GoldRule, Heading, Prose, FramedImage, PageHeader,
 } from "@/components/ui";
+import { withBase } from "@/lib/basePath";
 
 /* ── Process ────────────────────────────────────────────────────────── */
 
@@ -88,7 +89,7 @@ function EverydayElegance() {
 
           <Reveal delay={120}>
             <FramedImage
-              src="/images/lifestyle-2.webp"
+              src={withBase("/images/lifestyle-2.webp")}
               alt="Model wearing a DIAGO pendant and earrings"
               ratio="4/5"
               inset
@@ -100,10 +101,10 @@ function EverydayElegance() {
           <div className="mt-16">
             <Carousel ariaLabel="Lifestyle photography" slideClass="basis-[70%] sm:basis-[42%] lg:basis-[31%]">
               {[
-                { src: "/images/lifestyle-1.webp", cap: "At the desk" },
-                { src: "/images/lifestyle-3.webp", cap: "Every morning" },
-                { src: "/images/lifestyle-2.webp", cap: "After hours" },
-                { src: "/images/product-earring.webp", cap: "Halo studs", contain: true },
+                { src: withBase("/images/lifestyle-1.webp"), cap: "At the desk" },
+                { src: withBase("/images/lifestyle-3.webp"), cap: "Every morning" },
+                { src: withBase("/images/lifestyle-2.webp"), cap: "After hours" },
+                { src: withBase("/images/product-earring.webp"), cap: "Halo studs", contain: true },
               ].map((s) => (
                 <figure key={s.cap} className="group">
                   <div className="relative aspect-[3/4] overflow-hidden bg-cream-dark">
@@ -153,7 +154,7 @@ function Materials() {
               <span className="pointer-events-none absolute -bottom-4 -right-4 w-20 h-20 border-b border-r border-gold/60 z-10" />
               <div className="relative aspect-[4/5] overflow-hidden">
                 <Image
-                  src="/images/texture-diamonds.webp"
+                  src={withBase("/images/texture-diamonds.webp")}
                   alt="Certified natural diamonds"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
@@ -234,7 +235,7 @@ function RetailMagnet() {
 
         <div className="relative min-h-[340px] lg:min-h-[600px] order-1 lg:order-2">
           <Image
-            src="/images/retail-packaging.webp"
+            src={withBase("/images/retail-packaging.webp")}
             alt="DIAGO retail packaging and counter display"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
@@ -255,7 +256,7 @@ export default function CraftPage() {
         title="Made to be worn,"
         accent="not stored"
         intro="Certified stones, hallmarked gold and a design process that starts with wearability — here is what goes into a DIAGO piece before it reaches the counter."
-        image="/images/lifestyle-1.webp"
+        image={withBase("/images/lifestyle-1.webp")}
       />
       <Process />
       <EverydayElegance />

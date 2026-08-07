@@ -3,6 +3,7 @@ import { Playfair_Display, Cormorant_Garamond, Lato } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { withBase } from "@/lib/basePath";
 
 const playfair = Playfair_Display({
   variable: "--font-display",
@@ -30,11 +31,11 @@ export const metadata: Metadata = {
     "DIAGO redefines gold jewellery for the modern consumer by pairing fine gold artistry with the authentic brilliance of certified natural diamonds.",
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/images/icon-192.png", type: "image/png", sizes: "192x192" },
-      { url: "/images/icon-512.png", type: "image/png", sizes: "512x512" },
+      { url: withBase("/favicon.ico"), sizes: "any" },
+      { url: withBase("/images/icon-192.png"), type: "image/png", sizes: "192x192" },
+      { url: withBase("/images/icon-512.png"), type: "image/png", sizes: "512x512" },
     ],
-    apple: "/apple-icon.png",
+    apple: withBase("/apple-icon.png"),
   },
 };
 

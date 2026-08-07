@@ -1,3 +1,5 @@
+import { withBase } from "@/lib/basePath";
+
 export type Category = {
   slug: string;
   name: string;
@@ -14,7 +16,7 @@ export const categories: Category[] = [
     tagline: "The signature gesture",
     description:
       "Sculptural silhouettes in fine gold, set with certified natural diamonds. Built to be worn daily and noticed instantly.",
-    image: "/images/product-ring.webp",
+    image: withBase("/images/product-ring.webp"),
     details: ["Pear & marquee settings", "Micro-pave diamond detail", "Comfort-fit gold band"],
   },
   {
@@ -23,7 +25,7 @@ export const categories: Category[] = [
     tagline: "Movement, made brilliant",
     description:
       "Paperclip links and fine cable chains anchored by a solitaire. Weightless on the wrist, deliberate in presence.",
-    image: "/images/product-bracelet.webp",
+    image: withBase("/images/product-bracelet.webp"),
     details: ["Solitaire centre stone", "Adjustable chain length", "Secure lobster clasp"],
   },
   {
@@ -32,7 +34,7 @@ export const categories: Category[] = [
     tagline: "Everyday brilliance",
     description:
       "Contemporary pendants matched to fine gold chains — the layering pieces that carry a wardrobe from desk to dinner.",
-    image: "/images/product-chain-pendant.webp",
+    image: withBase("/images/product-chain-pendant.webp"),
     details: ["Matched chain included", "Layer-friendly proportions", "Halo diamond setting"],
   },
   {
@@ -41,7 +43,7 @@ export const categories: Category[] = [
     tagline: "Considered as a pair",
     description:
       "Coordinated pendant and earring sets designed together, so brilliance reads consistently across the face and neckline.",
-    image: "/images/product-pendant-sets.webp",
+    image: withBase("/images/product-pendant-sets.webp"),
     details: ["Pendant & earrings matched", "Baguette and round cuts", "Gift-ready presentation"],
   },
   {
@@ -50,7 +52,7 @@ export const categories: Category[] = [
     tagline: "Light enough to forget",
     description:
       "Halo studs engineered for all-day comfort — secure, feather-light, and finished to catch light from every angle.",
-    image: "/images/product-earring.webp",
+    image: withBase("/images/product-earring.webp"),
     details: ["Halo-set brilliant cut", "Screw-back security", "Under 2g per pair"],
   },
   {
@@ -59,7 +61,7 @@ export const categories: Category[] = [
     tagline: "Heritage, reframed",
     description:
       "Statement necklaces that carry traditional craftsmanship into a modern design language — structured, graphic, wearable.",
-    image: "/images/product-necklace.webp",
+    image: withBase("/images/product-necklace.webp"),
     details: ["Graduated diamond line", "Balanced drape", "Hallmarked fine gold"],
   },
   {
@@ -68,7 +70,7 @@ export const categories: Category[] = [
     tagline: "Tradition, made contemporary",
     description:
       "The most meaningful piece in the box, reimagined — geometric motifs and diamond detailing that suit a modern wardrobe.",
-    image: "/images/product-mangalsutra.webp",
+    image: withBase("/images/product-mangalsutra.webp"),
     details: ["Hexagon & vine motifs", "Pear-cut centre drop", "Everyday-wear weight"],
   },
 ];

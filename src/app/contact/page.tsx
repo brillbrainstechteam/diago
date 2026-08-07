@@ -5,6 +5,7 @@ import { useState } from "react";
 import {
   Container, Section, Reveal, Eyebrow, GoldRule, Heading, PageHeader,
 } from "@/components/ui";
+import { withBase } from "@/lib/basePath";
 
 /* ── Contact details ────────────────────────────────────────────────── */
 
@@ -113,7 +114,7 @@ function Details() {
 
                 <div className="mt-9 relative aspect-[4/3] overflow-hidden">
                   <Image
-                    src="/images/retail-packaging.webp"
+                    src={withBase("/images/retail-packaging.webp")}
                     alt="DIAGO packaging and counter display"
                     fill
                     sizes="(max-width: 1024px) 100vw, 40vw"
@@ -367,7 +368,7 @@ export default function ContactPage() {
         title="Get in"
         accent="touch"
         intro="Retail partnerships, private viewings and product enquiries — handled directly by the DIAGO distribution team in Mumbai."
-        image="/images/product-pendant-sets.webp"
+        image={withBase("/images/product-pendant-sets.webp")}
       />
       <Details />
       <AppointmentForm />

@@ -7,6 +7,7 @@ import { categories } from "@/data/collections";
 import {
   Container, Section, Reveal, Eyebrow, GoldRule, Heading, PageHeader,
 } from "@/components/ui";
+import { withBase } from "@/lib/basePath";
 
 /* ── Quick index ────────────────────────────────────────────────────── */
 
@@ -203,7 +204,7 @@ export default function CollectionsPage() {
         title="Seven categories,"
         accent="one standard"
         intro="Rings, bracelets, pendants, earrings, necklaces and mangalsutras — each crafted in hallmarked fine gold and set with certified natural diamonds."
-        image="/images/product-necklace.webp"
+        image={withBase("/images/product-necklace.webp")}
       />
       <CategoryIndex />
       {categories.map((cat, i) => (

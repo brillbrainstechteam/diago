@@ -7,6 +7,7 @@ import { categories } from "@/data/collections";
 import {
   Container, Section, Reveal, Eyebrow, GoldRule, Heading, Prose, FramedImage,
 } from "@/components/ui";
+import { withBase } from "@/lib/basePath";
 
 /* ── Hero ───────────────────────────────────────────────────────────── */
 
@@ -81,7 +82,7 @@ function Hero() {
             <span className="pointer-events-none absolute -bottom-4 -right-4 w-24 h-24 border-b border-r border-gold/70 z-10" />
             <div className="relative overflow-hidden" style={{ aspectRatio: "554 / 900" }}>
               <Image
-                src="/images/hero-model.webp"
+                src={withBase("/images/hero-model.webp")}
                 alt="Model wearing a DIAGO diamond pendant and earrings"
                 fill
                 priority
@@ -137,7 +138,7 @@ function AboutTeaser() {
         <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
           <Reveal>
             <FramedImage
-              src="/images/product-chain-pendant.webp"
+              src={withBase("/images/product-chain-pendant.webp")}
               alt="DIAGO diamond pendant in fine gold"
               ratio="4/5"
               fit="contain"
@@ -226,9 +227,9 @@ function CollectionsRail() {
 
 function Lifestyle() {
   const shots = [
-    { src: "/images/lifestyle-1.webp", cap: "At the desk" },
-    { src: "/images/lifestyle-2.webp", cap: "After hours" },
-    { src: "/images/lifestyle-3.webp", cap: "Every morning" },
+    { src: withBase("/images/lifestyle-1.webp"), cap: "At the desk" },
+    { src: withBase("/images/lifestyle-2.webp"), cap: "After hours" },
+    { src: withBase("/images/lifestyle-3.webp"), cap: "Every morning" },
   ];
   return (
     <Section tone="cream">
@@ -281,7 +282,7 @@ function RetailCta() {
       <div className="grid lg:grid-cols-2">
         <div className="relative min-h-[340px] lg:min-h-[540px]">
           <Image
-            src="/images/retail-packaging.webp"
+            src={withBase("/images/retail-packaging.webp")}
             alt="DIAGO retail packaging and display"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { withBase } from "@/lib/basePath";
 
 const nav = [
   { l: "Home", href: "/" },
@@ -20,7 +21,7 @@ export default function Footer() {
         <div className="py-16 lg:py-20 grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
           <div>
             <Image
-              src="/images/logo.webp"
+              src={withBase("/images/logo.webp")}
               alt="DIAGO"
               width={221}
               height={100}

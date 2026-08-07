@@ -13,6 +13,11 @@ const nextConfig: NextConfig = {
   },
   basePath,
   assetPrefix: basePath,
+  env: {
+    // Inlined at build time so client components can prefix static asset
+    // paths themselves — see src/lib/basePath.ts for why that's necessary.
+    NEXT_PUBLIC_BASE_PATH: basePath,
+  },
 };
 
 export default nextConfig;

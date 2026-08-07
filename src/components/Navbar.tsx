@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
+import { withBase } from "@/lib/basePath";
 
 const links = [
   { label: "Home", href: "/" },
@@ -41,7 +42,7 @@ export default function Navbar() {
       <nav className="w-full max-w-[1240px] mx-auto px-6 sm:px-10 lg:px-16 h-[var(--nav-h)] flex items-center justify-between">
         <Link href="/" className="shrink-0" aria-label="DIAGO — home">
           <Image
-            src="/images/logo.webp"
+            src={withBase("/images/logo.webp")}
             alt="DIAGO"
             width={221}
             height={100}
