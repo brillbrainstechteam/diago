@@ -45,7 +45,7 @@ export default function Navbar() {
             alt="DIAGO"
             width={221}
             height={100}
-            className="h-11 sm:h-14 w-auto object-contain"
+            className="h-10 sm:h-12 w-auto object-contain"
             priority
           />
         </Link>

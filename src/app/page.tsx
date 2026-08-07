@@ -12,10 +12,10 @@ import {
 
 function Hero() {
   return (
-    <section className="relative min-h-[92vh] lg:min-h-screen flex items-center surface-burgundy overflow-hidden">
+    <section className="relative flex items-center surface-burgundy overflow-hidden">
       <div className="absolute inset-0 grain-gold opacity-[0.06]" />
 
-      <Container className="relative z-10 pt-[calc(var(--nav-h)+3rem)] pb-20 lg:py-28">
+      <Container className="relative z-10 pt-[calc(var(--nav-h)+2.5rem)] pb-16 lg:pt-[calc(var(--nav-h)+3.5rem)] lg:pb-20">
         {/* The portrait track needs a definite size: an `auto` track combined
             with a `w-full` child resolves circularly and collapses to zero. */}
         <div className="grid lg:grid-cols-[1fr_minmax(0,420px)] gap-14 lg:gap-16 items-center">

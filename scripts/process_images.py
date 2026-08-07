@@ -72,12 +72,14 @@ for slug, (folder, fname) in products.items():
     save_webp(square_tile(src), f"product-{slug}.webp")
 
 # ── Lifestyle portraits ───────────────────────────────────────────────────
-# "everyday elegance.jpg" is a triptych of three model shots separated by
-# cream gutters. Split it so each portrait can stand on its own.
+# "womenwithpendent and earings.png" is a 1536x1024 triptych of three model
+# shots (desk / evening / morning) separated by white gutters at x 485-516
+# and 1018-1049. This replaced an older, much lower-res brochure crop that
+# was visibly blurry once stretched to fill the lifestyle grid tiles.
 print("\nLifestyle portraits:")
-tri = Image.open(os.path.join(BROCHURE, "everyday elegance.jpg"))
-for i, (x0, x1) in enumerate([(378, 575), (588, 790), (800, 1000)], start=1):
-    save_webp(tri.crop((x0, 262, x1, 828)), f"lifestyle-{i}.webp")
+tri = Image.open(os.path.join(LOGO_DIR, "new images", "womenwithpendent and earings.png")).convert("RGB")
+for i, (x0, x1) in enumerate([(0, 484), (517, 1017), (1050, tri.width)], start=1):
+    save_webp(tri.crop((x0, 0, x1, tri.height)), f"lifestyle-{i}.webp")
 
 # ── Hero portrait ─────────────────────────────────────────────────────────
 # The source creative carries baked-in copy: the DIAGO lockup top-left, the

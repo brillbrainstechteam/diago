@@ -24,7 +24,7 @@ export default function Footer() {
               alt="DIAGO"
               width={221}
               height={100}
-              className="h-16 lg:h-20 w-auto object-contain"
+              className="h-14 lg:h-16 w-auto object-contain"
             />
             <p className="mt-6 text-cream/85 text-[15px] leading-relaxed" style={{ fontFamily: "var(--font-serif)" }}>
               Fine gold artistry paired with the authentic brilliance of certified natural diamonds.
