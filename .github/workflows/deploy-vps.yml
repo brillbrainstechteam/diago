@@ -43,6 +43,11 @@ jobs:
           ssh -i ~/.ssh/deploy_key -p "$VPS_PORT" -o StrictHostKeyChecking=no -o BatchMode=yes \
             "$VPS_USER@$VPS_HOST" "echo SSH connection OK, whoami=\$(whoami)"
 
-          rsync -avz --delete \
+          # --omit-dir-times: the deploy user only has group write access to
+          # the docroot (owned by the site's primary "diago" user), so it
+          # can't backdate the directory's own mtime — only its owner can.
+          # File content and timestamps are unaffected; this just stops
+          # rsync from failing on that one non-essential metadata write.
+          rsync -avz --delete --omit-dir-times \
             -e "ssh -i ~/.ssh/deploy_key -p $VPS_PORT -o StrictHostKeyChecking=no" \
             out/ "$VPS_USER@$VPS_HOST:$VPS_PATH/"
