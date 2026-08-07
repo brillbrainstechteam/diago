@@ -34,7 +34,7 @@ jobs:
           echo "Host=$VPS_HOST User=$VPS_USER Port=$VPS_PORT Path=$VPS_PATH"
 
           mkdir -p ~/.ssh
-          echo "$SSH_KEY" > ~/.ssh/deploy_key
+          echo "$SSH_KEY" | base64 -d > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
           ssh-keygen -y -f ~/.ssh/deploy_key > /dev/null && echo "Key file parses OK" || echo "Key file is NOT a valid private key"
 
