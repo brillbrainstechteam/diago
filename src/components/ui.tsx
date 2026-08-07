@@ -273,8 +273,8 @@ export function PageHeader({
       <div className="absolute inset-0 grain-gold opacity-[0.07]" />
       {image && (
         <div className="absolute inset-y-0 right-0 w-1/2 hidden lg:block">
-          <Image src={image} alt="" fill className="object-cover opacity-25" sizes="50vw" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[var(--burgundy-dark)] via-[var(--burgundy-dark)]/70 to-transparent" />
+          <Image src={image} alt="" fill className="object-cover opacity-45" sizes="50vw" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[var(--burgundy-dark)] via-[var(--burgundy-dark)]/50 to-transparent" />
         </div>
       )}
       <Container className="relative z-10">
