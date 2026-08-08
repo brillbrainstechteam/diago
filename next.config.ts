@@ -8,6 +8,11 @@ const basePath = process.env.GH_PAGES ? "/diago" : "";
 
 const nextConfig: NextConfig = {
   output: "export",
+  // Emits each route as <route>/index.html rather than <route>.html. The VPS
+  // nginx vhost has no `location /` fallback and can't be given one from the
+  // deploy pipeline (the deploy user is docroot-only), so routes must resolve
+  // via plain directory-index lookup or a hard refresh 403s. See deploy-vps.yml.
+  trailingSlash: true,
   images: {
     unoptimized: true,
   },
