@@ -13,7 +13,7 @@ function Story() {
   return (
     <Section tone="cream-light">
       <Container>
-        <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           <Reveal>
             <div className="relative">
               <div className="pointer-events-none absolute -inset-10 rounded-full bg-[radial-gradient(closest-side,var(--gold-pale)_0%,transparent_70%)] opacity-70 blur-2xl" />
@@ -81,7 +81,7 @@ function Pillars() {
           <Heading eyebrow="What We Stand For" title="Three" accent="core pillars" center className="max-w-xl mx-auto" />
         </Reveal>
 
-        <div className="mt-16 grid gap-px bg-gold/20 md:grid-cols-3 border border-gold/20">
+        <div className="mt-11 grid gap-px bg-gold/20 md:grid-cols-3 border border-gold/20">
           {pillars.map((p, i) => (
             <Reveal key={p.n} delay={i * 130}>
               <article className="h-full bg-cream-light p-9 lg:p-11 group">
@@ -114,7 +114,7 @@ function Alliance() {
     <Section tone="burgundy">
       <div className="absolute inset-0 grain-gold opacity-[0.07]" />
       <Container className="relative z-10">
-        <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           <Reveal>
             <Heading eyebrow="The Alliance" title="Crafted by Dishaa," accent="in alliance with INDRA" light />
             <Prose light className="mt-8">

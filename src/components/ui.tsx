@@ -35,7 +35,7 @@ export function Section({
     white: "bg-white",
   };
   return (
-    <section id={id} className={`relative py-16 md:py-24 lg:py-32 ${tones[tone]} ${className}`}>
+    <section id={id} className={`relative py-12 md:py-16 lg:py-20 ${tones[tone]} ${className}`}>
       {children}
     </section>
   );
@@ -269,7 +269,7 @@ export function PageHeader({
   image?: string;
 }) {
   return (
-    <header className="relative surface-burgundy overflow-hidden pt-[calc(var(--nav-h)+2.25rem)] pb-14 md:pt-[calc(var(--nav-h)+3rem)] md:pb-16">
+    <header className="relative surface-burgundy overflow-hidden pt-[calc(var(--nav-h)+1.5rem)] pb-10 md:pt-[calc(var(--nav-h)+2.25rem)] md:pb-12">
       <div className="absolute inset-0 grain-gold opacity-[0.07]" />
       {image && (
         <div className="absolute inset-y-0 right-0 w-1/2 hidden lg:block">

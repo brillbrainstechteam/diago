@@ -41,7 +41,7 @@ function Process() {
           <Heading eyebrow="How It's Made" title="Four stages, no" accent="shortcuts" center className="max-w-xl mx-auto" />
         </Reveal>
 
-        <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+        <div className="mt-11 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           {steps.map((s, i) => (
             <Reveal key={s.n} delay={i * 120}>
               <article className="relative pt-8 border-t border-gold/30 h-full">
@@ -71,7 +71,7 @@ function EverydayElegance() {
     <Section tone="cream-light">
       <div className="absolute inset-0 grain-ink opacity-[0.025]" />
       <Container className="relative z-10">
-        <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           <Reveal>
             <Heading eyebrow="Everyday Luxury" title="Everyday elegance," accent="effortless radiance" />
             <Prose className="mt-8">
@@ -99,7 +99,7 @@ function EverydayElegance() {
         </div>
 
         <Reveal delay={200}>
-          <div className="mt-16">
+          <div className="mt-11">
             <Carousel ariaLabel="Lifestyle photography" slideClass="basis-[70%] sm:basis-[42%] lg:basis-[31%]">
               {[
                 { src: withBase("/images/lifestyle-1.webp"), cap: "At the desk" },
@@ -149,7 +149,7 @@ function Materials() {
     <Section tone="burgundy">
       <div className="absolute inset-0 grain-gold opacity-[0.07]" />
       <Container className="relative z-10">
-        <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           <Reveal>
             <div className="relative">
               <span className="pointer-events-none absolute -top-4 -left-4 w-20 h-20 border-t border-l border-gold/60 z-10" />
@@ -235,7 +235,7 @@ function RetailMagnet() {
           </div>
         </div>
 
-        <div className="relative min-h-[340px] lg:min-h-[600px] order-1 lg:order-2">
+        <div className="relative min-h-[340px] lg:min-h-[520px] order-1 lg:order-2">
           <Image
             src={withBase("/images/retail-packaging.webp")}
             alt="DIAGO retail packaging and counter display"

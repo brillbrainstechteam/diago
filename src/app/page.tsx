@@ -21,7 +21,7 @@ function Hero() {
       <Container className="relative z-10 pt-[calc(var(--nav-h)+1.75rem)] pb-16 lg:pt-[calc(var(--nav-h)+2.25rem)] lg:pb-20">
         {/* The portrait track needs a definite size: an `auto` track combined
             with a `w-full` child resolves circularly and collapses to zero. */}
-        <div className="grid lg:grid-cols-[1fr_minmax(0,420px)] gap-14 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-[1fr_minmax(0,420px)] gap-12 lg:gap-16 items-center">
         <div className="max-w-xl">
           <div className="animate-fade-in-up">
             <Eyebrow light>Fine Gold × Natural Diamonds</Eyebrow>
@@ -61,7 +61,7 @@ function Hero() {
             </Link>
           </div>
 
-          <dl className="mt-16 flex flex-wrap gap-x-10 gap-y-6 animate-fade-in-up" style={{ animationDelay: "0.48s" }}>
+          <dl className="mt-11 flex flex-wrap gap-x-10 gap-y-6 animate-fade-in-up" style={{ animationDelay: "0.48s" }}>
             {[
               { v: "100%", l: "Certified diamonds" },
               { v: "BIS", l: "Hallmarked gold" },
@@ -141,7 +141,7 @@ function Proposition() {
     <Section tone="cream-light" className="!py-14 md:!py-16">
       <Container>
         <Reveal>
-          <Heading eyebrow="Four Simple Promises" title="The DIAGO" accent="Promise" center className="max-w-xl mx-auto mb-14" />
+          <Heading eyebrow="Four Simple Promises" title="The DIAGO" accent="Promise" center className="max-w-xl mx-auto mb-10" />
         </Reveal>
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 md:gap-10">
           {items.map((item, i) => (
@@ -169,7 +169,7 @@ function AboutTeaser() {
   return (
     <Section tone="cream-light">
       <Container>
-        <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           <Reveal>
             <div className="relative grid grid-cols-2 gap-5">
               <div className="pointer-events-none absolute -inset-10 rounded-full bg-[radial-gradient(closest-side,var(--gold-pale)_0%,transparent_70%)] opacity-70 blur-2xl" />
@@ -226,7 +226,7 @@ function CollectionsRail() {
       <div className="absolute inset-0 grain-gold opacity-[0.07]" />
       <Container className="relative z-10">
         <Reveal>
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-14">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-10">
             <div>
               <Heading eyebrow="Signature Pieces" title="Signature" accent="Collection" light />
               <p className="mt-6 text-cream/85 text-[15px]" style={{ fontFamily: "var(--font-serif)" }}>
@@ -276,7 +276,7 @@ function Lifestyle() {
           </p>
         </Reveal>
 
-        <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8">
+        <div className="mt-11 grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8">
           {shots.map((s, i) => (
             <Reveal key={s.src} delay={i * 140}>
               <figure className="group">
@@ -326,7 +326,7 @@ function ShopByOccasion() {
         </Reveal>
 
         <Reveal delay={120}>
-          <div className="mt-16">
+          <div className="mt-11">
             <Carousel ariaLabel="Shop by occasion" slideClass="basis-[38%] sm:basis-[26%] lg:basis-1/5">
               {occasions.map((o) => (
                 <Link key={o.name} href={o.href} className="group flex flex-col items-center">
@@ -358,7 +358,7 @@ function GiftingBanner() {
   return (
     <section className="relative overflow-hidden">
       <div className="grid lg:grid-cols-2">
-        <div className="relative surface-burgundy flex items-center py-20 lg:py-28 order-2 lg:order-1">
+        <div className="relative surface-burgundy flex items-center py-14 lg:py-20 order-2 lg:order-1">
           <div className="absolute inset-0 grain-gold opacity-[0.07]" />
           <div className="relative z-10 w-full px-6 sm:px-10 lg:px-16 xl:pl-24">
             <Reveal>
@@ -384,7 +384,7 @@ function GiftingBanner() {
           </div>
         </div>
 
-        <div className="relative min-h-[340px] lg:min-h-[540px] order-1 lg:order-2">
+        <div className="relative min-h-[340px] lg:min-h-[460px] order-1 lg:order-2">
           <VerticalShowcase
             items={[
               { label: "Statement Rings", tagline: "The signature gesture", image: withBase("/images/deck-ring.webp") },
@@ -405,7 +405,7 @@ function RetailCta() {
   return (
     <section className="relative overflow-hidden">
       <div className="grid lg:grid-cols-2">
-        <div className="relative min-h-[340px] lg:min-h-[540px]">
+        <div className="relative min-h-[340px] lg:min-h-[460px]">
           <Image
             src={withBase("/images/retail-packaging.webp")}
             alt="DIAGO retail packaging and display"
@@ -416,15 +416,15 @@ function RetailCta() {
           <div className="absolute inset-0 bg-burgundy-deep/25" />
         </div>
 
-        <div className="relative surface-burgundy flex items-center py-20 lg:py-28">
+        <div className="relative surface-burgundy flex items-center py-14 lg:py-20">
           <div className="absolute inset-0 grain-gold opacity-[0.07]" />
           <div className="relative z-10 w-full px-6 sm:px-10 lg:px-16 xl:pr-24">
             <Reveal>
               <Eyebrow light>For Retailers</Eyebrow>
               <h2 className="mt-6 text-[2rem] sm:text-4xl lg:text-5xl font-bold leading-[1.1] text-cream">
-                The golden <span className="animate-shimmer">magnet</span>
+                Stock that <span className="animate-shimmer">sells itself</span>
                 <span className="block mt-2 text-2xl sm:text-3xl font-normal italic text-cream/90" style={{ fontFamily: "var(--font-serif)" }}>
-                  for high-velocity retail
+                  engineered for high turnover
                 </span>
               </h2>
               <GoldRule light className="mt-7" />

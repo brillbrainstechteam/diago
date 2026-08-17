@@ -44,7 +44,7 @@ function CategoryRow({ cat, index }: { cat: (typeof categories)[number]; index: 
       className={`scroll-mt-[calc(var(--nav-h)+2rem)] ${index % 2 === 1 ? "bg-cream-light" : "bg-cream"}`}
     >
       <Container>
-        <div className="py-16 lg:py-24 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="py-11 lg:py-14 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           {/* Image */}
           <Reveal className={flipped ? "lg:order-2" : ""}>
             <div className="relative group">
@@ -125,7 +125,7 @@ function BrowseRail() {
           <Heading eyebrow="Browse" title="The complete" accent="range" light center className="max-w-xl mx-auto" />
         </Reveal>
 
-        <Reveal delay={120} className="mt-14 block">
+        <Reveal delay={120} className="mt-10 block">
           <Carousel ariaLabel="All categories" light slideClass="basis-[62%] sm:basis-[38%] lg:basis-[24%]">
             {categories.map((cat) => (
               <a key={cat.slug} href={`#${cat.slug}`} className="group block">

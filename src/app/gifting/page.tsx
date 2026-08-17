@@ -2,12 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import ProductDeck from "@/components/ProductDeck";
 import {
   Container, Section, Reveal, Eyebrow, GoldRule, Heading, PageHeader,
 } from "@/components/ui";
 import { withBase } from "@/lib/basePath";
-import { deckCards } from "@/data/deckCards";
 
 /* ── Why gift DIAGO ─────────────────────────────────────────────────── */
 
@@ -42,7 +40,7 @@ function WhyGift() {
           <Heading eyebrow="Why Gift DIAGO" title="A keepsake," accent="not just a purchase" center className="max-w-xl mx-auto" />
         </Reveal>
 
-        <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+        <div className="mt-11 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           {reasons.map((r, i) => (
             <Reveal key={r.n} delay={i * 120}>
               <article className="relative pt-8 border-t border-gold/30 h-full">
@@ -82,7 +80,7 @@ function GiftForOccasion() {
           <Heading eyebrow="Popular Gifts" title="Pieces people" accent="love to give" center className="max-w-xl mx-auto" />
         </Reveal>
 
-        <div className="mt-14 grid gap-px bg-gold/20 sm:grid-cols-2 lg:grid-cols-4 border border-gold/20">
+        <div className="mt-10 grid gap-px bg-gold/20 sm:grid-cols-2 lg:grid-cols-4 border border-gold/20">
           {picks.map((p, i) => (
             <Reveal key={p.name} delay={i * 130}>
               <Link href={p.href} className="group h-full bg-cream-light p-9 lg:p-11 flex flex-col items-center text-center">
@@ -110,24 +108,6 @@ function GiftForOccasion() {
               <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
             </Link>
           </div>
-        </Reveal>
-      </Container>
-    </Section>
-  );
-}
-
-/* ── Showcase ───────────────────────────────────────────────────────── */
-
-function GiftShowcase() {
-  return (
-    <Section tone="burgundy" className="!py-16 md:!py-20">
-      <div className="absolute inset-0 grain-gold opacity-[0.07]" />
-      <Container className="relative z-10">
-        <Reveal>
-          <Heading eyebrow="Seven Collections" title="Every piece," accent="gift-ready" center light className="max-w-xl mx-auto mb-14" />
-        </Reveal>
-        <Reveal delay={120}>
-          <ProductDeck cards={deckCards} />
         </Reveal>
       </Container>
     </Section>
@@ -187,7 +167,6 @@ export default function GiftingPage() {
         intro="Certified, hallmarked, and meaningful — every DIAGO piece is packaged to give and built to keep."
         image={withBase("/images/texture-diamonds.webp")}
       />
-      <GiftShowcase />
       <WhyGift />
       <GiftForOccasion />
       <GiftingCta />

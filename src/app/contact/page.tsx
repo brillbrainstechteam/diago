@@ -35,7 +35,7 @@ function Details() {
   return (
     <Section tone="cream">
       <Container>
-        <div className="grid lg:grid-cols-[1.15fr_1fr] gap-14 lg:gap-20 items-start">
+        <div className="grid lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-14 items-start">
           <Reveal>
             <Heading eyebrow="Reach Us" title="Speak to the" accent="DIAGO team" />
             <p className="mt-8 text-[1.0625rem] leading-[1.85] text-ink-soft max-w-md" style={{ fontFamily: "var(--font-serif)" }}>
@@ -172,7 +172,7 @@ function AppointmentForm() {
   return (
     <Section tone="cream" id="book-appointment">
       <Container>
-        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-14 lg:gap-20 items-start">
+        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-10 lg:gap-14 items-start">
           <Reveal>
             <Heading eyebrow="By Appointment" title="Book a private" accent="viewing" />
             <p className="mt-8 text-[1.0625rem] leading-[1.85] text-ink-soft max-w-md" style={{ fontFamily: "var(--font-serif)" }}>
@@ -300,7 +300,7 @@ function EnquiryRoutes() {
           <Heading eyebrow="How Can We Help" title="Choose your" accent="enquiry" center className="max-w-xl mx-auto" />
         </Reveal>
 
-        <div className="mt-14 grid gap-px bg-gold/20 md:grid-cols-3 border border-gold/20">
+        <div className="mt-10 grid gap-px bg-gold/20 md:grid-cols-3 border border-gold/20">
           {routes.map((r, i) => (
             <Reveal key={r.t} delay={i * 130}>
               <a href={r.href} className="group h-full bg-cream-light p-9 lg:p-11 flex flex-col">
