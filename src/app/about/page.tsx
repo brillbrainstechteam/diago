@@ -56,33 +56,19 @@ const pillars = [
     n: "01",
     title: "Fine Gold",
     body: "Exquisite gold craftsmanship that honours tradition while embracing contemporary design. Every piece carries the BIS hallmark, certifying metal purity to Indian standards.",
-    icon: (
-      <svg viewBox="0 0 64 64" className="w-11 h-11 text-gold" fill="none" stroke="currentColor" strokeWidth="1.1">
-        <ellipse cx="32" cy="38" rx="19" ry="7.5" />
-        <ellipse cx="32" cy="32" rx="19" ry="7.5" />
-        <ellipse cx="32" cy="26" rx="19" ry="7.5" />
-      </svg>
-    ),
+    image: withBase("/images/finegold-band.webp"),
   },
   {
     n: "02",
     title: "Certified Natural Diamonds",
     body: "Every diamond is graded and certified for cut, colour, clarity and carat — never simulated, never treated. Brilliance that holds its value across generations.",
-    icon: (
-      <svg viewBox="0 0 64 64" className="w-11 h-11 text-gold" fill="none" stroke="currentColor" strokeWidth="1.1">
-        <path d="M32 9 L45 24 L56 24 L45 41 L49 56 L32 45 L15 56 L19 41 L8 24 L19 24 Z" />
-      </svg>
-    ),
+    image: withBase("/images/diamond-solo.webp"),
   },
   {
     n: "03",
     title: "Magic of the Modern Era",
     body: "Where timeless artistry meets modern luxury — designs that speak to the contemporary soul while honouring heritage. Lightweight, wearable, unmistakably elegant.",
-    icon: (
-      <svg viewBox="0 0 64 64" className="w-11 h-11 text-gold" fill="none" stroke="currentColor" strokeWidth="1.1">
-        <path d="M32 6 L37 27 L58 32 L37 37 L32 58 L27 37 L6 32 L27 27 Z" />
-      </svg>
-    ),
+    image: withBase("/images/sparkle-motif.webp"),
   },
 ];
 
@@ -100,7 +86,9 @@ function Pillars() {
             <Reveal key={p.n} delay={i * 130}>
               <article className="h-full bg-cream-light p-9 lg:p-11 group">
                 <div className="flex items-start justify-between">
-                  <span className="transition-transform duration-700 group-hover:scale-110">{p.icon}</span>
+                  <span className="relative w-14 h-14 transition-transform duration-700 group-hover:scale-110">
+                    <Image src={p.image} alt="" fill sizes="56px" className="object-contain" />
+                  </span>
                   <span className="text-gold-dark/80 text-3xl font-bold leading-none" style={{ fontFamily: "var(--font-display)" }}>
                     {p.n}
                   </span>

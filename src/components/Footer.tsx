@@ -1,12 +1,22 @@
 import Image from "next/image";
 import Link from "next/link";
 import { withBase } from "@/lib/basePath";
+import { categories } from "@/data/collections";
+
+const footerCollections = ["rings", "bracelets", "chain-pendants", "earrings", "necklaces", "mangalsutras"]
+  .map((slug) => categories.find((c) => c.slug === slug)!)
+  .map((c) => ({
+    label: c.name.replace(/^(Statement|Lightweight|Modern|Daily-Wear|Contemporary)\s/, ""),
+    tagline: c.tagline,
+    href: `/collections#${c.slug}`,
+  }));
 
 const nav = [
   { l: "Home", href: "/" },
   { l: "About", href: "/about" },
   { l: "Collections", href: "/collections" },
   { l: "Our Craft", href: "/craft" },
+  { l: "Gifting", href: "/gifting" },
   { l: "Contact", href: "/contact" },
 ];
 
@@ -81,12 +91,15 @@ export default function Footer() {
 
           <div>
             <h4 className="text-gold text-[10px] font-bold tracking-[0.28em] uppercase mb-6">Collections</h4>
-            <ul className="space-y-3.5">
-              {["Rings", "Bracelets", "Pendants", "Earrings", "Necklaces", "Mangalsutras"].map((l) => (
-                <li key={l}>
-                  <Link href="/collections" className="text-cream/85 text-sm hover:text-gold transition-colors duration-300">
-                    {l}
+            <ul className="space-y-4">
+              {footerCollections.map((c) => (
+                <li key={c.label}>
+                  <Link href={c.href} className="block text-cream/85 text-sm hover:text-gold transition-colors duration-300">
+                    {c.label}
                   </Link>
+                  <span className="block mt-0.5 text-cream/50 text-[11px] italic" style={{ fontFamily: "var(--font-serif)" }}>
+                    {c.tagline}
+                  </span>
                 </li>
               ))}
             </ul>

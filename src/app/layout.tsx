@@ -3,6 +3,7 @@ import { Playfair_Display, Cormorant_Garamond, Lato } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import AssuranceBar from "@/components/AssuranceBar";
 import { withBase } from "@/lib/basePath";
 
 const playfair = Playfair_Display({
@@ -103,6 +104,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <Navbar />
         <main className="flex-1 overflow-x-hidden">{children}</main>
+        <AssuranceBar />
         <Footer />
       </body>
     </html>

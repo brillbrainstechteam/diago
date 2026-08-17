@@ -151,40 +151,21 @@ function BrowseRail() {
   );
 }
 
-/* ── Assurance ──────────────────────────────────────────────────────── */
+/* ── Catalogue CTA ──────────────────────────────────────────────────── */
+/* The three-point trust grid this section used to open with is now covered
+   sitewide by <AssuranceBar />, rendered once above the footer on every page —
+   this keeps just the unique conversion CTA that bar doesn't provide. */
 
-function Assurance() {
-  const items = [
-    { t: "BIS Hallmarked", d: "Certifying metal purity and authenticity on every piece we ship." },
-    { t: "Certified Diamonds", d: "International grading certificate accompanying every natural stone." },
-    { t: "Lifetime Service", d: "Complimentary cleaning and inspection for as long as you own it." },
-  ];
+function CatalogueCta() {
   return (
     <Section tone="cream">
       <Container>
         <Reveal>
-          <Heading eyebrow="Our Promise" title="Every piece," accent="assured" center className="max-w-xl mx-auto" />
-        </Reveal>
-
-        <div className="mt-14 grid gap-10 md:grid-cols-3 md:gap-14 max-w-4xl mx-auto">
-          {items.map((item, i) => (
-            <Reveal key={item.t} delay={i * 130}>
-              <div className="text-center">
-                <span className="mx-auto block w-px h-10 bg-gradient-to-b from-transparent to-gold" />
-                <h3 className="mt-7 text-lg font-bold text-burgundy">{item.t}</h3>
-                <p className="mt-3 text-[15px] leading-relaxed text-ink-soft" style={{ fontFamily: "var(--font-serif)" }}>
-                  {item.d}
-                </p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-
-        <Reveal>
-          <div className="mt-16 text-center">
+          <div className="text-center">
+            <Heading eyebrow="Our Promise" title="Every piece," accent="assured" center className="max-w-xl mx-auto" />
             <Link
               href="/contact"
-              className="group inline-flex items-center gap-3 px-9 py-4 bg-burgundy text-cream text-[11px] font-bold tracking-[0.22em] uppercase hover:bg-burgundy-dark transition-colors duration-300"
+              className="group mt-10 inline-flex items-center gap-3 px-9 py-4 bg-burgundy text-cream text-[11px] font-bold tracking-[0.22em] uppercase hover:bg-burgundy-dark transition-colors duration-300"
             >
               Request the Catalogue
               <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
@@ -211,7 +192,7 @@ export default function CollectionsPage() {
         <CategoryRow key={cat.slug} cat={cat} index={i} />
       ))}
       <BrowseRail />
-      <Assurance />
+      <CatalogueCta />
     </>
   );
 }
