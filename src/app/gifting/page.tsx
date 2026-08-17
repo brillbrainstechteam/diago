@@ -68,7 +68,7 @@ function WhyGift() {
 function GiftForOccasion() {
   const picks = [
     { name: "Rings", tagline: "The signature gesture", href: "/collections#rings", image: withBase("/images/deck-ring.webp") },
-    { name: "Earrings", tagline: "Light enough to forget", href: "/collections#earrings", image: withBase("/images/gift-earrings.webp") },
+    { name: "Earrings", tagline: "Light enough to forget", href: "/collections#earrings", image: withBase("/images/product-earring.webp") },
     { name: "Necklaces", tagline: "Heritage, reframed", href: "/collections#necklaces", image: withBase("/images/deck-necklace.webp") },
     { name: "Pendant Sets", tagline: "Gift-ready presentation", href: "/collections#pendant-sets", image: withBase("/images/product-pendant-sets.webp") },
   ];
@@ -84,8 +84,12 @@ function GiftForOccasion() {
           {picks.map((p, i) => (
             <Reveal key={p.name} delay={i * 130}>
               <Link href={p.href} className="group h-full bg-cream-light p-9 lg:p-11 flex flex-col items-center text-center">
-                <div className="relative w-24 h-24">
-                  <Image src={p.image} alt={p.name} fill sizes="96px" className="object-contain transition-transform duration-500 group-hover:scale-110" />
+                {/* Uniform framed white tile behind every product so the four
+                    read as one consistent set (source images have mixed white/
+                    cream backgrounds that otherwise look mismatched). */}
+                <div className="relative w-28 h-28 bg-white border border-gold/20 shadow-[0_16px_32px_-24px_rgba(122,32,64,0.4)] transition-all duration-500 group-hover:border-gold/50 group-hover:shadow-[0_22px_40px_-22px_rgba(122,32,64,0.45)]">
+                  <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(closest-side,var(--gold-pale)_0%,transparent_72%)] opacity-50" />
+                  <Image src={p.image} alt={p.name} fill sizes="112px" className="object-contain p-4 transition-transform duration-500 group-hover:scale-105" />
                 </div>
                 <h3 className="mt-6 text-xl font-bold text-burgundy">{p.name}</h3>
                 <p className="mt-2 text-[13px] text-gold-dark uppercase tracking-[0.16em]">{p.tagline}</p>

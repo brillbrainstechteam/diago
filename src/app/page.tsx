@@ -132,28 +132,69 @@ function Hero() {
 
 function Proposition() {
   const items = [
-    { t: "Certified Diamonds", d: "Every stone checked and graded." },
-    { t: "Hallmarked Gold", d: "Purity guaranteed on every piece." },
-    { t: "Light, Everyday Design", d: "Comfortable enough to wear daily." },
-    { t: "Easy Exchange & Free Care", d: "Because jewellery should be worn, not worried about." },
+    {
+      t: "Certified Diamonds",
+      d: "Every stone checked and graded.",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" className="w-6 h-6">
+          <path d="M12 3 4 9l8 12 8-12-8-6Z" />
+          <path d="M4 9h16M9.5 9 12 3l2.5 6M12 21 9.5 9m2.5 12 2.5-12" strokeWidth="0.9" />
+        </svg>
+      ),
+    },
+    {
+      t: "Hallmarked Gold",
+      d: "Purity guaranteed on every piece.",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" className="w-6 h-6">
+          <path d="M12 3l7 3v5c0 4.6-3 7.6-7 9-4-1.4-7-4.4-7-9V6l7-3Z" />
+          <path d="m9 12 2 2 4-4" strokeLinecap="round" />
+        </svg>
+      ),
+    },
+    {
+      t: "Light, Everyday Design",
+      d: "Comfortable enough to wear daily.",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" className="w-6 h-6">
+          <path d="M5 21c0-9 7-16 16-16 0 9-7 16-16 16Z" />
+          <path d="M5 21 14 12" strokeLinecap="round" />
+        </svg>
+      ),
+    },
+    {
+      t: "Easy Exchange & Free Care",
+      d: "Because jewellery should be worn, not worried about.",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
+          <path d="M4 12a8 8 0 0 1 13.7-5.6L20 8" />
+          <path d="M20 3.5V8h-4.5" />
+          <path d="M20 12a8 8 0 0 1-13.7 5.6L4 16" />
+          <path d="M4 20.5V16h4.5" />
+        </svg>
+      ),
+    },
   ];
   return (
-    <Section tone="cream-light" className="!py-14 md:!py-16">
+    <Section tone="cream-light" className="!py-16 md:!py-20">
       <Container>
         <Reveal>
-          <Heading eyebrow="Four Simple Promises" title="The DIAGO" accent="Promise" center className="max-w-xl mx-auto mb-10" />
+          <Heading eyebrow="Four Simple Promises" title="The DIAGO" accent="Promise" center className="max-w-xl mx-auto mb-12" />
         </Reveal>
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 md:gap-10">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {items.map((item, i) => (
             <Reveal key={item.t} delay={i * 120}>
-              <div className="flex gap-4">
-                <span className="text-gold text-xl leading-none pt-1 shrink-0">&#10022;</span>
-                <div>
-                  <h3 className="text-base font-bold text-burgundy leading-snug">{item.t}</h3>
-                  <p className="mt-2 text-[14px] leading-relaxed text-ink-soft" style={{ fontFamily: "var(--font-serif)" }}>
-                    {item.d}
-                  </p>
+              <div className="group h-full bg-cream border border-gold/15 p-7 lg:p-8 text-center transition-all duration-500 hover:border-gold/45 hover:shadow-[0_22px_44px_-30px_rgba(122,32,64,0.45)] hover:-translate-y-1">
+                <div className="relative mx-auto w-16 h-16 flex items-center justify-center text-gold">
+                  <span className="absolute inset-0 rounded-full border border-gold/35 transition-colors duration-500 group-hover:border-gold/65" />
+                  <span className="pointer-events-none absolute inset-1 rounded-full bg-[radial-gradient(closest-side,var(--gold-pale)_0%,transparent_72%)] opacity-60" />
+                  <span className="relative transition-transform duration-500 group-hover:scale-110">{item.icon}</span>
                 </div>
+                <h3 className="mt-6 text-[15px] font-bold text-burgundy leading-snug tracking-wide uppercase">{item.t}</h3>
+                <span className="mt-3 mx-auto block w-7 h-px bg-gold/50 transition-all duration-500 group-hover:w-12" />
+                <p className="mt-3 text-[14px] leading-relaxed text-ink-soft" style={{ fontFamily: "var(--font-serif)" }}>
+                  {item.d}
+                </p>
               </div>
             </Reveal>
           ))}
@@ -305,12 +346,15 @@ function Lifestyle() {
 /* ── Shop by Occasion ──────────────────────────────────────────────── */
 
 function ShopByOccasion() {
+  // Mood portraits, not category shots — so each links to the full collection
+  // (an honest "explore, styled for the moment") rather than claiming a
+  // specific category the image doesn't show.
   const occasions = [
-    { name: "At the Desk", src: withBase("/images/occasion-desk.webp"), href: "/collections#chain-pendants" },
-    { name: "Date Night", src: withBase("/images/occasion-datenight.webp"), href: "/collections#pendant-sets" },
-    { name: "Weekend Party", src: withBase("/images/occasion-weekend.webp"), href: "/collections#earrings" },
-    { name: "Festive Season", src: withBase("/images/occasion-festive.webp"), href: "/collections#necklaces" },
-    { name: "The Big Day", src: withBase("/images/occasion-bigday.webp"), href: "/collections#rings" },
+    { name: "Everyday Wear", note: "Subtle, all-day shine", src: withBase("/images/occasion-desk.webp") },
+    { name: "Date Night", note: "A little more sparkle", src: withBase("/images/occasion-datenight.webp") },
+    { name: "Weekend Brunch", note: "Effortless and light", src: withBase("/images/occasion-weekend.webp") },
+    { name: "Festive Season", note: "Bold and celebratory", src: withBase("/images/occasion-festive.webp") },
+    { name: "The Big Day", note: "Heirloom-worthy", src: withBase("/images/occasion-bigday.webp") },
   ];
   return (
     <Section tone="cream-light" id="shop-by-occasion">
@@ -318,30 +362,34 @@ function ShopByOccasion() {
         <Reveal>
           <Heading
             eyebrow="Find Your Moment"
-            title="Shop by"
-            accent="Occasion"
+            title="Styled for every"
+            accent="occasion"
             center
             className="max-w-2xl mx-auto"
           />
+          <p className="mt-6 text-center text-[1.0625rem] leading-[1.85] text-ink-soft max-w-xl mx-auto" style={{ fontFamily: "var(--font-serif)" }}>
+            A piece for every part of your life — explore the collection, styled for the moment.
+          </p>
         </Reveal>
 
         <Reveal delay={120}>
-          <div className="mt-11">
-            <Carousel ariaLabel="Shop by occasion" slideClass="basis-[38%] sm:basis-[26%] lg:basis-1/5">
+          <div className="mt-12">
+            <Carousel ariaLabel="Styled for every occasion" slideClass="basis-[46%] sm:basis-[30%] lg:basis-1/5">
               {occasions.map((o) => (
-                <Link key={o.name} href={o.href} className="group flex flex-col items-center">
-                  <div className="relative w-full aspect-square rounded-full overflow-hidden border border-gold/30">
+                <Link key={o.name} href="/collections" className="group flex flex-col items-center text-center">
+                  <div className="relative w-full aspect-square rounded-full overflow-hidden border border-gold/30 shadow-[0_18px_36px_-24px_rgba(122,32,64,0.45)] transition-all duration-500 group-hover:border-gold/70 group-hover:shadow-[0_24px_46px_-22px_rgba(122,32,64,0.5)]">
                     <Image
                       src={o.src}
-                      alt={`Shop DIAGO for ${o.name.toLowerCase()}`}
+                      alt={`DIAGO styled for ${o.name.toLowerCase()}`}
                       fill
-                      sizes="(max-width: 640px) 38vw, 20vw"
+                      sizes="(max-width: 640px) 46vw, 20vw"
                       className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
                     />
+                    <span className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-t from-burgundy-deep/45 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <span className="pointer-events-none absolute inset-[6px] rounded-full border border-cream/20" />
                   </div>
-                  <p className="mt-5 text-center text-burgundy text-[13px] font-semibold tracking-[0.08em]">
-                    {o.name}
-                  </p>
+                  <p className="mt-5 text-burgundy text-[15px] font-bold">{o.name}</p>
+                  <p className="mt-1 text-gold-dark text-[10px] tracking-[0.18em] uppercase">{o.note}</p>
                 </Link>
               ))}
             </Carousel>
