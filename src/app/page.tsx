@@ -90,14 +90,35 @@ function Hero() {
               className="sparkle-spin pointer-events-none absolute -top-6 -right-6 w-12 h-auto z-10"
             />
             <div className="relative overflow-hidden" style={{ aspectRatio: "554 / 900" }}>
-              <Image
-                src={withBase("/images/hero-model.webp")}
-                alt="Model wearing a DIAGO diamond pendant and earrings"
-                fill
-                priority
-                sizes="(max-width: 1024px) 340px, 420px"
-                className="object-cover"
-              />
+              {/* Cross-fading portrait slideshow. Three stacked slides share one
+                  keyframe; each is offset by a third of the 18s cycle so one
+                  fades in as the previous fades out. Only the first is priority-
+                  loaded (it's the frame visible before the animation begins). */}
+              {[
+                { src: "/images/hero-model.webp", alt: "Model wearing a DIAGO diamond pendant and earrings" },
+                { src: "/images/lifestyle-3.webp", alt: "Model wearing a DIAGO diamond necklace at work" },
+                { src: "/images/lifestyle-2.webp", alt: "Model wearing DIAGO diamond earrings and pendant in the evening" },
+              ].map((slide, i, arr) => (
+                <div
+                  key={slide.src}
+                  className="hero-slide hero-slide-anim absolute inset-0"
+                  style={{ animationDelay: `${-((arr.length - i) % arr.length) * (18 / arr.length)}s` }}
+                >
+                  <Image
+                    src={withBase(slide.src)}
+                    alt={slide.alt}
+                    fill
+                    // First slide is the LCP image (priority preload). The other
+                    // two load eagerly but without the high-priority hint, so
+                    // they're ready before the first crossfade (~4s) without
+                    // competing with the LCP image.
+                    priority={i === 0}
+                    loading={i === 0 ? undefined : "eager"}
+                    sizes="(max-width: 1024px) 340px, 420px"
+                    className="object-cover"
+                  />
+                </div>
+              ))}
               <span className="pointer-events-none absolute inset-3 border border-gold/30 z-10" />
             </div>
           </div>
