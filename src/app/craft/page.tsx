@@ -41,18 +41,31 @@ function Process() {
           <Heading eyebrow="How It's Made" title="Four stages, no" accent="shortcuts" center className="max-w-xl mx-auto" />
         </Reveal>
 
-        <div className="mt-11 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+        <div className="mt-14 grid gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           {steps.map((s, i) => (
             <Reveal key={s.n} delay={i * 120}>
-              <article className="relative pt-8 border-t border-gold/30 h-full">
-                <span
-                  className="absolute -top-[0.9rem] left-0 bg-cream pr-4 text-gold-dark text-2xl font-bold leading-none"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  {s.n}
-                </span>
-                <h3 className="text-xl font-bold text-burgundy">{s.t}</h3>
-                <p className="mt-4 text-[15px] leading-[1.8] text-ink-soft" style={{ fontFamily: "var(--font-serif)" }}>
+              <article className="group relative text-center h-full">
+                {/* Circle node row. The connector segment is anchored to THIS
+                    flex box — the same box the circle sits in — so the line is
+                    always exactly on the circle's centre-line, regardless of any
+                    grid offset. Each step (except the first) draws a segment
+                    back to the previous node, edge-to-edge so it clears both
+                    circles. Desktop only. */}
+                <div className="relative flex justify-center h-16">
+                  {i > 0 && (
+                    <span className="hidden lg:block absolute top-1/2 -translate-y-1/2 h-px right-[calc(50%+2rem)] w-[calc(100%-2rem)] bg-gradient-to-l from-gold/50 to-gold/30" />
+                  )}
+                  <span
+                    className="relative z-10 flex items-center justify-center w-16 h-16 rounded-full bg-cream border border-gold/45 text-gold-dark text-lg font-bold shadow-[0_10px_24px_-12px_rgba(122,32,64,0.4)] transition-all duration-500 group-hover:border-gold group-hover:-translate-y-0.5"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    {s.n}
+                    <span className="absolute -inset-1.5 rounded-full border border-gold/20 transition-colors duration-500 group-hover:border-gold/40" />
+                  </span>
+                </div>
+                <h3 className="mt-7 text-xl font-bold text-burgundy">{s.t}</h3>
+                <span className="mt-4 mx-auto block w-8 h-px bg-gold/60 transition-all duration-500 group-hover:w-14" />
+                <p className="mt-4 text-[15px] leading-[1.8] text-ink-soft max-w-[15rem] mx-auto" style={{ fontFamily: "var(--font-serif)" }}>
                   {s.d}
                 </p>
               </article>

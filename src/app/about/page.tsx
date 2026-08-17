@@ -81,23 +81,35 @@ function Pillars() {
           <Heading eyebrow="What We Stand For" title="Three" accent="core pillars" center className="max-w-xl mx-auto" />
         </Reveal>
 
-        <div className="mt-11 grid gap-px bg-gold/20 md:grid-cols-3 border border-gold/20">
+        <div className="mt-12 grid gap-px bg-gold/25 md:grid-cols-3 border border-gold/25 overflow-hidden">
           {pillars.map((p, i) => (
             <Reveal key={p.n} delay={i * 130}>
-              <article className="h-full bg-cream-light p-9 lg:p-11 group">
-                <div className="flex items-start justify-between">
-                  <span className="relative w-14 h-14 transition-transform duration-700 group-hover:scale-110">
-                    <Image src={p.image} alt="" fill sizes="56px" className="object-contain" />
-                  </span>
-                  <span className="text-gold-dark/80 text-3xl font-bold leading-none" style={{ fontFamily: "var(--font-display)" }}>
-                    {p.n}
+              <article className="relative h-full bg-cream-light p-9 lg:p-11 text-center group overflow-hidden">
+                {/* Oversized faint numeral watermark in the corner */}
+                <span
+                  className="pointer-events-none absolute top-3 right-5 text-6xl font-bold leading-none text-gold/15 select-none"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  {p.n}
+                </span>
+
+                {/* Medallion: icon inside a gold ring with a soft glow */}
+                <div className="relative mx-auto w-20 h-20 flex items-center justify-center">
+                  <span className="absolute inset-0 rounded-full border border-gold/40 transition-colors duration-500 group-hover:border-gold/70" />
+                  <span className="pointer-events-none absolute inset-1 rounded-full bg-[radial-gradient(closest-side,var(--gold-pale)_0%,transparent_72%)] opacity-70" />
+                  <span className="relative w-11 h-11 transition-transform duration-700 group-hover:scale-110">
+                    <Image src={p.image} alt="" fill sizes="44px" className="object-contain" />
                   </span>
                 </div>
-                <h3 className="mt-8 text-xl font-bold text-burgundy leading-snug">{p.title}</h3>
-                <span className="mt-5 block w-9 h-px bg-gold transition-all duration-500 group-hover:w-20" />
-                <p className="mt-5 text-[15px] leading-[1.8] text-ink-soft" style={{ fontFamily: "var(--font-serif)" }}>
+
+                <h3 className="mt-7 text-xl font-bold text-burgundy leading-snug">{p.title}</h3>
+                <span className="mt-4 mx-auto block w-9 h-px bg-gold transition-all duration-500 group-hover:w-16" />
+                <p className="mt-4 text-[15px] leading-[1.8] text-ink-soft" style={{ fontFamily: "var(--font-serif)" }}>
                   {p.body}
                 </p>
+
+                {/* Gold underline sweeps in on hover */}
+                <span className="pointer-events-none absolute left-0 bottom-0 h-[3px] w-0 bg-gold/70 transition-all duration-500 group-hover:w-full" />
               </article>
             </Reveal>
           ))}

@@ -384,13 +384,19 @@ function GiftingBanner() {
           </div>
         </div>
 
-        <div className="relative min-h-[340px] lg:min-h-[460px] order-1 lg:order-2">
+        {/* Fixed-height, relatively-positioned cell: the showcase fills it
+            absolutely so the moving track can never stretch the banner. Six
+            items guarantee one copy is taller than this window, so the loop
+            never reveals empty space. */}
+        <div className="relative min-h-[420px] lg:min-h-[520px] order-1 lg:order-2">
           <VerticalShowcase
             items={[
               { label: "Statement Rings", tagline: "The signature gesture", image: withBase("/images/deck-ring.webp") },
               { label: "Contemporary Necklaces", tagline: "Heritage, reframed", image: withBase("/images/deck-necklace.webp") },
               { label: "Daily-Wear Earrings", tagline: "Light enough to forget", image: withBase("/images/gift-earrings.webp") },
               { label: "Diamond Pendant Sets", tagline: "Gift-ready presentation", image: withBase("/images/product-pendant-sets.webp") },
+              { label: "Lightweight Bracelets", tagline: "Movement, made brilliant", image: withBase("/images/product-bracelet.webp") },
+              { label: "Mangalsutras", tagline: "Tradition, made contemporary", image: withBase("/images/product-mangalsutra.webp") },
             ]}
           />
         </div>
