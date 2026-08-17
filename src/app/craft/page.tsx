@@ -106,7 +106,6 @@ function EverydayElegance() {
                 { src: withBase("/images/lifestyle-3.webp"), cap: "Every morning" },
                 { src: withBase("/images/lifestyle-2.webp"), cap: "After hours" },
                 { src: withBase("/images/product-earring.webp"), cap: "Halo studs", contain: true },
-                { src: withBase("/images/earrings-feature.webp"), cap: "Signature studs" },
               ].map((s) => (
                 <figure key={s.cap} className="group">
                   <div className="relative aspect-[3/4] overflow-hidden bg-cream-dark">
@@ -156,8 +155,8 @@ function Materials() {
               <span className="pointer-events-none absolute -bottom-4 -right-4 w-20 h-20 border-b border-r border-gold/60 z-10" />
               <div className="relative aspect-[4/5] overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.45)]">
                 <Image
-                  src={withBase("/images/texture-diamonds.webp")}
-                  alt="Certified natural diamonds"
+                  src={withBase("/images/earrings-feature.webp")}
+                  alt="Fine gold diamond earrings in close-up"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
@@ -193,15 +192,15 @@ function RetailMagnet() {
   return (
     <section className="relative overflow-hidden">
       <div className="grid lg:grid-cols-2">
-        <div className="relative surface-cream flex items-center py-20 lg:py-28 order-2 lg:order-1">
+        <div className="relative surface-cream flex items-center py-14 lg:py-20 order-2 lg:order-1">
           <div className="absolute inset-0 grain-ink opacity-[0.025]" />
           <div className="relative z-10 w-full px-6 sm:px-10 lg:px-16 xl:pl-24">
             <Reveal>
               <Eyebrow>For Retailers</Eyebrow>
               <h2 className="mt-6 text-[2rem] sm:text-4xl lg:text-5xl font-bold leading-[1.1] text-burgundy">
-                The golden magnet
+                Built to sell,
                 <span className="block mt-2 text-2xl sm:text-3xl font-normal italic text-gold-dark" style={{ fontFamily: "var(--font-serif)" }}>
-                  for high-velocity retail
+                  not to sit on the shelf
                 </span>
               </h2>
               <GoldRule className="mt-7" />

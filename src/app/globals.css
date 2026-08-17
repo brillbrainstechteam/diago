@@ -193,7 +193,7 @@
 }
 
 .marquee-track-v {
-  animation: marqueeScrollY 26s linear infinite;
+  animation: marqueeScrollY 40s linear infinite;
 }
 
 .marquee-track-v:hover {
