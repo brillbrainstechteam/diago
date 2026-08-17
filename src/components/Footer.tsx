@@ -59,8 +59,10 @@ export default function Footer() {
       <div className="absolute inset-0 grain-gold opacity-[0.06]" />
 
       <div className="relative z-10 w-full max-w-[1240px] mx-auto px-6 sm:px-10 lg:px-16">
-        <div className="py-16 lg:py-20 grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
-          <div>
+        {/* Mobile: 2 columns — brand full-width on top, the two link lists side
+            by side, enquiries full-width below. sm keeps the 2×2, lg the 4-up. */}
+        <div className="py-14 sm:py-16 lg:py-20 grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-2 sm:gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+          <div className="col-span-2 sm:col-span-1">
             <Image
               src={withBase("/images/logo.webp")}
               alt="DIAGO"
@@ -97,7 +99,7 @@ export default function Footer() {
                   <Link href={c.href} className="block text-cream/85 text-sm hover:text-gold transition-colors duration-300">
                     {c.label}
                   </Link>
-                  <span className="block mt-0.5 text-cream/50 text-[11px] italic" style={{ fontFamily: "var(--font-serif)" }}>
+                  <span className="hidden sm:block mt-0.5 text-cream/50 text-[11px] italic" style={{ fontFamily: "var(--font-serif)" }}>
                     {c.tagline}
                   </span>
                 </li>
@@ -105,7 +107,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className="col-span-2 sm:col-span-1">
             <h4 className="text-gold text-[10px] font-bold tracking-[0.28em] uppercase mb-6">Enquiries</h4>
             <a href="tel:+912268936666" className="block text-cream/85 text-sm hover:text-gold transition-colors duration-300">
               +91 22 6893 6666
