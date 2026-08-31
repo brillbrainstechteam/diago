@@ -211,23 +211,25 @@ function AboutTeaser() {
     <Section tone="cream-light">
       <Container>
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-          {/* Jewellery on a wearer, not on a plinth: the copy beside this is
-              about pieces that move with you, and a product cut-out on white
-              argues the opposite. These two portraits were freed up when Shop
-              by Occasion moved to showing actual pieces. */}
+          {/* Craft first, wearer second — which is the order the heading reads
+              in. The two model portraits that stood here were the same face on
+              the same burgundy as the hero directly above, so the section
+              looked like a reprise of it. The bench shot is the only
+              photograph on the site of the making, and it is what "crafted
+              with care" is actually claiming. */}
           <Reveal>
             <div className="relative grid grid-cols-2 gap-5">
               <div className="pointer-events-none absolute -inset-10 rounded-full bg-[radial-gradient(closest-side,var(--gold-pale)_0%,transparent_70%)] opacity-70 blur-2xl" />
               <FramedImage
-                src={withBase("/images/occasion-datenight.webp")}
-                alt="Model wearing DIAGO diamond drop earrings"
+                src={withBase("/images/craft/at-the-bench.webp")}
+                alt="A jeweller setting diamonds into a gold pendant at the bench"
                 ratio="4/5"
                 inset
                 className="shadow-[0_30px_60px_-25px_rgba(67,15,34,0.35)]"
               />
               <FramedImage
-                src={withBase("/images/occasion-festive.webp")}
-                alt="Model wearing DIAGO diamond earrings against burgundy"
+                src={withBase("/images/occasion-weekend.webp")}
+                alt="Model wearing DIAGO diamond studs"
                 ratio="4/5"
                 inset
                 corners={false}
@@ -457,60 +459,22 @@ function GiftingBanner() {
           </div>
         </div>
 
-        {/* The packaging, at the proportions it was shot in.
-            The previous arrangement forced this wide frame into a tall
-            three-fifths cell, so object-cover cropped away the box and most of
-            the bag — the two things the section is about. A landscape hero over
-            two square tiles fits the source, and keeping all three as packaging
-            photography avoids the cream-cut-out-versus-burgundy-photo clash
-            that made the earlier version look assembled rather than composed. */}
-        <div className="relative order-1 lg:order-2 surface-burgundy p-5 sm:p-7 lg:p-8 flex items-center">
-          <div className="absolute inset-0 grain-gold opacity-[0.07]" />
-
-          <div className="relative z-10 w-full flex flex-col gap-4 sm:gap-5">
-            <figure className="group relative overflow-hidden border border-gold/25 shadow-[0_24px_50px_-28px_rgba(0,0,0,0.7)] aspect-[1400/1213]">
-              <Image
-                src={withBase("/images/gift-presentation.webp")}
-                alt="A DIAGO necklace on its display bust beside the signature gift box and carry bag"
-                fill
-                sizes="(max-width: 1024px) 92vw, 46vw"
-                className="object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.04]"
-              />
-              <span className="pointer-events-none absolute inset-3 border border-cream/20" />
-              <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-burgundy-deep/85 to-transparent px-5 pt-12 pb-4">
-                <span className="block text-gold text-[9px] font-semibold tracking-[0.26em] uppercase">
-                  Signature packaging
-                </span>
-                <span className="mt-1 block text-cream text-[15px] italic" style={{ fontFamily: "var(--font-serif)" }}>
-                  Boxed, bagged, ready to give
-                </span>
-              </figcaption>
-            </figure>
-
-            <div className="grid grid-cols-2 gap-4 sm:gap-5">
-              {[
-                { src: "/images/gift-box.webp", label: "The box", alt: "The DIAGO signature gift box" },
-                { src: "/images/gift-bag.webp", label: "The bag", alt: "The DIAGO signature carry bag" },
-              ].map((t) => (
-                <figure
-                  key={t.src}
-                  className="group relative overflow-hidden aspect-[9/10] border border-gold/25 shadow-[0_18px_38px_-24px_rgba(0,0,0,0.65)]"
-                >
-                  <Image
-                    src={withBase(t.src)}
-                    alt={t.alt}
-                    fill
-                    sizes="(max-width: 1024px) 45vw, 23vw"
-                    className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
-                  />
-                  <span className="pointer-events-none absolute inset-2.5 border border-cream/15" />
-                  <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-burgundy-deep/80 to-transparent px-3 pt-8 pb-2.5 text-center">
-                    <span className="block text-cream text-[11px] tracking-[0.2em] uppercase">{t.label}</span>
-                  </figcaption>
-                </figure>
-              ))}
-            </div>
-          </div>
+        {/* One photograph, full bleed.
+            The three-tile collage that stood here put burgundy packaging shots
+            on a burgundy panel behind a burgundy scrim: everything landed in
+            the same narrow tonal band and the box and bag read as dark smudges.
+            Cropping the frames smaller only made it worse. A single image at
+            full size, matched to how the retail band below already works, has
+            the contrast the subject needs and stays quiet next to the copy. */}
+        <div className="relative order-1 lg:order-2 min-h-[340px] lg:min-h-[520px]">
+          <Image
+            src={withBase("/images/gift-presentation.webp")}
+            alt="A DIAGO necklace on its display bust beside the signature gift box and carry bag"
+            fill
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-burgundy-deep/10" />
         </div>
       </div>
     </section>

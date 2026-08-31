@@ -153,7 +153,7 @@ function Alliance() {
           <Reveal delay={120}>
             <div className="grid grid-cols-2 gap-5">
               {[
-                { src: withBase("/images/lifestyle-2.webp"), ratio: "3/4", pad: "" },
+                { src: withBase("/images/occasion-bigday.webp"), ratio: "3/4", pad: "" },
                 { src: withBase("/images/product-necklace.webp"), ratio: "3/4", pad: "mt-10" },
               ].map((im) => (
                 <div

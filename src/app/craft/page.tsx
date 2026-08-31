@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import Carousel from "@/components/Carousel";
 import {
   Container, Section, Reveal, Eyebrow, GoldRule, Heading, Prose, FramedImage, PageHeader,
 } from "@/components/ui";
@@ -82,75 +81,6 @@ function Process() {
             </Reveal>
           ))}
         </div>
-      </Container>
-    </Section>
-  );
-}
-
-/* ── Everyday elegance ──────────────────────────────────────────────── */
-
-function EverydayElegance() {
-  return (
-    <Section tone="cream-light">
-      <div className="absolute inset-0 grain-ink opacity-[0.025]" />
-      <Container className="relative z-10">
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-          <Reveal>
-            <Heading eyebrow="Everyday Luxury" title="Everyday elegance," accent="effortless radiance" />
-            <Prose className="mt-8">
-              <p>
-                From boardroom presentations to evening celebrations, DIAGO jewellery moves
-                seamlessly through the moments that matter. Lightweight, contemporary, and
-                designed to complement every chapter rather than compete with it.
-              </p>
-              <p>
-                Every piece is crafted for someone who values authenticity — real diamonds set
-                in fine gold, made for real life rather than the safe deposit box.
-              </p>
-            </Prose>
-          </Reveal>
-
-          <Reveal delay={120}>
-            <FramedImage
-              src={withBase("/images/lifestyle-2.webp")}
-              alt="Model wearing a DIAGO pendant and earrings"
-              ratio="4/5"
-              inset
-              className="shadow-[0_30px_60px_-25px_rgba(67,15,34,0.35)]"
-            />
-          </Reveal>
-        </div>
-
-        <Reveal delay={200}>
-          <div className="mt-11">
-            <Carousel ariaLabel="Lifestyle photography" slideClass="basis-[70%] sm:basis-[42%] lg:basis-[31%]">
-              {[
-                { src: withBase("/images/lifestyle-1.webp"), cap: "At the desk" },
-                { src: withBase("/images/lifestyle-3.webp"), cap: "Every morning" },
-                { src: withBase("/images/lifestyle-2.webp"), cap: "After hours" },
-                { src: withBase("/images/product-earring.webp"), cap: "Halo studs", contain: true },
-              ].map((s) => (
-                <figure key={s.cap} className="group">
-                  <div className="relative aspect-[3/4] overflow-hidden bg-cream-dark">
-                    <Image
-                      src={s.src}
-                      alt={s.cap}
-                      fill
-                      sizes="(max-width: 640px) 70vw, 31vw"
-                      className={`transition-transform duration-[1400ms] ease-out group-hover:scale-105 ${
-                        s.contain ? "object-contain bg-white p-8" : "object-cover"
-                      }`}
-                    />
-                    <span className="pointer-events-none absolute inset-4 border border-cream/30" />
-                  </div>
-                  <figcaption className="mt-4 text-center text-[10px] tracking-[0.26em] uppercase text-gold-dark">
-                    {s.cap}
-                  </figcaption>
-                </figure>
-              ))}
-            </Carousel>
-          </div>
-        </Reveal>
       </Container>
     </Section>
   );
@@ -334,11 +264,10 @@ export default function CraftPage() {
         title="Made to be worn,"
         accent="not stored"
         intro="Certified stones, hallmarked gold and a design process that starts with wearability — here is what goes into a DIAGO piece before it reaches the counter."
-        image={withBase("/images/lifestyle-1.webp")}
+        image={withBase("/images/occasion-desk.webp")}
       />
       <Process />
       <AtTheBench />
-      <EverydayElegance />
       <Materials />
       <RetailMagnet />
     </>
