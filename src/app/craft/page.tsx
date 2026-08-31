@@ -281,6 +281,60 @@ function RetailMagnet() {
   );
 }
 
+/* ── At the bench ───────────────────────────────────────────────────── */
+
+/**
+ * The one bench photograph currently cleared for use. Two others were
+ * supplied alongside it but carry stock-preview watermarks, so they are kept
+ * in docs/generic_images/ rather than published — swap them in here once
+ * licensed copies replace them.
+ */
+function AtTheBench() {
+  return (
+    <section className="relative overflow-hidden">
+      <div className="grid lg:grid-cols-2">
+        <div className="relative min-h-[300px] lg:min-h-[460px]">
+          <Image
+            src={withBase("/images/craft/at-the-bench.webp")}
+            alt="A jeweller setting diamonds into a gold pendant at the bench"
+            fill
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-burgundy-deep/15" />
+        </div>
+
+        <div className="relative surface-burgundy flex items-center py-14 lg:py-20">
+          <div className="absolute inset-0 grain-gold opacity-[0.07]" />
+          <div className="relative z-10 w-full px-6 sm:px-10 lg:px-16 xl:pr-24">
+            <Reveal>
+              <Eyebrow light>At the Bench</Eyebrow>
+              <h2 className="mt-6 text-[2rem] sm:text-4xl lg:text-5xl font-bold leading-[1.1] text-cream">
+                Set by hand,
+                <span className="block mt-2 font-normal italic text-gold-light" style={{ fontFamily: "var(--font-serif)" }}>
+                  stone by stone
+                </span>
+              </h2>
+              <GoldRule light className="mt-7" />
+              <Prose light className="mt-7">
+                <p>
+                  Every stone is seated individually. A pave field is not printed
+                  or cast — each grain is raised, the stone dropped in, and the
+                  metal closed over it under magnification.
+                </p>
+                <p>
+                  It is slow work, and it is the reason a DIAGO piece holds its
+                  stones and its finish through years of daily wear.
+                </p>
+              </Prose>
+            </Reveal>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function CraftPage() {
   return (
     <>
@@ -292,6 +346,7 @@ export default function CraftPage() {
         image={withBase("/images/lifestyle-1.webp")}
       />
       <Process />
+      <AtTheBench />
       <EverydayElegance />
       <Materials />
       <RetailMagnet />
