@@ -1,12 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Carousel from "@/components/Carousel";
 import PieceShowcase from "@/components/PieceShowcase";
 import ProductDeck from "@/components/ProductDeck";
 import { deckCards } from "@/data/deckCards";
-import { featuredPieces, piecesByRef } from "@/data/collections";
+import { moments } from "@/data/collections";
 import {
   Container, Section, Reveal, Eyebrow, GoldRule, Heading, Prose, FramedImage,
 } from "@/components/ui";
@@ -90,36 +91,21 @@ function Hero() {
               height={47}
               className="sparkle-spin pointer-events-none absolute -top-6 -right-6 w-12 h-auto z-10"
             />
+            {/* A single portrait rather than the cross-fading slideshow this
+                held. The only other portrait-ratio photography in the library
+                is the brochure's three "Everyday Elegance" frames, which now
+                belong to the moments section further down — and rotating the
+                same faces in two places is what made the page feel repetitive.
+                One frame also makes for a cleaner LCP. */}
             <div className="relative overflow-hidden" style={{ aspectRatio: "554 / 900" }}>
-              {/* Cross-fading portrait slideshow. Three stacked slides share one
-                  keyframe; each is offset by a third of the 18s cycle so one
-                  fades in as the previous fades out. Only the first is priority-
-                  loaded (it's the frame visible before the animation begins). */}
-              {[
-                { src: "/images/hero-model.webp", alt: "Model wearing a DIAGO diamond pendant and earrings" },
-                { src: "/images/lifestyle-3.webp", alt: "Model wearing a DIAGO diamond necklace at work" },
-                { src: "/images/lifestyle-2.webp", alt: "Model wearing DIAGO diamond earrings and pendant in the evening" },
-              ].map((slide, i, arr) => (
-                <div
-                  key={slide.src}
-                  className="hero-slide hero-slide-anim absolute inset-0"
-                  style={{ animationDelay: `${-((arr.length - i) % arr.length) * (18 / arr.length)}s` }}
-                >
-                  <Image
-                    src={withBase(slide.src)}
-                    alt={slide.alt}
-                    fill
-                    // First slide is the LCP image (priority preload). The other
-                    // two load eagerly but without the high-priority hint, so
-                    // they're ready before the first crossfade (~4s) without
-                    // competing with the LCP image.
-                    priority={i === 0}
-                    loading={i === 0 ? undefined : "eager"}
-                    sizes="(max-width: 1024px) 340px, 420px"
-                    className="object-cover"
-                  />
-                </div>
-              ))}
+              <Image
+                src={withBase("/images/hero-model.webp")}
+                alt="Model wearing a DIAGO diamond pendant and earrings"
+                fill
+                priority
+                sizes="(max-width: 1024px) 340px, 420px"
+                className="object-cover"
+              />
               <span className="pointer-events-none absolute inset-3 border border-gold/30 z-10" />
             </div>
           </div>
@@ -309,43 +295,121 @@ function CollectionsRail() {
   );
 }
 
-/* ── Featured pieces ────────────────────────────────────────────────── */
+/* ── Styled for every moment ───────────────────────────────────────── */
 
 /**
- * Studio shots of actual pieces, in the gold display frame.
+ * The three moments from the brochure's "Everyday Elegance / Effortless
+ * Radiance" spread, with that spread's own photography, each opening its own
+ * grouping of pieces.
  *
- * This slot used to hold a second row of mood portraits ("Everyday elegance"),
- * which duplicated both the layout and two of the photographs already used by
- * Shop by Occasion and the hero. Real product does the persuading here instead.
+ * This replaces two separate sections — a five-piece "one from each category"
+ * row and a five-circle occasion rail. The rail's circles showed single
+ * products, which answered "what is it" but not "when would I wear it", and
+ * the featured row restated a selection the groupings already cover. One
+ * section now does both jobs: pick the moment, see what suits it.
  */
-function FeaturedPieces() {
+function StyledForMoments() {
+  const [active, setActive] = useState(0);
+  const moment = moments[active];
+
   return (
-    <Section tone="cream">
+    <Section tone="cream-light" id="shop-by-occasion">
       <Container>
         <Reveal>
           <Heading
-            eyebrow="One From Each"
-            title="A piece from every"
-            accent="collection"
+            eyebrow="Find Your Moment"
+            title="Everyday elegance,"
+            accent="effortless radiance"
             center
             className="max-w-2xl mx-auto"
           />
-          <p className="mt-7 text-center text-[1.0625rem] leading-[1.85] text-ink-soft max-w-xl mx-auto" style={{ fontFamily: "var(--font-serif)" }}>
-            Five collections, one piece each — a ring, a pendant set, a pair of
-            earrings, a necklace and a mangalsutra. Tap any piece to see it close up.
+          <p className="mt-6 text-center text-[1.0625rem] leading-[1.85] text-ink-soft max-w-xl mx-auto" style={{ fontFamily: "var(--font-serif)" }}>
+            Three moments, three edits of the collection. Choose one to see the
+            pieces made for it.
           </p>
         </Reveal>
 
         <Reveal delay={120}>
-          <PieceShowcase
-            pieces={featuredPieces}
-            label="A piece from every collection"
-            gridClass="grid-cols-5"
-            className="mt-11"
-          />
+          <div
+            role="tablist"
+            aria-label="Moments"
+            className="mt-11 grid grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
+          >
+            {moments.map((m, i) => {
+              const on = i === active;
+              return (
+                <button
+                  key={m.slug}
+                  role="tab"
+                  id={`moment-tab-${m.slug}`}
+                  aria-selected={on}
+                  aria-controls={`moment-panel-${m.slug}`}
+                  onClick={() => setActive(i)}
+                  className="group text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-cream-light"
+                >
+                  <span
+                    className={`relative block w-full aspect-[3/4] overflow-hidden border transition-all duration-500 ${
+                      on
+                        ? "border-gold shadow-[0_26px_50px_-24px_rgba(122,32,64,0.55)]"
+                        : "border-gold/25 shadow-[0_16px_32px_-26px_rgba(122,32,64,0.4)] group-hover:border-gold/60"
+                    }`}
+                  >
+                    <Image
+                      src={m.image}
+                      alt={`DIAGO jewellery worn ${m.name.toLowerCase()}`}
+                      fill
+                      sizes="(max-width: 640px) 31vw, 30vw"
+                      className={`object-cover transition-all duration-[1200ms] ease-out group-hover:scale-105 ${
+                        on ? "" : "saturate-[0.75] opacity-80 group-hover:opacity-100"
+                      }`}
+                    />
+                    {/* The selected card keeps a burgundy scrim so its label
+                        stays legible; the others simply sit back. */}
+                    <span
+                      className={`pointer-events-none absolute inset-0 transition-opacity duration-500 bg-gradient-to-t from-burgundy-deep/70 via-burgundy-deep/10 to-transparent ${
+                        on ? "opacity-100" : "opacity-0 group-hover:opacity-60"
+                      }`}
+                    />
+                    <span className={`pointer-events-none absolute inset-3 border transition-colors duration-500 ${on ? "border-cream/30" : "border-cream/15"}`} />
+                  </span>
+
+                  <span className={`mt-4 block text-[15px] font-bold transition-colors duration-300 ${on ? "text-burgundy" : "text-burgundy/70 group-hover:text-burgundy"}`}>
+                    {m.name}
+                  </span>
+                  <span className="mt-1 block text-gold-dark text-[10px] tracking-[0.18em] uppercase">{m.note}</span>
+                  <span
+                    className={`mt-3 mx-auto block h-px bg-gold transition-all duration-500 ${on ? "w-14" : "w-0 group-hover:w-8"}`}
+                  />
+                </button>
+              );
+            })}
+          </div>
         </Reveal>
 
-        <Reveal delay={200}>
+        <div
+          role="tabpanel"
+          id={`moment-panel-${moment.slug}`}
+          aria-labelledby={`moment-tab-${moment.slug}`}
+        >
+          <p
+            className="mt-12 text-center text-[1.0625rem] leading-[1.85] text-ink-soft max-w-xl mx-auto"
+            style={{ fontFamily: "var(--font-serif)" }}
+          >
+            {moment.blurb}
+          </p>
+
+          {/* Keyed on the moment so switching remounts the grid: without it
+              React reuses the tiles and the images cross-fade into each other. */}
+          <PieceShowcase
+            key={moment.slug}
+            pieces={moment.pieces}
+            label={`Pieces for ${moment.name}`}
+            gridClass="grid-cols-5"
+            className="mt-10"
+          />
+        </div>
+
+        <Reveal delay={160}>
           <div className="mt-12 text-center">
             <Link
               href="/collections"
@@ -354,68 +418,6 @@ function FeaturedPieces() {
               See the full range
               <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
             </Link>
-          </div>
-        </Reveal>
-      </Container>
-    </Section>
-  );
-}
-
-/* ── Shop by Occasion ──────────────────────────────────────────────── */
-
-function ShopByOccasion() {
-  // Each occasion now shows the piece actually being recommended for it, and
-  // links to that piece's category. The previous portraits were stock-style
-  // model shots wearing jewellery that was not DIAGO's, so they illustrated a
-  // mood but pointed at nothing you could buy.
-  // Deliberately disjoint from featuredPieces and the gifting collage: all
-  // three sit on this one page, and a piece shown twice reads as a thin
-  // catalogue rather than a considered edit.
-  const occasions = [
-    { name: "Everyday Wear", note: "Subtle, all-day shine", ref: "BT96", href: "/collections#earrings" },
-    { name: "Date Night", note: "A little more sparkle", ref: "LD13", href: "/collections#earrings" },
-    { name: "Weekend Brunch", note: "Effortless and light", ref: "W527", href: "/collections#rings" },
-    { name: "Festive Season", note: "Bold and celebratory", ref: "CLR173", href: "/collections#rings" },
-    { name: "The Big Day", note: "Heirloom-worthy", ref: "PES81", href: "/collections#pendant-sets" },
-  ].map((o) => ({ ...o, piece: piecesByRef(o.ref)[0] }));
-  return (
-    <Section tone="cream-light" id="shop-by-occasion">
-      <Container>
-        <Reveal>
-          <Heading
-            eyebrow="Find Your Moment"
-            title="Styled for every"
-            accent="occasion"
-            center
-            className="max-w-2xl mx-auto"
-          />
-          <p className="mt-6 text-center text-[1.0625rem] leading-[1.85] text-ink-soft max-w-xl mx-auto" style={{ fontFamily: "var(--font-serif)" }}>
-            A piece for every part of your life — explore the collection, styled for the moment.
-          </p>
-        </Reveal>
-
-        <Reveal delay={120}>
-          <div className="mt-12">
-            <Carousel ariaLabel="Styled for every occasion" slideClass="basis-[46%] sm:basis-[30%] lg:basis-1/5">
-              {occasions.map((o) => (
-                <Link key={o.name} href={o.href} className="group flex flex-col items-center text-center">
-                  <div className="relative w-full aspect-square rounded-full overflow-hidden bg-gradient-to-b from-cream-light to-cream-dark border border-gold/30 shadow-[0_18px_36px_-24px_rgba(122,32,64,0.45)] transition-all duration-500 group-hover:border-gold/70 group-hover:shadow-[0_24px_46px_-22px_rgba(122,32,64,0.5)]">
-                    <span className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(closest-side,var(--gold-pale)_0%,transparent_72%)] opacity-70 transition-opacity duration-500 group-hover:opacity-100" />
-                    <Image
-                      src={o.piece.image}
-                      alt={`${o.piece.name} — DIAGO ${o.piece.ref}`}
-                      fill
-                      sizes="(max-width: 640px) 46vw, 20vw"
-                      className="relative object-contain p-8 transition-transform duration-[1200ms] ease-out group-hover:scale-110"
-                    />
-                    <span className="pointer-events-none absolute inset-[6px] rounded-full border border-gold/20 transition-colors duration-500 group-hover:border-gold/40" />
-                  </div>
-                  <p className="mt-5 text-burgundy text-[15px] font-bold">{o.name}</p>
-                  <p className="mt-1 text-gold-dark text-[10px] tracking-[0.18em] uppercase">{o.note}</p>
-                  <p className="mt-2 text-ink-soft/70 text-[10px] tracking-[0.2em] uppercase tabular-nums">{o.piece.ref}</p>
-                </Link>
-              ))}
-            </Carousel>
           </div>
         </Reveal>
       </Container>
@@ -455,27 +457,27 @@ function GiftingBanner() {
           </div>
         </div>
 
-        {/* Editorial collage rather than the auto-scrolling column this used to
-            run. A perpetual marquee competes with the copy beside it, gives the
-            eye no resting point, and means the piece someone wants to look at
-            has already slid away. A fixed asymmetric grid — one tall hero, two
-            stacked details — is the arrangement luxury houses use for the same
-            job, and it holds still long enough to read. */}
-        <div className="relative order-1 lg:order-2 surface-burgundy p-5 sm:p-7 lg:p-8">
+        {/* The packaging, at the proportions it was shot in.
+            The previous arrangement forced this wide frame into a tall
+            three-fifths cell, so object-cover cropped away the box and most of
+            the bag — the two things the section is about. A landscape hero over
+            two square tiles fits the source, and keeping all three as packaging
+            photography avoids the cream-cut-out-versus-burgundy-photo clash
+            that made the earlier version look assembled rather than composed. */}
+        <div className="relative order-1 lg:order-2 surface-burgundy p-5 sm:p-7 lg:p-8 flex items-center">
           <div className="absolute inset-0 grain-gold opacity-[0.07]" />
 
-          <div className="relative z-10 grid grid-cols-5 grid-rows-2 gap-4 sm:gap-5 h-[380px] sm:h-[440px] lg:h-[520px]">
-            {/* Hero: the packaging, which is what gifting is actually about. */}
-            <figure className="relative col-span-3 row-span-2 overflow-hidden border border-gold/25 shadow-[0_24px_50px_-28px_rgba(0,0,0,0.7)] group">
+          <div className="relative z-10 w-full flex flex-col gap-4 sm:gap-5">
+            <figure className="group relative overflow-hidden border border-gold/25 shadow-[0_24px_50px_-28px_rgba(0,0,0,0.7)] aspect-[1400/1213]">
               <Image
                 src={withBase("/images/gift-presentation.webp")}
                 alt="A DIAGO necklace on its display bust beside the signature gift box and carry bag"
                 fill
-                sizes="(max-width: 1024px) 55vw, 28vw"
-                className="object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-105"
+                sizes="(max-width: 1024px) 92vw, 46vw"
+                className="object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.04]"
               />
               <span className="pointer-events-none absolute inset-3 border border-cream/20" />
-              <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-burgundy-deep/85 to-transparent px-5 pt-10 pb-4">
+              <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-burgundy-deep/85 to-transparent px-5 pt-12 pb-4">
                 <span className="block text-gold text-[9px] font-semibold tracking-[0.26em] uppercase">
                   Signature packaging
                 </span>
@@ -485,30 +487,29 @@ function GiftingBanner() {
               </figcaption>
             </figure>
 
-            {piecesByRef("DS138", "TD535").map((p) => (
-              <figure
-                key={p.ref}
-                className="relative col-span-2 overflow-hidden bg-gradient-to-b from-cream-light to-cream border border-gold/25 shadow-[0_18px_38px_-24px_rgba(0,0,0,0.65)] group"
-              >
-                <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(closest-side,var(--gold-pale)_0%,transparent_72%)] opacity-60" />
-                <Image
-                  src={p.image}
-                  alt={`${p.name} — DIAGO ${p.ref}`}
-                  fill
-                  sizes="(max-width: 1024px) 36vw, 18vw"
-                  className="relative object-contain p-5 transition-transform duration-700 ease-out group-hover:scale-[1.08]"
-                />
-                <span className="pointer-events-none absolute inset-2.5 border border-gold/20" />
-                <figcaption className="absolute inset-x-0 bottom-0 px-3 py-2 text-center bg-cream-light/85 border-t border-gold/20">
-                  <span className="block text-gold-dark text-[8.5px] font-semibold tracking-[0.22em] uppercase tabular-nums">
-                    {p.ref}
-                  </span>
-                  <span className="block text-burgundy text-[12px] italic leading-tight" style={{ fontFamily: "var(--font-serif)" }}>
-                    {p.name}
-                  </span>
-                </figcaption>
-              </figure>
-            ))}
+            <div className="grid grid-cols-2 gap-4 sm:gap-5">
+              {[
+                { src: "/images/gift-box.webp", label: "The box", alt: "The DIAGO signature gift box" },
+                { src: "/images/gift-bag.webp", label: "The bag", alt: "The DIAGO signature carry bag" },
+              ].map((t) => (
+                <figure
+                  key={t.src}
+                  className="group relative overflow-hidden aspect-[9/10] border border-gold/25 shadow-[0_18px_38px_-24px_rgba(0,0,0,0.65)]"
+                >
+                  <Image
+                    src={withBase(t.src)}
+                    alt={t.alt}
+                    fill
+                    sizes="(max-width: 1024px) 45vw, 23vw"
+                    className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
+                  />
+                  <span className="pointer-events-none absolute inset-2.5 border border-cream/15" />
+                  <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-burgundy-deep/80 to-transparent px-3 pt-8 pb-2.5 text-center">
+                    <span className="block text-cream text-[11px] tracking-[0.2em] uppercase">{t.label}</span>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -583,8 +584,7 @@ export default function HomePage() {
       <Proposition />
       <AboutTeaser />
       <CollectionsRail />
-      <FeaturedPieces />
-      <ShopByOccasion />
+      <StyledForMoments />
       <GiftingBanner />
       <RetailCta />
     </>

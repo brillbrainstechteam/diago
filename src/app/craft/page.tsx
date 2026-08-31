@@ -11,39 +11,35 @@ import { withBase } from "@/lib/basePath";
 /* ── Process ────────────────────────────────────────────────────────── */
 
 /**
- * Each stage is illustrated by a macro of the stage's own evidence in a
- * finished piece — the drawn silhouette, a seated centre stone, the gold
- * gallery beneath it, the polished pave. Cut from the studio originals at
- * full resolution by scripts/process_catalogue.py's sibling crop pass.
+ * Deliberately unillustrated for now.
+ *
+ * These four stages need photographs OF the stage — a bench, a grading loupe,
+ * a torch, a polishing wheel. A macro crop of a finished ring is not a picture
+ * of gold work, and standing one in as though it were misrepresents the
+ * process. Drop four licensed process photographs into public/images/craft/
+ * and give each step an `img`, then restore the framed tile in the article
+ * below (see the At the Bench section for the treatment).
  */
 const steps = [
   {
     n: "01",
     t: "Design",
     d: "Every silhouette begins as a wearability problem, not a drawing. Weight, drape and how the piece behaves through a working day come before ornament.",
-    img: "craft-design",
-    alt: "Macro of a paisley pendant silhouette outlined in pave diamonds",
   },
   {
     n: "02",
     t: "Stone Selection",
     d: "Natural diamonds are sourced and graded for cut, colour, clarity and carat. Nothing simulated, nothing treated — each stone carries its certificate.",
-    img: "craft-stone",
-    alt: "Macro of an emerald-cut centre stone held in four gold prongs",
   },
   {
     n: "03",
     t: "Gold Work",
     d: "Fine gold is worked to hold the setting securely at the lowest viable weight, then hallmarked by BIS to certify purity before it leaves the bench.",
-    img: "craft-gold",
-    alt: "Macro of the fine gold gallery and prong work beneath a diamond fan",
   },
   {
     n: "04",
     t: "Finishing",
     d: "Polishing, clasp testing and a final inspection against the design spec. Only then does a piece enter the collection.",
-    img: "craft-finish",
-    alt: "Macro of a polished chandbali crescent set with graduated pave",
   },
 ];
 
@@ -59,30 +55,25 @@ function Process() {
           {steps.map((s, i) => (
             <Reveal key={s.n} delay={i * 120}>
               <article className="group relative text-center h-full">
-                {/* Macro of the stage's evidence, framed to match the piece
-                    cards elsewhere. The step number sits on the frame's lower
-                    edge, which keeps the old numbered-sequence read without
-                    needing a separate node row above it. */}
-                <div className="relative">
-                  <div className="relative aspect-square overflow-hidden border border-gold/25 border-t-2 border-t-gold bg-gradient-to-b from-cream-light to-cream shadow-[0_18px_38px_-28px_rgba(67,15,34,0.45)] transition-all duration-500 group-hover:border-gold/55">
-                    <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(closest-side,var(--gold-pale)_0%,transparent_72%)] opacity-55 transition-opacity duration-500 group-hover:opacity-80" />
-                    <Image
-                      src={withBase(`/images/craft/${s.img}.webp`)}
-                      alt={s.alt}
-                      fill
-                      sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 23vw"
-                      className="relative object-contain p-5 transition-transform duration-700 ease-out group-hover:scale-[1.07]"
-                    />
-                    <span className="pointer-events-none absolute inset-4 border border-gold/15 transition-colors duration-500 group-hover:border-gold/30" />
-                  </div>
+                {/* Circle node row. The connector segment is anchored to THIS
+                    flex box — the same box the circle sits in — so the line is
+                    always exactly on the circle's centre-line, regardless of any
+                    grid offset. Each step (except the first) draws a segment
+                    back to the previous node, edge-to-edge so it clears both
+                    circles. Desktop only. */}
+                <div className="relative flex justify-center h-16">
+                  {i > 0 && (
+                    <span className="hidden lg:block absolute top-1/2 -translate-y-1/2 h-px right-[calc(50%+2rem)] w-[calc(100%-2rem)] bg-gradient-to-l from-gold/50 to-gold/30" />
+                  )}
                   <span
-                    className="absolute -bottom-5 left-1/2 -translate-x-1/2 z-10 flex items-center justify-center w-12 h-12 rounded-full bg-cream border border-gold/45 text-gold-dark text-base font-bold shadow-[0_10px_24px_-12px_rgba(122,32,64,0.45)] transition-colors duration-500 group-hover:border-gold tabular-nums"
+                    className="relative z-10 flex items-center justify-center w-16 h-16 rounded-full bg-cream border border-gold/45 text-gold-dark text-lg font-bold shadow-[0_10px_24px_-12px_rgba(122,32,64,0.4)] transition-all duration-500 group-hover:border-gold group-hover:-translate-y-0.5 tabular-nums"
                     style={{ fontFamily: "var(--font-display)" }}
                   >
                     {s.n}
+                    <span className="absolute -inset-1.5 rounded-full border border-gold/20 transition-colors duration-500 group-hover:border-gold/40" />
                   </span>
                 </div>
-                <h3 className="mt-11 text-xl font-bold text-burgundy">{s.t}</h3>
+                <h3 className="mt-7 text-xl font-bold text-burgundy">{s.t}</h3>
                 <span className="mt-4 mx-auto block w-8 h-px bg-gold/60 transition-all duration-500 group-hover:w-14" />
                 <p className="mt-4 text-[15px] leading-[1.8] text-ink-soft max-w-[15rem] mx-auto" style={{ fontFamily: "var(--font-serif)" }}>
                   {s.d}

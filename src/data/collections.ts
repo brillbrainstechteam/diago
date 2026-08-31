@@ -150,3 +150,51 @@ export const featuredPieces: Piece[] = piecesByRef(
 /** The category each featured piece stands for, for labelling that row. */
 export const featuredCategoryOf = (ref: string): string =>
   categories.find((c) => c.pieces?.some((p) => p.ref === ref))?.name ?? "";
+
+export type Moment = {
+  slug: string;
+  name: string;
+  note: string;
+  blurb: string;
+  image: string;
+  pieces: Piece[];
+};
+
+/**
+ * The three moments from the brochure's "Everyday Elegance / Effortless
+ * Radiance" spread, in its order, with its photography — lifestyle-1/2/3 are
+ * that spread's own frames. The brochure names three, so this names three.
+ *
+ * Every catalogue piece belongs to exactly one moment, so the three groupings
+ * partition the range rather than overlapping: switching moments shows a
+ * genuinely different set instead of a reshuffle of the same favourites.
+ */
+export const moments: Moment[] = [
+  {
+    slug: "at-the-desk",
+    name: "At the Desk",
+    note: "Subtle, all-day shine",
+    blurb:
+      "Pieces light enough to forget through a working day — nothing that catches on a sleeve or asks to be taken off.",
+    image: withBase("/images/lifestyle-1.webp"),
+    pieces: piecesByRef("BT96", "W527", "PES89", "PES160", "TD531"),
+  },
+  {
+    slug: "after-hours",
+    name: "After Hours",
+    note: "A little more sparkle",
+    blurb:
+      "The step up for an evening — drops that move, a centre stone with some colour, a neckline worth dressing.",
+    image: withBase("/images/lifestyle-2.webp"),
+    pieces: piecesByRef("LD34", "CLR173", "ND94", "TD535", "DS138"),
+  },
+  {
+    slug: "every-morning",
+    name: "Every Morning",
+    note: "Effortless and repeatable",
+    blurb:
+      "Reached for without thinking, and worn with everything — the pieces that end up living on the dresser, not in the locker.",
+    image: withBase("/images/lifestyle-3.webp"),
+    pieces: piecesByRef("LD13", "CLR113", "DS118", "PES81", "TD541"),
+  },
+];

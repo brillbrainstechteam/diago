@@ -139,41 +139,6 @@
   animation: sparkleSpin 18s linear infinite;
 }
 
-/* Hero crossfade slideshow. Three stacked portraits share one keyframe; each
-   is offset by a third of the cycle via animation-delay (set inline per slide),
-   so as one fades out the next fades in. The plateau/fade split is tuned so the
-   fade-out of the current slide and the fade-in of the next overlap exactly,
-   and the loop wraps seamlessly (slide 3 -> slide 1). Base opacity keeps only
-   the first frame visible before the animation starts (and under reduced
-   motion, where the animation is disabled entirely). */
-@keyframes heroSlide {
-  0%     { opacity: 1; }
-  22.22% { opacity: 1; }
-  33.33% { opacity: 0; }
-  88.89% { opacity: 0; }
-  100%   { opacity: 1; }
-}
-
-/* Slow Ken Burns push-in, phase-locked to the opacity via the same delay, so
-   each portrait drifts gently inward while it is on screen. The scale resets
-   during the hidden window, so the wrap is never visible. */
-@keyframes heroZoom {
-  from { transform: scale(1.002); }
-  to   { transform: scale(1.08); }
-}
-
-.hero-slide {
-  opacity: 0;
-}
-.hero-slide:first-child {
-  opacity: 1;
-}
-.hero-slide-anim {
-  animation:
-    heroSlide 18s ease-in-out infinite,
-    heroZoom 18s ease-in-out infinite;
-}
-
 /* Continuous showcase strip: the track renders its card list twice back-to-
    back and translates by exactly -50%, which loops seamlessly regardless of
    actual pixel width. */
@@ -210,7 +175,6 @@
   .animate-shimmer { animation: none; }
   .sparkle-spin { animation: none; }
   .marquee-track { animation: none; }
-  .hero-slide-anim { animation: none; }
   html { scroll-behavior: auto; }
 }
 
