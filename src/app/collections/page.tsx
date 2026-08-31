@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Carousel from "@/components/Carousel";
-import PieceCard from "@/components/PieceCard";
+import PieceShowcase from "@/components/PieceShowcase";
 import { categories } from "@/data/collections";
 import {
   Container, Section, Reveal, Eyebrow, GoldRule, Heading, PageHeader,
@@ -126,6 +126,15 @@ function CategoryRow({ cat, index }: { cat: (typeof categories)[number]; index: 
  */
 function PieceGallery({ cat }: { cat: (typeof categories)[number] }) {
   const pieces = cat.pieces ?? [];
+  // Below five, a fixed five-column track would strand the row against the
+  // left edge; matching the count keeps every gallery centred and even.
+  const gridClass =
+    pieces.length >= 5 ? "grid-cols-3 xl:grid-cols-5"
+      : pieces.length === 4 ? "grid-cols-4"
+      : pieces.length === 3 ? "grid-cols-3"
+      : pieces.length === 2 ? "grid-cols-2 max-w-2xl mx-auto"
+      : "grid-cols-1 max-w-sm mx-auto";
+
   return (
     <div className="pb-12 lg:pb-16">
       <Reveal>
@@ -135,23 +144,19 @@ function PieceGallery({ cat }: { cat: (typeof categories)[number] }) {
             {pieces.length} {pieces.length === 1 ? "piece" : "pieces"} in this range
           </h3>
           <span className="hidden sm:block flex-1 h-px bg-gold/20" />
+          <span className="hidden sm:block shrink-0 text-ink-soft/70 text-[10px] tracking-[0.18em] uppercase">
+            Tap to enlarge
+          </span>
         </div>
       </Reveal>
 
       <Reveal delay={110}>
-        <div className="mt-7 hidden lg:grid grid-cols-3 xl:grid-cols-5 gap-6">
-          {pieces.map((p) => (
-            <PieceCard key={p.ref} piece={p} sizes="20vw" />
-          ))}
-        </div>
-
-        <div className="mt-7 lg:hidden">
-          <Carousel ariaLabel={`${cat.name} pieces`} slideClass="basis-[70%] sm:basis-[42%]">
-            {pieces.map((p) => (
-              <PieceCard key={p.ref} piece={p} sizes="(max-width: 640px) 70vw, 42vw" />
-            ))}
-          </Carousel>
-        </div>
+        <PieceShowcase
+          pieces={pieces}
+          label={`${cat.name} pieces`}
+          gridClass={gridClass}
+          className="mt-7"
+        />
       </Reveal>
     </div>
   );

@@ -3,9 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import Carousel from "@/components/Carousel";
-import PieceCard from "@/components/PieceCard";
+import PieceShowcase from "@/components/PieceShowcase";
 import ProductDeck from "@/components/ProductDeck";
-import VerticalShowcase from "@/components/VerticalShowcase";
 import { deckCards } from "@/data/deckCards";
 import { featuredPieces, piecesByRef } from "@/data/collections";
 import {
@@ -186,14 +185,27 @@ function Proposition() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {items.map((item, i) => (
             <Reveal key={item.t} delay={i * 120}>
-              <div className="group h-full bg-cream border border-gold/15 p-7 lg:p-8 text-center transition-all duration-500 hover:border-gold/45 hover:shadow-[0_22px_44px_-30px_rgba(122,32,64,0.45)] hover:-translate-y-1">
-                <div className="relative mx-auto w-16 h-16 flex items-center justify-center text-gold">
-                  <span className="absolute inset-0 rounded-full border border-gold/35 transition-colors duration-500 group-hover:border-gold/65" />
-                  <span className="pointer-events-none absolute inset-1 rounded-full bg-[radial-gradient(closest-side,var(--gold-pale)_0%,transparent_72%)] opacity-60" />
-                  <span className="relative transition-transform duration-500 group-hover:scale-110">{item.icon}</span>
+              {/* The icons previously sat as thin gold strokes on the same
+                  cream as the card, which left them almost invisible. They now
+                  sit on a burgundy medallion, so the gold has something dark to
+                  read against — the same contrast the footer and hero rely on. */}
+              <div className="group relative h-full bg-gradient-to-b from-cream-light via-cream to-cream-dark border border-gold/25 border-t-2 border-t-gold/70 p-7 lg:p-8 text-center shadow-[0_16px_34px_-28px_rgba(122,32,64,0.5)] transition-all duration-500 hover:border-gold/55 hover:border-t-gold hover:shadow-[0_26px_50px_-26px_rgba(122,32,64,0.55)] hover:-translate-y-1.5">
+                <span className="pointer-events-none absolute top-2.5 left-2.5 w-4 h-4 border-t border-l border-gold/40 transition-colors duration-500 group-hover:border-gold" />
+                <span className="pointer-events-none absolute top-2.5 right-2.5 w-4 h-4 border-t border-r border-gold/40 transition-colors duration-500 group-hover:border-gold" />
+
+                <div className="relative mx-auto w-[4.5rem] h-[4.5rem] flex items-center justify-center">
+                  {/* Soft halo bleeding past the medallion edge. */}
+                  <span className="pointer-events-none absolute -inset-2 rounded-full bg-[radial-gradient(closest-side,var(--gold-pale)_0%,transparent_75%)] opacity-70 blur-[2px] transition-opacity duration-500 group-hover:opacity-100" />
+                  <span className="absolute inset-0 rounded-full surface-burgundy shadow-[0_10px_22px_-10px_rgba(67,15,34,0.7)] transition-transform duration-500 group-hover:scale-105" />
+                  <span className="absolute inset-0 rounded-full ring-1 ring-inset ring-gold/45 transition-colors duration-500 group-hover:ring-gold/80" />
+                  <span className="absolute -inset-1.5 rounded-full border border-gold/25 transition-colors duration-500 group-hover:border-gold/50" />
+                  <span className="relative text-gold-light transition-transform duration-500 group-hover:scale-110">
+                    {item.icon}
+                  </span>
                 </div>
+
                 <h3 className="mt-6 text-[15px] font-bold text-burgundy leading-snug tracking-wide uppercase">{item.t}</h3>
-                <span className="mt-3 mx-auto block w-7 h-px bg-gold/50 transition-all duration-500 group-hover:w-12" />
+                <span className="mt-3 mx-auto block w-7 h-px bg-gold/60 transition-all duration-500 group-hover:w-14" />
                 <p className="mt-3 text-[14px] leading-relaxed text-ink-soft" style={{ fontFamily: "var(--font-serif)" }}>
                   {item.d}
                 </p>
@@ -213,22 +225,23 @@ function AboutTeaser() {
     <Section tone="cream-light">
       <Container>
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+          {/* Jewellery on a wearer, not on a plinth: the copy beside this is
+              about pieces that move with you, and a product cut-out on white
+              argues the opposite. These two portraits were freed up when Shop
+              by Occasion moved to showing actual pieces. */}
           <Reveal>
             <div className="relative grid grid-cols-2 gap-5">
               <div className="pointer-events-none absolute -inset-10 rounded-full bg-[radial-gradient(closest-side,var(--gold-pale)_0%,transparent_70%)] opacity-70 blur-2xl" />
-              {/* A catalogue piece, not the category render used by the deck
-                  two sections down. */}
               <FramedImage
-                src={piecesByRef("PES160")[0].image}
-                alt="DIAGO swirl trio set in fine gold with certified diamonds"
+                src={withBase("/images/occasion-datenight.webp")}
+                alt="Model wearing DIAGO diamond drop earrings"
                 ratio="4/5"
-                fit="contain"
                 inset
                 className="shadow-[0_30px_60px_-25px_rgba(67,15,34,0.35)]"
               />
               <FramedImage
-                src={withBase("/images/texture-diamonds.webp")}
-                alt="Certified natural diamonds set in fine gold"
+                src={withBase("/images/occasion-festive.webp")}
+                alt="Model wearing DIAGO diamond earrings against burgundy"
                 ratio="4/5"
                 inset
                 corners={false}
@@ -311,32 +324,25 @@ function FeaturedPieces() {
       <Container>
         <Reveal>
           <Heading
-            eyebrow="From the Atelier"
-            title="Pieces in"
-            accent="fine detail"
+            eyebrow="One From Each"
+            title="A piece from every"
+            accent="collection"
             center
             className="max-w-2xl mx-auto"
           />
           <p className="mt-7 text-center text-[1.0625rem] leading-[1.85] text-ink-soft max-w-xl mx-auto" style={{ fontFamily: "var(--font-serif)" }}>
-            Photographed as they arrive at the counter — certified natural diamonds
-            set in hallmarked fine gold, down to the last pave stone.
+            Five collections, one piece each — a ring, a pendant set, a pair of
+            earrings, a necklace and a mangalsutra. Tap any piece to see it close up.
           </p>
         </Reveal>
 
         <Reveal delay={120}>
-          <div className="mt-11 hidden lg:grid grid-cols-5 gap-6">
-            {featuredPieces.map((p) => (
-              <PieceCard key={p.ref} piece={p} sizes="20vw" />
-            ))}
-          </div>
-
-          <div className="mt-11 lg:hidden">
-            <Carousel ariaLabel="Featured pieces" slideClass="basis-[70%] sm:basis-[42%]">
-              {featuredPieces.map((p) => (
-                <PieceCard key={p.ref} piece={p} sizes="(max-width: 640px) 70vw, 42vw" />
-              ))}
-            </Carousel>
-          </div>
+          <PieceShowcase
+            pieces={featuredPieces}
+            label="A piece from every collection"
+            gridClass="grid-cols-5"
+            className="mt-11"
+          />
         </Reveal>
 
         <Reveal delay={200}>
@@ -358,16 +364,20 @@ function FeaturedPieces() {
 /* ── Shop by Occasion ──────────────────────────────────────────────── */
 
 function ShopByOccasion() {
-  // Mood portraits, not category shots — so each links to the full collection
-  // (an honest "explore, styled for the moment") rather than claiming a
-  // specific category the image doesn't show.
+  // Each occasion now shows the piece actually being recommended for it, and
+  // links to that piece's category. The previous portraits were stock-style
+  // model shots wearing jewellery that was not DIAGO's, so they illustrated a
+  // mood but pointed at nothing you could buy.
+  // Deliberately disjoint from featuredPieces and the gifting collage: all
+  // three sit on this one page, and a piece shown twice reads as a thin
+  // catalogue rather than a considered edit.
   const occasions = [
-    { name: "Everyday Wear", note: "Subtle, all-day shine", src: withBase("/images/occasion-desk.webp") },
-    { name: "Date Night", note: "A little more sparkle", src: withBase("/images/occasion-datenight.webp") },
-    { name: "Weekend Brunch", note: "Effortless and light", src: withBase("/images/occasion-weekend.webp") },
-    { name: "Festive Season", note: "Bold and celebratory", src: withBase("/images/occasion-festive.webp") },
-    { name: "The Big Day", note: "Heirloom-worthy", src: withBase("/images/occasion-bigday.webp") },
-  ];
+    { name: "Everyday Wear", note: "Subtle, all-day shine", ref: "BT96", href: "/collections#earrings" },
+    { name: "Date Night", note: "A little more sparkle", ref: "LD13", href: "/collections#earrings" },
+    { name: "Weekend Brunch", note: "Effortless and light", ref: "W527", href: "/collections#rings" },
+    { name: "Festive Season", note: "Bold and celebratory", ref: "CLR173", href: "/collections#rings" },
+    { name: "The Big Day", note: "Heirloom-worthy", ref: "PES81", href: "/collections#pendant-sets" },
+  ].map((o) => ({ ...o, piece: piecesByRef(o.ref)[0] }));
   return (
     <Section tone="cream-light" id="shop-by-occasion">
       <Container>
@@ -388,20 +398,21 @@ function ShopByOccasion() {
           <div className="mt-12">
             <Carousel ariaLabel="Styled for every occasion" slideClass="basis-[46%] sm:basis-[30%] lg:basis-1/5">
               {occasions.map((o) => (
-                <Link key={o.name} href="/collections" className="group flex flex-col items-center text-center">
-                  <div className="relative w-full aspect-square rounded-full overflow-hidden border border-gold/30 shadow-[0_18px_36px_-24px_rgba(122,32,64,0.45)] transition-all duration-500 group-hover:border-gold/70 group-hover:shadow-[0_24px_46px_-22px_rgba(122,32,64,0.5)]">
+                <Link key={o.name} href={o.href} className="group flex flex-col items-center text-center">
+                  <div className="relative w-full aspect-square rounded-full overflow-hidden bg-gradient-to-b from-cream-light to-cream-dark border border-gold/30 shadow-[0_18px_36px_-24px_rgba(122,32,64,0.45)] transition-all duration-500 group-hover:border-gold/70 group-hover:shadow-[0_24px_46px_-22px_rgba(122,32,64,0.5)]">
+                    <span className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(closest-side,var(--gold-pale)_0%,transparent_72%)] opacity-70 transition-opacity duration-500 group-hover:opacity-100" />
                     <Image
-                      src={o.src}
-                      alt={`DIAGO styled for ${o.name.toLowerCase()}`}
+                      src={o.piece.image}
+                      alt={`${o.piece.name} — DIAGO ${o.piece.ref}`}
                       fill
                       sizes="(max-width: 640px) 46vw, 20vw"
-                      className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
+                      className="relative object-contain p-8 transition-transform duration-[1200ms] ease-out group-hover:scale-110"
                     />
-                    <span className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-t from-burgundy-deep/45 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <span className="pointer-events-none absolute inset-[6px] rounded-full border border-cream/20" />
+                    <span className="pointer-events-none absolute inset-[6px] rounded-full border border-gold/20 transition-colors duration-500 group-hover:border-gold/40" />
                   </div>
                   <p className="mt-5 text-burgundy text-[15px] font-bold">{o.name}</p>
                   <p className="mt-1 text-gold-dark text-[10px] tracking-[0.18em] uppercase">{o.note}</p>
+                  <p className="mt-2 text-ink-soft/70 text-[10px] tracking-[0.2em] uppercase tabular-nums">{o.piece.ref}</p>
                 </Link>
               ))}
             </Carousel>
@@ -444,21 +455,61 @@ function GiftingBanner() {
           </div>
         </div>
 
-        {/* Fixed-height, relatively-positioned cell: the showcase fills it
-            absolutely so the moving track can never stretch the banner. Six
-            items guarantee one copy is taller than this window, so the loop
-            never reveals empty space. */}
-        <div className="relative min-h-[420px] lg:min-h-[520px] order-1 lg:order-2">
-          {/* Actual pieces rather than the category renders: this showcase sits
-              a section below the collections deck, and every one of its previous
-              six images was already in that deck. */}
-          <VerticalShowcase
-            items={piecesByRef("PES81", "TD535", "LD13", "DS138", "CLR173", "PES89").map((p) => ({
-              label: p.name,
-              tagline: p.ref,
-              image: p.image,
-            }))}
-          />
+        {/* Editorial collage rather than the auto-scrolling column this used to
+            run. A perpetual marquee competes with the copy beside it, gives the
+            eye no resting point, and means the piece someone wants to look at
+            has already slid away. A fixed asymmetric grid — one tall hero, two
+            stacked details — is the arrangement luxury houses use for the same
+            job, and it holds still long enough to read. */}
+        <div className="relative order-1 lg:order-2 surface-burgundy p-5 sm:p-7 lg:p-8">
+          <div className="absolute inset-0 grain-gold opacity-[0.07]" />
+
+          <div className="relative z-10 grid grid-cols-5 grid-rows-2 gap-4 sm:gap-5 h-[380px] sm:h-[440px] lg:h-[520px]">
+            {/* Hero: the packaging, which is what gifting is actually about. */}
+            <figure className="relative col-span-3 row-span-2 overflow-hidden border border-gold/25 shadow-[0_24px_50px_-28px_rgba(0,0,0,0.7)] group">
+              <Image
+                src={withBase("/images/gift-presentation.webp")}
+                alt="A DIAGO necklace on its display bust beside the signature gift box and carry bag"
+                fill
+                sizes="(max-width: 1024px) 55vw, 28vw"
+                className="object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-105"
+              />
+              <span className="pointer-events-none absolute inset-3 border border-cream/20" />
+              <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-burgundy-deep/85 to-transparent px-5 pt-10 pb-4">
+                <span className="block text-gold text-[9px] font-semibold tracking-[0.26em] uppercase">
+                  Signature packaging
+                </span>
+                <span className="mt-1 block text-cream text-[15px] italic" style={{ fontFamily: "var(--font-serif)" }}>
+                  Boxed, bagged, ready to give
+                </span>
+              </figcaption>
+            </figure>
+
+            {piecesByRef("DS138", "TD535").map((p) => (
+              <figure
+                key={p.ref}
+                className="relative col-span-2 overflow-hidden bg-gradient-to-b from-cream-light to-cream border border-gold/25 shadow-[0_18px_38px_-24px_rgba(0,0,0,0.65)] group"
+              >
+                <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(closest-side,var(--gold-pale)_0%,transparent_72%)] opacity-60" />
+                <Image
+                  src={p.image}
+                  alt={`${p.name} — DIAGO ${p.ref}`}
+                  fill
+                  sizes="(max-width: 1024px) 36vw, 18vw"
+                  className="relative object-contain p-5 transition-transform duration-700 ease-out group-hover:scale-[1.08]"
+                />
+                <span className="pointer-events-none absolute inset-2.5 border border-gold/20" />
+                <figcaption className="absolute inset-x-0 bottom-0 px-3 py-2 text-center bg-cream-light/85 border-t border-gold/20">
+                  <span className="block text-gold-dark text-[8.5px] font-semibold tracking-[0.22em] uppercase tabular-nums">
+                    {p.ref}
+                  </span>
+                  <span className="block text-burgundy text-[12px] italic leading-tight" style={{ fontFamily: "var(--font-serif)" }}>
+                    {p.name}
+                  </span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
         </div>
       </div>
     </section>

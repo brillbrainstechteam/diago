@@ -186,20 +186,6 @@
   animation: marqueeScroll 38s linear infinite;
 }
 
-/* Vertical counterpart, same seamless-loop technique along the Y axis. */
-@keyframes marqueeScrollY {
-  from { transform: translateY(0); }
-  to { transform: translateY(-50%); }
-}
-
-.marquee-track-v {
-  animation: marqueeScrollY 40s linear infinite;
-}
-
-.marquee-track-v:hover {
-  animation-play-state: paused;
-}
-
 .marquee-track:hover {
   animation-play-state: paused;
 }
@@ -224,7 +210,6 @@
   .animate-shimmer { animation: none; }
   .sparkle-spin { animation: none; }
   .marquee-track { animation: none; }
-  .marquee-track-v { animation: none; }
   .hero-slide-anim { animation: none; }
   html { scroll-behavior: auto; }
 }

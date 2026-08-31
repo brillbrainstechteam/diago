@@ -19,8 +19,11 @@ export default function PieceCard({
   priority?: boolean;
   sizes?: string;
 }) {
+  // A plain div, not <figure>: these cards render inside the enlarge button
+  // in PieceShowcase, and <figure> is flow content that a <button> may not
+  // legally contain.
   return (
-    <figure className="group relative h-full flex flex-col">
+    <div className="group relative h-full flex flex-col">
       {/* Frame. The gold seam on top is the anchor; the rest of the border is
           a hairline so the metal in the photograph stays the brightest thing. */}
       <div className="relative overflow-hidden border border-gold/25 border-t-2 border-t-gold bg-gradient-to-b from-cream-light via-cream-light to-cream transition-all duration-500 group-hover:border-gold/55 shadow-[0_18px_38px_-28px_rgba(67,15,34,0.45)] group-hover:shadow-[0_26px_50px_-24px_rgba(67,15,34,0.5)]">
@@ -51,7 +54,7 @@ export default function PieceCard({
 
         {/* Reference code on a gold seam — the detail a retailer actually
             orders against, so it earns a permanent place rather than a hover. */}
-        <figcaption className="relative border-t border-gold/20 px-4 py-3 text-center">
+        <div className="relative border-t border-gold/20 px-4 py-3 text-center">
           <span className="block text-gold-dark text-[9px] font-semibold tracking-[0.26em] uppercase tabular-nums">
             {piece.ref}
           </span>
@@ -65,8 +68,8 @@ export default function PieceCard({
           <span className="mt-2 block text-ink-soft text-[11.5px] leading-relaxed">
             {piece.note}
           </span>
-        </figcaption>
+        </div>
       </div>
-    </figure>
+    </div>
   );
 }

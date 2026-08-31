@@ -134,14 +134,19 @@ export const piecesByRef = (...refs: string[]): Piece[] =>
   });
 
 /**
- * Home-page selection. Picked for spread rather than favourites — one ring,
- * one pair of earrings, one mangalsutra, one necklace and one set, and no two
- * sharing a centre stone, so the row reads as a range instead of a variation.
+ * Home-page selection: exactly one piece from each photographed category, in
+ * the order the categories appear on /collections. That rule is what the
+ * section's copy states, so it has to hold — pick by category, never by
+ * favourite, or the heading stops being true.
  */
 export const featuredPieces: Piece[] = piecesByRef(
-  "CLR113",
-  "LD34",
-  "TD541",
-  "ND94",
-  "DS118",
+  "CLR113", // rings
+  "DS118",  // pendant sets
+  "LD34",   // earrings
+  "ND94",   // necklaces
+  "TD541",  // mangalsutras
 );
+
+/** The category each featured piece stands for, for labelling that row. */
+export const featuredCategoryOf = (ref: string): string =>
+  categories.find((c) => c.pieces?.some((p) => p.ref === ref))?.name ?? "";
