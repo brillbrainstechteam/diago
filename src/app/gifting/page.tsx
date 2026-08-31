@@ -9,28 +9,46 @@ import { withBase } from "@/lib/basePath";
 
 /* ── Why gift DIAGO ─────────────────────────────────────────────────── */
 
+/**
+ * `fit: "contain"` marks the alpha cut-outs (the stone and the band); the
+ * packaging shots are photographs and cover their tile. Both sit on the same
+ * burgundy tile so the four read as one set rather than two halves — the
+ * mismatch this section would otherwise have.
+ */
 const reasons = [
   {
     n: "01",
     t: "Certified Diamonds",
     d: "Every stone graded and certified — brilliance the recipient can trust, not just admire.",
+    img: "/images/diamond-solo.webp",
+    alt: "A loose certified natural diamond",
+    fit: "contain",
   },
   {
     n: "02",
     t: "Hallmarked Gold",
     d: "BIS hallmarked purity on every piece, so the gift carries a guarantee, not just a look.",
+    img: "/images/finegold-band.webp",
+    alt: "A polished BIS hallmarked fine gold band",
+    fit: "contain",
   },
   {
     n: "03",
     t: "Gift-Ready Presentation",
     d: "Packaged in DIAGO's signature box and bag — ready to hand over as it arrives.",
+    img: "/images/gift-box.webp",
+    alt: "The DIAGO signature gift box",
+    fit: "cover",
   },
   {
     n: "04",
     t: "Free Lifetime Care",
     d: "Complimentary cleaning and inspection for as long as they own it — a gift that keeps working.",
+    img: "/images/gift-bag.webp",
+    alt: "The DIAGO signature carry bag",
+    fit: "cover",
   },
-];
+] as const;
 
 function WhyGift() {
   return (
@@ -43,17 +61,33 @@ function WhyGift() {
         <div className="mt-11 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           {reasons.map((r, i) => (
             <Reveal key={r.n} delay={i * 120}>
-              <article className="relative pt-8 border-t border-gold/30 h-full">
-                <span
-                  className="absolute -top-[0.9rem] left-0 bg-cream pr-4 text-gold-dark text-2xl font-bold leading-none"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  {r.n}
-                </span>
-                <h3 className="text-xl font-bold text-burgundy">{r.t}</h3>
-                <p className="mt-4 text-[15px] leading-[1.8] text-ink-soft" style={{ fontFamily: "var(--font-serif)" }}>
-                  {r.d}
-                </p>
+              <article className="group h-full">
+                <div className="relative aspect-[4/3] overflow-hidden surface-burgundy border border-gold/25 shadow-[0_18px_38px_-28px_rgba(67,15,34,0.5)] transition-all duration-500 group-hover:border-gold/55">
+                  <div className="absolute inset-0 grain-gold opacity-[0.07]" />
+                  <Image
+                    src={withBase(r.img)}
+                    alt={r.alt}
+                    fill
+                    sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 23vw"
+                    className={`relative transition-transform duration-700 ease-out group-hover:scale-[1.06] ${
+                      r.fit === "contain" ? "object-contain p-8" : "object-cover"
+                    }`}
+                  />
+                  <span className="pointer-events-none absolute inset-3 border border-gold/25 transition-colors duration-500 group-hover:border-gold/45" />
+                </div>
+
+                <div className="relative mt-7 pt-8 border-t border-gold/30">
+                  <span
+                    className="absolute -top-[0.9rem] left-0 bg-cream pr-4 text-gold-dark text-2xl font-bold leading-none tabular-nums"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    {r.n}
+                  </span>
+                  <h3 className="text-xl font-bold text-burgundy">{r.t}</h3>
+                  <p className="mt-4 text-[15px] leading-[1.8] text-ink-soft" style={{ fontFamily: "var(--font-serif)" }}>
+                    {r.d}
+                  </p>
+                </div>
               </article>
             </Reveal>
           ))}
@@ -118,6 +152,65 @@ function GiftForOccasion() {
   );
 }
 
+/* ── Packaging ──────────────────────────────────────────────────────── */
+
+/**
+ * The signature box, bag and display, photographed together. Gifting is the
+ * one context where the packaging is part of the product rather than a
+ * shipping detail, so it gets a section of its own.
+ */
+function Presentation() {
+  return (
+    <section className="relative overflow-hidden">
+      <div className="grid lg:grid-cols-2">
+        <div className="relative min-h-[340px] lg:min-h-[520px]">
+          <Image
+            src={withBase("/images/gift-presentation.webp")}
+            alt="A DIAGO necklace on its display bust beside the signature gift box and carry bag"
+            fill
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            className="object-cover"
+          />
+        </div>
+
+        <div className="relative surface-burgundy flex items-center py-14 lg:py-20">
+          <div className="absolute inset-0 grain-gold opacity-[0.07]" />
+          <div className="relative z-10 w-full px-6 sm:px-10 lg:px-16 xl:pr-24">
+            <Reveal>
+              <Eyebrow light>The Presentation</Eyebrow>
+              <h2 className="mt-6 text-[2rem] sm:text-4xl lg:text-5xl font-bold leading-[1.1] text-cream">
+                Wrapped before
+                <span className="block mt-2 font-normal italic text-gold-light" style={{ fontFamily: "var(--font-serif)" }}>
+                  it reaches you
+                </span>
+              </h2>
+              <GoldRule light className="mt-7" />
+              <p className="mt-7 text-[1.0625rem] leading-[1.85] text-cream/85 max-w-md" style={{ fontFamily: "var(--font-serif)" }}>
+                Every piece arrives in the signature box and carry bag, with its
+                certificate enclosed — nothing left to wrap, nothing to explain.
+              </p>
+
+              <ul className="mt-9 grid sm:grid-cols-2 gap-x-6 gap-y-4 max-w-md">
+                {[
+                  "Signature box and bag",
+                  "Certificate enclosed",
+                  "Hallmark documented",
+                  "Ready to hand over",
+                ].map((f) => (
+                  <li key={f} className="flex items-start gap-3">
+                    <span className="text-gold text-xs leading-none pt-[6px] shrink-0">&#10022;</span>
+                    <span className="text-[14px] text-cream/85" style={{ fontFamily: "var(--font-serif)" }}>{f}</span>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ── Book an appointment CTA ───────────────────────────────────────── */
 
 function GiftingCta() {
@@ -173,6 +266,7 @@ export default function GiftingPage() {
       />
       <WhyGift />
       <GiftForOccasion />
+      <Presentation />
       <GiftingCta />
     </>
   );
