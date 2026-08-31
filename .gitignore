@@ -43,3 +43,6 @@ next-env.d.ts
 # raw design source (brochure, unprocessed shots) — not needed to build the site;
 # see scripts/process_images.py, which reads from here and writes public/images
 /files/
+# Raw 3000px vendor JPGs. The web-ready derivatives live in
+# public/images/catalogue/, and the source drop is kept under docs/.
+/diago_images/

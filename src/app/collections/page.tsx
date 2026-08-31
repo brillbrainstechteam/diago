@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Carousel from "@/components/Carousel";
+import PieceCard from "@/components/PieceCard";
 import { categories } from "@/data/collections";
 import {
   Container, Section, Reveal, Eyebrow, GoldRule, Heading, PageHeader,
@@ -109,7 +110,49 @@ function CategoryRow({ cat, index }: { cat: (typeof categories)[number]; index: 
             </Link>
           </Reveal>
         </div>
+
+        {cat.pieces && cat.pieces.length > 0 && <PieceGallery cat={cat} />}
       </Container>
+    </div>
+  );
+}
+
+/* ── Studio shots for one category ──────────────────────────────────── */
+
+/**
+ * Sits under its category row. Below `lg` this is a swipeable rail rather
+ * than a grid: at five pieces a wrapped grid on a phone becomes a very long
+ * scroll between one category and the next.
+ */
+function PieceGallery({ cat }: { cat: (typeof categories)[number] }) {
+  const pieces = cat.pieces ?? [];
+  return (
+    <div className="pb-12 lg:pb-16">
+      <Reveal>
+        <div className="flex items-center gap-4">
+          <span className="block w-8 h-px bg-gold" />
+          <h3 className="text-[10px] font-semibold tracking-[0.28em] uppercase text-gold-dark">
+            {pieces.length} {pieces.length === 1 ? "piece" : "pieces"} in this range
+          </h3>
+          <span className="hidden sm:block flex-1 h-px bg-gold/20" />
+        </div>
+      </Reveal>
+
+      <Reveal delay={110}>
+        <div className="mt-7 hidden lg:grid grid-cols-3 xl:grid-cols-5 gap-6">
+          {pieces.map((p) => (
+            <PieceCard key={p.ref} piece={p} sizes="20vw" />
+          ))}
+        </div>
+
+        <div className="mt-7 lg:hidden">
+          <Carousel ariaLabel={`${cat.name} pieces`} slideClass="basis-[70%] sm:basis-[42%]">
+            {pieces.map((p) => (
+              <PieceCard key={p.ref} piece={p} sizes="(max-width: 640px) 70vw, 42vw" />
+            ))}
+          </Carousel>
+        </div>
+      </Reveal>
     </div>
   );
 }

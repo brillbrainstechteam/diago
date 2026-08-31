@@ -1,0 +1,182 @@
+[
+  {
+    "source": "EARRING/LONG EARRING/LD13.jpg",
+    "output": "EARRING/LONG EARRING/LD13.webp",
+    "source_size": [
+      3000,
+      3000
+    ],
+    "output_size": [
+      1600,
+      1600
+    ]
+  },
+  {
+    "source": "EARRING/LONG EARRING/LD34.jpg",
+    "output": "EARRING/LONG EARRING/LD34.webp",
+    "source_size": [
+      3000,
+      3000
+    ],
+    "output_size": [
+      1600,
+      1600
+    ]
+  },
+  {
+    "source": "EARRING/TOPS/BT96.jpg",
+    "output": "EARRING/TOPS/BT96.webp",
+    "source_size": [
+      3000,
+      3000
+    ],
+    "output_size": [
+      1600,
+      1600
+    ]
+  },
+  {
+    "source": "NECKLACE/ND94  ND94E.jpg",
+    "output": "NECKLACE/ND94  ND94E.webp",
+    "source_size": [
+      3000,
+      3000
+    ],
+    "output_size": [
+      1600,
+      1600
+    ]
+  },
+  {
+    "source": "PENDANT SET/DS118 DS118E.jpg",
+    "output": "PENDANT SET/DS118 DS118E.webp",
+    "source_size": [
+      3000,
+      3000
+    ],
+    "output_size": [
+      1600,
+      1600
+    ]
+  },
+  {
+    "source": "PENDANT SET/DS138  DS138E.jpg",
+    "output": "PENDANT SET/DS138  DS138E.webp",
+    "source_size": [
+      3000,
+      3000
+    ],
+    "output_size": [
+      1600,
+      1600
+    ]
+  },
+  {
+    "source": "RING/CLR113.jpg",
+    "output": "RING/CLR113.webp",
+    "source_size": [
+      3000,
+      3000
+    ],
+    "output_size": [
+      1600,
+      1600
+    ]
+  },
+  {
+    "source": "RING/CLR173.jpg",
+    "output": "RING/CLR173.webp",
+    "source_size": [
+      3000,
+      3000
+    ],
+    "output_size": [
+      1600,
+      1600
+    ]
+  },
+  {
+    "source": "RING/W527.jpg",
+    "output": "RING/W527.webp",
+    "source_size": [
+      3000,
+      3000
+    ],
+    "output_size": [
+      1600,
+      1600
+    ]
+  },
+  {
+    "source": "TAN/TD531.jpg",
+    "output": "TAN/TD531.webp",
+    "source_size": [
+      3000,
+      3000
+    ],
+    "output_size": [
+      1600,
+      1600
+    ]
+  },
+  {
+    "source": "TAN/TD535.jpg",
+    "output": "TAN/TD535.webp",
+    "source_size": [
+      3000,
+      3000
+    ],
+    "output_size": [
+      1600,
+      1600
+    ]
+  },
+  {
+    "source": "TAN/TD541.jpg",
+    "output": "TAN/TD541.webp",
+    "source_size": [
+      3000,
+      3000
+    ],
+    "output_size": [
+      1600,
+      1600
+    ]
+  },
+  {
+    "source": "TRIO SET/PES160.jpg",
+    "output": "TRIO SET/PES160.webp",
+    "source_size": [
+      3000,
+      3000
+    ],
+    "output_size": [
+      1600,
+      1600
+    ]
+  },
+  {
+    "source": "TRIO SET/PES81.jpg",
+    "output": "TRIO SET/PES81.webp",
+    "source_size": [
+      3000,
+      3000
+    ],
+    "output_size": [
+      1600,
+      1600
+    ]
+  },
+  {
+    "source": "TRIO SET/PES89.jpg",
+    "output": "TRIO SET/PES89.webp",
+    "source_size": [
+      3000,
+      3000
+    ],
+    "output_size": [
+      1600,
+      1600
+    ]
+  }
+]

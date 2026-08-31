@@ -3,9 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import Carousel from "@/components/Carousel";
+import PieceCard from "@/components/PieceCard";
 import ProductDeck from "@/components/ProductDeck";
 import VerticalShowcase from "@/components/VerticalShowcase";
 import { deckCards } from "@/data/deckCards";
+import { featuredPieces, piecesByRef } from "@/data/collections";
 import {
   Container, Section, Reveal, Eyebrow, GoldRule, Heading, Prose, FramedImage,
 } from "@/components/ui";
@@ -214,9 +216,11 @@ function AboutTeaser() {
           <Reveal>
             <div className="relative grid grid-cols-2 gap-5">
               <div className="pointer-events-none absolute -inset-10 rounded-full bg-[radial-gradient(closest-side,var(--gold-pale)_0%,transparent_70%)] opacity-70 blur-2xl" />
+              {/* A catalogue piece, not the category render used by the deck
+                  two sections down. */}
               <FramedImage
-                src={withBase("/images/product-chain-pendant.webp")}
-                alt="DIAGO diamond pendant in fine gold"
+                src={piecesByRef("PES160")[0].image}
+                alt="DIAGO swirl trio set in fine gold with certified diamonds"
                 ratio="4/5"
                 fit="contain"
                 inset
@@ -292,52 +296,60 @@ function CollectionsRail() {
   );
 }
 
-/* ── Lifestyle band ─────────────────────────────────────────────────── */
+/* ── Featured pieces ────────────────────────────────────────────────── */
 
-function Lifestyle() {
-  const shots = [
-    { src: withBase("/images/lifestyle-1.webp"), cap: "At the desk" },
-    { src: withBase("/images/lifestyle-2.webp"), cap: "After hours" },
-    { src: withBase("/images/lifestyle-3.webp"), cap: "Every morning" },
-  ];
+/**
+ * Studio shots of actual pieces, in the gold display frame.
+ *
+ * This slot used to hold a second row of mood portraits ("Everyday elegance"),
+ * which duplicated both the layout and two of the photographs already used by
+ * Shop by Occasion and the hero. Real product does the persuading here instead.
+ */
+function FeaturedPieces() {
   return (
     <Section tone="cream">
       <Container>
         <Reveal>
           <Heading
-            eyebrow="Everyday Luxury"
-            title="Everyday elegance,"
-            accent="effortless radiance"
+            eyebrow="From the Atelier"
+            title="Pieces in"
+            accent="fine detail"
             center
             className="max-w-2xl mx-auto"
           />
           <p className="mt-7 text-center text-[1.0625rem] leading-[1.85] text-ink-soft max-w-xl mx-auto" style={{ fontFamily: "var(--font-serif)" }}>
-            From the first meeting of the day to the last table of the evening —
-            pieces light enough to forget you are wearing them.
+            Photographed as they arrive at the counter — certified natural diamonds
+            set in hallmarked fine gold, down to the last pave stone.
           </p>
         </Reveal>
 
-        <div className="mt-11 grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8">
-          {shots.map((s, i) => (
-            <Reveal key={s.src} delay={i * 140}>
-              <figure className="group">
-                <div className="relative aspect-[3/4] overflow-hidden bg-cream-dark">
-                  <Image
-                    src={s.src}
-                    alt={`DIAGO jewellery worn ${s.cap.toLowerCase()}`}
-                    fill
-                    sizes="(max-width: 640px) 100vw, 33vw"
-                    className="object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-105"
-                  />
-                  <span className="pointer-events-none absolute inset-4 border border-cream/25" />
-                </div>
-                <figcaption className="mt-4 text-center text-[10px] tracking-[0.26em] uppercase text-gold-dark">
-                  {s.cap}
-                </figcaption>
-              </figure>
-            </Reveal>
-          ))}
-        </div>
+        <Reveal delay={120}>
+          <div className="mt-11 hidden lg:grid grid-cols-5 gap-6">
+            {featuredPieces.map((p) => (
+              <PieceCard key={p.ref} piece={p} sizes="20vw" />
+            ))}
+          </div>
+
+          <div className="mt-11 lg:hidden">
+            <Carousel ariaLabel="Featured pieces" slideClass="basis-[70%] sm:basis-[42%]">
+              {featuredPieces.map((p) => (
+                <PieceCard key={p.ref} piece={p} sizes="(max-width: 640px) 70vw, 42vw" />
+              ))}
+            </Carousel>
+          </div>
+        </Reveal>
+
+        <Reveal delay={200}>
+          <div className="mt-12 text-center">
+            <Link
+              href="/collections"
+              className="group inline-flex items-center gap-3 px-9 py-4 border border-burgundy/40 text-burgundy text-[11px] font-bold tracking-[0.22em] uppercase hover:bg-burgundy hover:text-cream hover:border-burgundy transition-colors duration-300"
+            >
+              See the full range
+              <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+            </Link>
+          </div>
+        </Reveal>
       </Container>
     </Section>
   );
@@ -437,15 +449,15 @@ function GiftingBanner() {
             items guarantee one copy is taller than this window, so the loop
             never reveals empty space. */}
         <div className="relative min-h-[420px] lg:min-h-[520px] order-1 lg:order-2">
+          {/* Actual pieces rather than the category renders: this showcase sits
+              a section below the collections deck, and every one of its previous
+              six images was already in that deck. */}
           <VerticalShowcase
-            items={[
-              { label: "Statement Rings", tagline: "The signature gesture", image: withBase("/images/deck-ring.webp") },
-              { label: "Contemporary Necklaces", tagline: "Heritage, reframed", image: withBase("/images/deck-necklace.webp") },
-              { label: "Daily-Wear Earrings", tagline: "Light enough to forget", image: withBase("/images/gift-earrings.webp") },
-              { label: "Diamond Pendant Sets", tagline: "Gift-ready presentation", image: withBase("/images/product-pendant-sets.webp") },
-              { label: "Lightweight Bracelets", tagline: "Movement, made brilliant", image: withBase("/images/product-bracelet.webp") },
-              { label: "Mangalsutras", tagline: "Tradition, made contemporary", image: withBase("/images/product-mangalsutra.webp") },
-            ]}
+            items={piecesByRef("PES81", "TD535", "LD13", "DS138", "CLR173", "PES89").map((p) => ({
+              label: p.name,
+              tagline: p.ref,
+              image: p.image,
+            }))}
           />
         </div>
       </div>
@@ -520,7 +532,7 @@ export default function HomePage() {
       <Proposition />
       <AboutTeaser />
       <CollectionsRail />
-      <Lifestyle />
+      <FeaturedPieces />
       <ShopByOccasion />
       <GiftingBanner />
       <RetailCta />
