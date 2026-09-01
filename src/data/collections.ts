@@ -155,6 +155,9 @@ export type Moment = {
   slug: string;
   name: string;
   note: string;
+  /** Editorial title for the edit itself, shown above its pieces. */
+  editTitle: string;
+  editAccent: string;
   blurb: string;
   image: string;
   pieces: Piece[];
@@ -175,6 +178,8 @@ export const moments: Moment[] = [
     slug: "at-the-desk",
     name: "At the Desk",
     note: "Subtle, all-day shine",
+    editTitle: "Quiet enough",
+    editAccent: "for a Monday",
     blurb:
       "Pieces light enough to forget through a working day — nothing that catches on a sleeve or asks to be taken off.",
     image: withBase("/images/moment-desk.webp"),
@@ -184,6 +189,8 @@ export const moments: Moment[] = [
     slug: "over-coffee",
     name: "Over Coffee",
     note: "Effortless and repeatable",
+    editTitle: "The ones you",
+    editAccent: "never take off",
     blurb:
       "Reached for without thinking and worn with everything — the pieces that end up living on the dresser rather than in the locker.",
     image: withBase("/images/moment-cafe.webp"),
@@ -193,6 +200,8 @@ export const moments: Moment[] = [
     slug: "out-and-about",
     name: "Out and About",
     note: "A little more sparkle",
+    editTitle: "For when you",
+    editAccent: "are seen",
     blurb:
       "The step up for going somewhere — drops that move, a centre stone with some colour, a neckline worth dressing.",
     image: withBase("/images/moment-out.webp"),

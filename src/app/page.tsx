@@ -168,34 +168,50 @@ function Proposition() {
         <Reveal>
           <Heading eyebrow="Four Simple Promises" title="The DIAGO" accent="Promise" center className="max-w-xl mx-auto mb-12" />
         </Reveal>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {/* Burgundy cards on the cream section rather than cream-on-cream.
+            The pale cards this replaced gave the gold nothing to sit against,
+            and their fixed height left a third of each one empty below the
+            copy — `items-stretch` with content-led padding closes that. */}
+        <div className="grid gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {items.map((item, i) => (
-            <Reveal key={item.t} delay={i * 120}>
-              {/* The icons previously sat as thin gold strokes on the same
-                  cream as the card, which left them almost invisible. They now
-                  sit on a burgundy medallion, so the gold has something dark to
-                  read against — the same contrast the footer and hero rely on. */}
-              <div className="group relative h-full bg-gradient-to-b from-cream-light via-cream to-cream-dark border border-gold/25 border-t-2 border-t-gold/70 p-7 lg:p-8 text-center shadow-[0_16px_34px_-28px_rgba(122,32,64,0.5)] transition-all duration-500 hover:border-gold/55 hover:border-t-gold hover:shadow-[0_26px_50px_-26px_rgba(122,32,64,0.55)] hover:-translate-y-1.5">
-                <span className="pointer-events-none absolute top-2.5 left-2.5 w-4 h-4 border-t border-l border-gold/40 transition-colors duration-500 group-hover:border-gold" />
-                <span className="pointer-events-none absolute top-2.5 right-2.5 w-4 h-4 border-t border-r border-gold/40 transition-colors duration-500 group-hover:border-gold" />
+            <Reveal key={item.t} delay={i * 120} className="h-full">
+              <article className="group relative h-full flex flex-col overflow-hidden surface-burgundy border border-gold/30 shadow-[0_20px_44px_-30px_rgba(67,15,34,0.7)] transition-all duration-500 hover:border-gold/70 hover:shadow-[0_32px_60px_-28px_rgba(67,15,34,0.75)] hover:-translate-y-1.5">
+                <span className="pointer-events-none absolute inset-0 grain-gold opacity-[0.08]" />
+                {/* Gold seam, brightest at the middle, so the top edge reads as
+                    a struck line rather than a flat border. */}
+                <span className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-gold/20 via-gold to-gold/20" />
+                {/* Warmth pooling up from the base of the card. */}
+                <span className="pointer-events-none absolute -bottom-16 left-1/2 -translate-x-1/2 w-[150%] h-40 bg-[radial-gradient(closest-side,rgba(197,165,90,0.28)_0%,transparent_70%)] opacity-70 transition-opacity duration-500 group-hover:opacity-100" />
 
-                <div className="relative mx-auto w-[4.5rem] h-[4.5rem] flex items-center justify-center">
-                  {/* Soft halo bleeding past the medallion edge. */}
-                  <span className="pointer-events-none absolute -inset-2 rounded-full bg-[radial-gradient(closest-side,var(--gold-pale)_0%,transparent_75%)] opacity-70 blur-[2px] transition-opacity duration-500 group-hover:opacity-100" />
-                  <span className="absolute inset-0 rounded-full surface-burgundy shadow-[0_10px_22px_-10px_rgba(67,15,34,0.7)] transition-transform duration-500 group-hover:scale-105" />
-                  <span className="absolute inset-0 rounded-full ring-1 ring-inset ring-gold/45 transition-colors duration-500 group-hover:ring-gold/80" />
-                  <span className="absolute -inset-1.5 rounded-full border border-gold/25 transition-colors duration-500 group-hover:border-gold/50" />
-                  <span className="relative text-gold-light transition-transform duration-500 group-hover:scale-110">
-                    {item.icon}
+                <span className="pointer-events-none absolute top-3 left-3 w-5 h-5 border-t border-l border-gold/35 transition-colors duration-500 group-hover:border-gold/80" />
+                <span className="pointer-events-none absolute bottom-3 right-3 w-5 h-5 border-b border-r border-gold/35 transition-colors duration-500 group-hover:border-gold/80" />
+
+                <div className="relative z-10 flex flex-col items-center text-center px-6 pt-9 pb-8 lg:px-7">
+                  <span className="text-gold-light/50 text-[10px] font-bold tracking-[0.3em] tabular-nums" style={{ fontFamily: "var(--font-display)" }}>
+                    {String(i + 1).padStart(2, "0")}
                   </span>
-                </div>
 
-                <h3 className="mt-6 text-[15px] font-bold text-burgundy leading-snug tracking-wide uppercase">{item.t}</h3>
-                <span className="mt-3 mx-auto block w-7 h-px bg-gold/60 transition-all duration-500 group-hover:w-14" />
-                <p className="mt-3 text-[14px] leading-relaxed text-ink-soft" style={{ fontFamily: "var(--font-serif)" }}>
-                  {item.d}
-                </p>
-              </div>
+                  {/* Open gold ring, not a filled disc: on a dark card the icon
+                      already has its contrast, and the ring keeps the shape
+                      light instead of dropping a heavy blob into the middle. */}
+                  <span className="relative mt-5 w-16 h-16 flex items-center justify-center">
+                    <span className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(closest-side,rgba(217,192,137,0.22)_0%,transparent_72%)] transition-opacity duration-500 opacity-80 group-hover:opacity-100" />
+                    <span className="absolute inset-0 rounded-full border border-gold/45 transition-all duration-500 group-hover:border-gold group-hover:scale-105" />
+                    <span className="absolute inset-[7px] rounded-full border border-gold/20 transition-colors duration-500 group-hover:border-gold/40" />
+                    <span className="relative text-gold-light transition-transform duration-500 group-hover:scale-110">
+                      {item.icon}
+                    </span>
+                  </span>
+
+                  <h3 className="mt-6 text-cream text-[14px] font-bold leading-snug tracking-[0.12em] uppercase">
+                    {item.t}
+                  </h3>
+                  <span className="mt-3.5 block w-8 h-px bg-gold/60 transition-all duration-500 group-hover:w-16" />
+                  <p className="mt-3.5 text-[14px] leading-[1.75] text-cream/75" style={{ fontFamily: "var(--font-serif)" }}>
+                    {item.d}
+                  </p>
+                </div>
+              </article>
             </Reveal>
           ))}
         </div>
@@ -404,12 +420,30 @@ function StyledForMoments() {
           id={`moment-panel-${moment.slug}`}
           aria-labelledby={`moment-tab-${moment.slug}`}
         >
-          <p
-            className="mt-12 text-center text-[1.0625rem] leading-[1.85] text-ink-soft max-w-xl mx-auto"
-            style={{ fontFamily: "var(--font-serif)" }}
-          >
-            {moment.blurb}
-          </p>
+          {/* Named so the pieces below read as a titled edit rather than an
+              unlabelled tray hanging off the tabs. Keyed on the moment so the
+              rule and title redraw with the row when the edit changes. */}
+          <div key={`${moment.slug}-head`} className="mt-14 text-center animate-tile-in">
+            <div className="flex items-center justify-center gap-4">
+              <span className="block w-10 sm:w-16 h-px bg-gradient-to-r from-transparent to-gold/60" />
+              <span className="text-gold-dark text-[10px] font-semibold tracking-[0.3em] uppercase">
+                The New Collection
+              </span>
+              <span className="block w-10 sm:w-16 h-px bg-gradient-to-l from-transparent to-gold/60" />
+            </div>
+            <h3 className="mt-4 text-[1.5rem] sm:text-3xl font-bold text-burgundy leading-tight">
+              {moment.editTitle}{" "}
+              <span className="font-normal italic text-gold-dark" style={{ fontFamily: "var(--font-serif)" }}>
+                {moment.editAccent}
+              </span>
+            </h3>
+            <p
+              className="mt-5 text-[1.0625rem] leading-[1.85] text-ink-soft max-w-xl mx-auto"
+              style={{ fontFamily: "var(--font-serif)" }}
+            >
+              {moment.blurb}
+            </p>
+          </div>
 
           {/* Keyed on the moment so switching remounts the grid: without it
               React reuses the tiles and the images cross-fade into each other. */}
@@ -417,7 +451,7 @@ function StyledForMoments() {
             key={moment.slug}
             pieces={moment.pieces}
             label={`Pieces for ${moment.name}`}
-            className="mt-10"
+            className="mt-11"
           />
         </div>
 

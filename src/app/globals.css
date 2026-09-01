@@ -160,6 +160,40 @@
   animation: fadeInUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
+/* Catalogue tiles. The stagger runs on every mount, so switching moments
+   deals the new edit in rather than swapping it instantly. */
+@keyframes tileIn {
+  from { opacity: 0; transform: translateY(18px) scale(0.985); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.animate-tile-in {
+  opacity: 0;
+  animation: tileIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* A band of light drawn across the frame on hover, like turning a piece under
+   a lamp. Sits above the photograph and below the caption. */
+.sheen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 38%,
+    rgba(255, 255, 255, 0.55) 48%,
+    rgba(234, 223, 194, 0.35) 54%,
+    transparent 64%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.group:hover .sheen::after {
+  transform: translateX(120%);
+}
+
 /* Lightbox backdrop. Opacity only: the overlay is `position: fixed`, and any
    transform on it (as fadeInUp carries) would shift the whole frame off
    centre while the animation runs. */
@@ -185,6 +219,8 @@
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-in-up { animation: none; opacity: 1; }
   .animate-overlay-in { animation: none; }
+  .animate-tile-in { animation: none; opacity: 1; }
+  .sheen::after { display: none; }
   .animate-shimmer { animation: none; }
   .sparkle-spin { animation: none; }
   .marquee-track { animation: none; }

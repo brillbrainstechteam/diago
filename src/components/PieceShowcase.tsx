@@ -91,7 +91,10 @@ export default function PieceShowcase({
       type="button"
       onClick={openPiece(i)}
       aria-label={`Enlarge ${p.name}, reference ${p.ref}`}
-      className="group/tile block w-full text-left cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
+      // Capped so a long row still finishes promptly; the grid remounts on a
+      // moment change, so this replays each time the edit switches.
+      style={{ animationDelay: `${Math.min(i, 6) * 90}ms` }}
+      className="animate-tile-in group/tile block w-full h-full text-left cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
     >
       <PieceCard piece={p} sizes={sizes} />
     </button>

@@ -34,7 +34,7 @@ export default function PieceCard({
         <span className="pointer-events-none absolute bottom-2.5 left-2.5 w-5 h-5 border-b border-l border-gold/45 transition-colors duration-500 group-hover:border-gold z-20" />
         <span className="pointer-events-none absolute bottom-2.5 right-2.5 w-5 h-5 border-b border-r border-gold/45 transition-colors duration-500 group-hover:border-gold z-20" />
 
-        <div className="relative aspect-square">
+        <div className="sheen relative aspect-square overflow-hidden">
           {/* Halo behind the piece — brightest at the centre, so a rose-gold
               silhouette reads against the cream instead of dissolving into it. */}
           <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(closest-side,var(--gold-pale)_0%,transparent_70%)] opacity-55 transition-opacity duration-500 group-hover:opacity-80" />
