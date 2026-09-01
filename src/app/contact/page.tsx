@@ -114,8 +114,8 @@ function Details() {
 
                 <div className="mt-9 relative aspect-[4/3] overflow-hidden">
                   <Image
-                    src={withBase("/images/retail-packaging.webp")}
-                    alt="DIAGO packaging and counter display"
+                    src={withBase("/images/gift-box.webp")}
+                    alt="The DIAGO signature box"
                     fill
                     sizes="(max-width: 1024px) 100vw, 40vw"
                     className="object-cover"

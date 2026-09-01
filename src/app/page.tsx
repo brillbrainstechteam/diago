@@ -347,7 +347,7 @@ function StyledForMoments() {
                   aria-selected={on}
                   aria-controls={`moment-panel-${m.slug}`}
                   onClick={() => setActive(i)}
-                  className="group text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-cream-light"
+                  className="group text-center cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-cream-light"
                 >
                   <span
                     className={`relative block w-full aspect-[3/4] overflow-hidden border transition-all duration-500 ${
@@ -379,6 +379,17 @@ function StyledForMoments() {
                     {m.name}
                   </span>
                   <span className="mt-1 block text-gold-dark text-[10px] tracking-[0.18em] uppercase">{m.note}</span>
+                  {/* Says out loud that the card does something. Without it the
+                      three read as decorative headers and the edit below them
+                      looks like the only content on the section. */}
+                  <span
+                    className={`mt-2.5 inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] uppercase transition-colors duration-300 ${
+                      on ? "text-burgundy" : "text-gold-dark/70 group-hover:text-burgundy"
+                    }`}
+                  >
+                    {on ? "Showing this edit" : "View this edit"}
+                    <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+                  </span>
                   <span
                     className={`mt-3 mx-auto block h-px bg-gold transition-all duration-500 ${on ? "w-14" : "w-0 group-hover:w-8"}`}
                   />
@@ -488,8 +499,8 @@ function RetailCta() {
       <div className="grid lg:grid-cols-2">
         <div className="relative min-h-[340px] lg:min-h-[460px]">
           <Image
-            src={withBase("/images/retail-packaging.webp")}
-            alt="DIAGO retail packaging and display"
+            src={withBase("/images/gift-presentation.webp")}
+            alt="A DIAGO necklace on its counter display beside the signature box and bag"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
             className="object-cover"

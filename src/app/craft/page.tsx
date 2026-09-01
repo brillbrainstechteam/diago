@@ -189,8 +189,8 @@ function RetailMagnet() {
 
         <div className="relative min-h-[340px] lg:min-h-[520px] order-1 lg:order-2">
           <Image
-            src={withBase("/images/gift-presentation.webp")}
-            alt="DIAGO retail packaging and counter display"
+            src={withBase("/images/wearing-pendant.webp")}
+            alt="A fine gold pendant worn at the collar"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
             className="object-cover"

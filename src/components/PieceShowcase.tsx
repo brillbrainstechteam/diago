@@ -7,6 +7,15 @@ import type { Piece } from "@/data/collections";
 import Carousel from "@/components/Carousel";
 import PieceCard from "@/components/PieceCard";
 
+/** Track counts, written out because Tailwind only sees literal classes. */
+const COLS: Record<number, string> = {
+  1: "xl:grid-cols-[minmax(0,340px)]",
+  2: "xl:grid-cols-[repeat(2,minmax(0,320px))]",
+  3: "xl:grid-cols-[repeat(3,minmax(0,320px))]",
+  4: "xl:grid-cols-[repeat(4,minmax(0,300px))]",
+  5: "xl:grid-cols-[repeat(5,minmax(0,300px))]",
+};
+
 /**
  * A set of catalogue pieces, each openable full-screen.
  *
@@ -181,18 +190,23 @@ export default function PieceShowcase({
 
   return (
     <div className={className}>
-      {/* Tracks are capped rather than fractional: five across a 1240 container
-          left each card near 200px, too small to read the setting work that is
-          the point of the photograph. auto-fit fills the row with tracks of at
-          most 290px and `justify-center` centres whatever is left over, so a
-          five-piece range lands as a centred 3 + 2 instead of one cramped row. */}
-      <div className="hidden lg:grid gap-7 justify-center grid-cols-[repeat(auto-fit,minmax(240px,290px))]">
-        {pieces.map((p, i) => tile(p, i, "290px"))}
+      {/* One row, always. A range never splits into a ragged 3 + 2: the track
+          count is fixed to the number of pieces, so the row stays even.
+          Reading the setting work needs roughly 280px a card, which five of
+          will not fit inside the 1240 text column — so from `xl` the grid
+          steps outside it to a wider, viewport-centred block. Below that the
+          swipeable rail takes over rather than cramming five into 200px. */}
+      <div
+        className={`hidden xl:grid gap-7 justify-center ${COLS[Math.min(pieces.length, 5)]} ${
+          pieces.length >= 4 ? "w-[min(100vw-4rem,1560px)] max-w-none relative left-1/2 -translate-x-1/2" : ""
+        }`}
+      >
+        {pieces.map((p, i) => tile(p, i, "300px"))}
       </div>
 
-      <div className="lg:hidden">
-        <Carousel ariaLabel={label} slideClass="basis-[70%] sm:basis-[42%]">
-          {pieces.map((p, i) => tile(p, i, "(max-width: 640px) 70vw, 42vw"))}
+      <div className="xl:hidden">
+        <Carousel ariaLabel={label} slideClass="basis-[70%] sm:basis-[42%] lg:basis-[30%]">
+          {pieces.map((p, i) => tile(p, i, "(max-width: 640px) 70vw, (max-width: 1024px) 42vw, 30vw"))}
         </Carousel>
       </div>
 

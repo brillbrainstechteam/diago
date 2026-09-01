@@ -11,9 +11,12 @@ import { withBase } from "@/lib/basePath";
 
 /**
  * `fit: "contain"` marks the alpha cut-outs (the stone and the band); the
- * packaging shots are photographs and cover their tile. Both sit on the same
- * burgundy tile so the four read as one set rather than two halves — the
- * mismatch this section would otherwise have.
+ * gifting frames are photographs and cover their tile.
+ *
+ * Cards three and four previously showed the burgundy box and bag, shot on
+ * burgundy, sitting on a burgundy tile — three values within a few points of
+ * each other, so both read as dark smudges beside the bright cut-outs. The
+ * warm frames that replaced them carry their own light.
  */
 const reasons = [
   {
@@ -36,16 +39,16 @@ const reasons = [
     n: "03",
     t: "Gift-Ready Presentation",
     d: "Packaged in DIAGO's signature box and bag — ready to hand over as it arrives.",
-    img: "/images/gift-box.webp",
-    alt: "The DIAGO signature gift box",
+    img: "/images/gift-boxed.webp",
+    alt: "Diamond studs in a ribboned gift box beside a handwritten card",
     fit: "cover",
   },
   {
     n: "04",
     t: "Free Lifetime Care",
     d: "Complimentary cleaning and inspection for as long as they own it — a gift that keeps working.",
-    img: "/images/gift-bag.webp",
-    alt: "The DIAGO signature carry bag",
+    img: "/images/gift-exchange.webp",
+    alt: "A wrapped gift box passed from one pair of hands to another",
     fit: "cover",
   },
 ] as const;
