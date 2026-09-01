@@ -201,13 +201,21 @@ function CatalogueCta() {
         <Reveal>
           <div className="text-center">
             <Heading eyebrow="Our Promise" title="Every piece," accent="assured" center className="max-w-xl mx-auto" />
-            <Link
-              href="/contact"
-              className="group mt-10 inline-flex items-center gap-3 px-9 py-4 bg-burgundy text-cream text-[11px] font-bold tracking-[0.22em] uppercase hover:bg-burgundy-dark transition-colors duration-300"
-            >
-              Request the Catalogue
-              <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
-            </Link>
+            <div className="mt-10 flex flex-wrap justify-center gap-4">
+              <Link
+                href="/contact"
+                className="group inline-flex items-center gap-3 px-9 py-4 bg-burgundy text-cream text-[11px] font-bold tracking-[0.22em] uppercase hover:bg-burgundy-dark transition-colors duration-300"
+              >
+                Request the Catalogue
+                <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+              </Link>
+              <Link
+                href="/occasions"
+                className="inline-flex items-center px-9 py-4 border border-burgundy/40 text-burgundy text-[11px] font-bold tracking-[0.22em] uppercase hover:bg-burgundy hover:text-cream hover:border-burgundy transition-colors duration-300"
+              >
+                Shop by Occasion
+              </Link>
+            </div>
           </div>
         </Reveal>
       </Container>

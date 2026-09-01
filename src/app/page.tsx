@@ -456,10 +456,10 @@ function StyledForMoments() {
         <Reveal delay={160}>
           <div className="mt-12 text-center">
             <Link
-              href="/collections"
+              href="/occasions"
               className="group inline-flex items-center gap-3 px-9 py-4 border border-burgundy/40 text-burgundy text-[11px] font-bold tracking-[0.22em] uppercase hover:bg-burgundy hover:text-cream hover:border-burgundy transition-colors duration-300"
             >
-              See the full range
+              See all three edits
               <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
             </Link>
           </div>

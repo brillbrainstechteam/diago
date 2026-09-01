@@ -189,8 +189,8 @@ function RetailMagnet() {
 
         <div className="relative min-h-[340px] lg:min-h-[520px] order-1 lg:order-2">
           <Image
-            src={withBase("/images/wearing-pendant.webp")}
-            alt="A fine gold pendant worn at the collar"
+            src={withBase("/images/earrings-feature.webp")}
+            alt="Fine gold diamond earrings lit against a dark ground"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
             className="object-cover"

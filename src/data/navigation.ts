@@ -23,5 +23,5 @@ export const collectionsDropdown: NavDropdownItem[] = [
   { label: "Earrings", href: `/collections#${bySlug("earrings").slug}`, image: bySlug("earrings").image },
   { label: "Necklaces", href: `/collections#${bySlug("necklaces").slug}`, image: bySlug("necklaces").image },
   { label: "Mangalsutras", href: `/collections#${bySlug("mangalsutras").slug}`, image: bySlug("mangalsutras").image },
-  { label: "Shop by Occasion", href: "/#shop-by-occasion", image: withBase("/images/occasion-datenight.webp") },
+  { label: "Shop by Occasion", href: "/occasions", image: withBase("/images/moment-cafe.webp") },
 ];
