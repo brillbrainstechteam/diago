@@ -221,15 +221,15 @@ function AboutTeaser() {
             <div className="relative grid grid-cols-2 gap-5">
               <div className="pointer-events-none absolute -inset-10 rounded-full bg-[radial-gradient(closest-side,var(--gold-pale)_0%,transparent_70%)] opacity-70 blur-2xl" />
               <FramedImage
-                src={withBase("/images/craft/at-the-bench.webp")}
-                alt="A jeweller setting diamonds into a gold pendant at the bench"
+                src={withBase("/images/bench-portrait.webp")}
+                alt="A jeweller working a gold band at the bench under a torch"
                 ratio="4/5"
                 inset
                 className="shadow-[0_30px_60px_-25px_rgba(67,15,34,0.35)]"
               />
               <FramedImage
-                src={withBase("/images/occasion-weekend.webp")}
-                alt="Model wearing DIAGO diamond studs"
+                src={withBase("/images/wearing-pendant.webp")}
+                alt="A fine gold pendant and stud worn against a white shirt"
                 ratio="4/5"
                 inset
                 corners={false}
@@ -468,8 +468,8 @@ function GiftingBanner() {
             the contrast the subject needs and stays quiet next to the copy. */}
         <div className="relative order-1 lg:order-2 min-h-[340px] lg:min-h-[520px]">
           <Image
-            src={withBase("/images/gift-presentation.webp")}
-            alt="A DIAGO necklace on its display bust beside the signature gift box and carry bag"
+            src={withBase("/images/gift-boxed.webp")}
+            alt="Diamond studs in a ribboned gift box beside a handwritten card"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
             className="object-cover"

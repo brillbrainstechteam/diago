@@ -205,10 +205,8 @@ function RetailMagnet() {
 /* ── At the bench ───────────────────────────────────────────────────── */
 
 /**
- * The one bench photograph currently cleared for use. Two others were
- * supplied alongside it but carry stock-preview watermarks, so they are kept
- * in docs/generic_images/ rather than published — swap them in here once
- * licensed copies replace them.
+ * Uses the 3784x5676 bench frame from the images_Web drop, which is sharp
+ * enough to run full width. The earlier 768px crop it replaced is retired.
  */
 function AtTheBench() {
   return (
@@ -216,8 +214,8 @@ function AtTheBench() {
       <div className="grid lg:grid-cols-2">
         <div className="relative min-h-[300px] lg:min-h-[460px]">
           <Image
-            src={withBase("/images/craft/at-the-bench.webp")}
-            alt="A jeweller setting diamonds into a gold pendant at the bench"
+            src={withBase("/images/bench-wide.webp")}
+            alt="A jeweller working a gold band at the bench under a torch"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
             className="object-cover"

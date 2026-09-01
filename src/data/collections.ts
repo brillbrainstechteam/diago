@@ -161,9 +161,10 @@ export type Moment = {
 };
 
 /**
- * The three moments from the brochure's "Everyday Elegance / Effortless
- * Radiance" spread, in its order, with its photography — lifestyle-1/2/3 are
- * that spread's own frames. The brochure names three, so this names three.
+ * Three moments, keeping the brochure's "Everyday Elegance / Effortless
+ * Radiance" theme and its count of three. Each is named for what its
+ * photograph actually shows rather than for an occasion the frame does not
+ * depict.
  *
  * Every catalogue piece belongs to exactly one moment, so the three groupings
  * partition the range rather than overlapping: switching moments shows a
@@ -176,25 +177,25 @@ export const moments: Moment[] = [
     note: "Subtle, all-day shine",
     blurb:
       "Pieces light enough to forget through a working day — nothing that catches on a sleeve or asks to be taken off.",
-    image: withBase("/images/lifestyle-1.webp"),
+    image: withBase("/images/moment-desk.webp"),
     pieces: piecesByRef("BT96", "W527", "PES89", "PES160", "TD531"),
   },
   {
-    slug: "after-hours",
-    name: "After Hours",
-    note: "A little more sparkle",
-    blurb:
-      "The step up for an evening — drops that move, a centre stone with some colour, a neckline worth dressing.",
-    image: withBase("/images/lifestyle-2.webp"),
-    pieces: piecesByRef("LD34", "CLR173", "ND94", "TD535", "DS138"),
-  },
-  {
-    slug: "every-morning",
-    name: "Every Morning",
+    slug: "over-coffee",
+    name: "Over Coffee",
     note: "Effortless and repeatable",
     blurb:
-      "Reached for without thinking, and worn with everything — the pieces that end up living on the dresser, not in the locker.",
-    image: withBase("/images/lifestyle-3.webp"),
+      "Reached for without thinking and worn with everything — the pieces that end up living on the dresser rather than in the locker.",
+    image: withBase("/images/moment-cafe.webp"),
     pieces: piecesByRef("LD13", "CLR113", "DS118", "PES81", "TD541"),
+  },
+  {
+    slug: "out-and-about",
+    name: "Out and About",
+    note: "A little more sparkle",
+    blurb:
+      "The step up for going somewhere — drops that move, a centre stone with some colour, a neckline worth dressing.",
+    image: withBase("/images/moment-out.webp"),
+    pieces: piecesByRef("LD34", "CLR173", "ND94", "TD535", "DS138"),
   },
 ];

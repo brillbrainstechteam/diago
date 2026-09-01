@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import type { Piece } from "@/data/collections";
 import Carousel from "@/components/Carousel";
 import PieceCard from "@/components/PieceCard";
@@ -26,7 +27,10 @@ export default function PieceShowcase({
   gridClass?: string;
 }) {
   const [openAt, setOpenAt] = useState<number | null>(null);
+  const [mounted, setMounted] = useState(false);
   const isOpen = openAt !== null;
+
+  useEffect(() => setMounted(true), []);
 
   const close = useCallback(() => setOpenAt(null), []);
   const step = useCallback(
@@ -90,28 +94,20 @@ export default function PieceShowcase({
   // survive into the JSX below, where the counter needs it.
   const active = openAt === null ? null : { piece: pieces[openAt], index: openAt };
 
-  return (
-    <div className={className}>
-      <div className={`hidden lg:grid gap-6 ${gridClass}`}>
-        {pieces.map((p, i) => tile(p, i, "20vw"))}
-      </div>
-
-      <div className="lg:hidden">
-        <Carousel ariaLabel={label} slideClass="basis-[70%] sm:basis-[42%]">
-          {pieces.map((p, i) => tile(p, i, "(max-width: 640px) 70vw, 42vw"))}
-        </Carousel>
-      </div>
-
-      {active && (
-        <div
+  // Portalled so the overlay is a child of <body>. Rendered in place it was
+  // landing thousands of pixels down the page: every gallery sits inside
+  // <Reveal>, whose scroll animation sets `translate`, and a transformed or
+  // translated ancestor becomes the containing block for `position: fixed`
+  // descendants — so "fixed" resolved against that wrapper, not the viewport.
+  const overlay = active && (
+    <div
           ref={dialogRef}
           role="dialog"
           aria-modal="true"
           aria-label={`${active.piece.name}, reference ${active.piece.ref}`}
           tabIndex={-1}
           onClick={close}
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8 bg-burgundy-deep/92 backdrop-blur-sm animate-fade-in-up focus:outline-none"
-          style={{ animationDuration: "0.28s" }}
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8 bg-burgundy-deep/92 backdrop-blur-sm animate-overlay-in focus:outline-none"
         >
           <button
             type="button"
@@ -146,9 +142,13 @@ export default function PieceShowcase({
           {/* Stop clicks on the panel itself from reaching the backdrop. */}
           <figure
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-[min(88vw,760px)] max-h-full flex flex-col"
+            className="relative w-full max-w-[min(88vw,760px)] max-h-full flex flex-col items-center"
           >
-            <div className="relative aspect-square w-full bg-gradient-to-b from-cream-light to-cream border border-gold/30 border-t-2 border-t-gold shadow-[0_40px_90px_-30px_rgba(0,0,0,0.7)]">
+            {/* `flex-1 min-h-0` lets the square frame shrink on a short
+                viewport. With `max-h-full` alone the frame kept its full
+                aspect-square height and simply overflowed, pushing the caption
+                off the bottom of the screen where it was clipped. */}
+            <div className="relative aspect-square w-full flex-1 min-h-0 bg-gradient-to-b from-cream-light to-cream border border-gold/30 border-t-2 border-t-gold shadow-[0_40px_90px_-30px_rgba(0,0,0,0.7)]">
               <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(closest-side,var(--gold-pale)_0%,transparent_70%)] opacity-60" />
               <Image
                 key={active.piece.ref}
@@ -162,7 +162,7 @@ export default function PieceShowcase({
               <span className="pointer-events-none absolute inset-6 border border-gold/20" />
             </div>
 
-            <figcaption className="mt-5 text-center">
+            <figcaption className="mt-5 shrink-0 text-center">
               <span className="block text-gold text-[10px] font-semibold tracking-[0.28em] uppercase tabular-nums">
                 {active.piece.ref}
               </span>
@@ -180,8 +180,24 @@ export default function PieceShowcase({
               )}
             </figcaption>
           </figure>
-        </div>
-      )}
+    </div>
+  );
+
+  return (
+    <div className={className}>
+      <div className={`hidden lg:grid gap-6 ${gridClass}`}>
+        {pieces.map((p, i) => tile(p, i, "20vw"))}
+      </div>
+
+      <div className="lg:hidden">
+        <Carousel ariaLabel={label} slideClass="basis-[70%] sm:basis-[42%]">
+          {pieces.map((p, i) => tile(p, i, "(max-width: 640px) 70vw, 42vw"))}
+        </Carousel>
+      </div>
+
+      {/* `mounted` guards the portal: document.body does not exist during the
+          static export's server render. */}
+      {mounted && overlay ? createPortal(overlay, document.body) : null}
     </div>
   );
 }

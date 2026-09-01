@@ -155,9 +155,9 @@ function GiftForOccasion() {
 /* ── Packaging ──────────────────────────────────────────────────────── */
 
 /**
- * The signature box, bag and display, photographed together. Gifting is the
- * one context where the packaging is part of the product rather than a
- * shipping detail, so it gets a section of its own.
+ * The moment of handing it over. Gifting is the one context where the
+ * packaging is part of the product rather than a shipping detail, so it gets
+ * a section of its own.
  */
 function Presentation() {
   return (
@@ -165,8 +165,8 @@ function Presentation() {
       <div className="grid lg:grid-cols-2">
         <div className="relative min-h-[340px] lg:min-h-[520px]">
           <Image
-            src={withBase("/images/gift-presentation.webp")}
-            alt="A DIAGO necklace on its display bust beside the signature gift box and carry bag"
+            src={withBase("/images/gift-exchange.webp")}
+            alt="A wrapped gift box passed from one pair of hands to another"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
             className="object-cover"
@@ -262,7 +262,7 @@ export default function GiftingPage() {
         title="A gift and a"
         accent="keepsake in one"
         intro="Certified, hallmarked, and meaningful — every DIAGO piece is packaged to give and built to keep."
-        image={withBase("/images/texture-diamonds.webp")}
+        image={withBase("/images/gift-boxed-alt.webp")}
       />
       <WhyGift />
       <GiftForOccasion />
