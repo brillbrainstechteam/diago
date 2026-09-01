@@ -10,15 +10,14 @@ import { withBase } from "@/lib/basePath";
 /* ── Why gift DIAGO ─────────────────────────────────────────────────── */
 
 /**
- * All four tiles now sit in the same warm, light register.
+ * Four single objects on one cream plinth.
  *
- * The previous pairing put two alpha cut-outs floating on dark burgundy beside
- * two full-bleed cream photographs: same row, two unrelated treatments, and
- * the join between them was the first thing the eye went to. The cut-outs move
- * onto the same cream plinth the catalogue cards use, and both photographs are
- * the ribboned-box stills, so the row reads as one set.
- *
- * `fit: "contain"` marks the cut-outs; the photographs cover their tile.
+ * Cards one and two are photographed cut-outs — a loose stone, a bare band.
+ * Three and four have no equivalent photograph (the two ribboned-box stills
+ * that stood here were near enough identical to read as a mistake), so they
+ * are drawn in the same gold line as the rest of the site's iconography and
+ * set at the same scale. Every tile is then one object, centred, on the same
+ * ground.
  */
 const reasons = [
   {
@@ -27,7 +26,6 @@ const reasons = [
     d: "Every stone graded and certified — brilliance the recipient can trust, not just admire.",
     img: "/images/diamond-solo.webp",
     alt: "A loose certified natural diamond",
-    fit: "contain",
   },
   {
     n: "02",
@@ -35,23 +33,36 @@ const reasons = [
     d: "BIS hallmarked purity on every piece, so the gift carries a guarantee, not just a look.",
     img: "/images/finegold-band.webp",
     alt: "A polished BIS hallmarked fine gold band",
-    fit: "contain",
   },
   {
     n: "03",
     t: "Gift-Ready Presentation",
     d: "Packaged in DIAGO's signature box and bag — ready to hand over as it arrives.",
-    img: "/images/gift-boxed.webp",
-    alt: "Diamond studs in a ribboned gift box beside a handwritten card",
-    fit: "cover",
+    icon: (
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.1" strokeLinejoin="round" aria-hidden>
+        <path d="M9 26h46v27a3 3 0 0 1-3 3H12a3 3 0 0 1-3-3V26Z" />
+        <path d="M6 18h52v8H6z" />
+        <path d="M32 18v38" />
+        <path d="M32 18c-4 0-13 .4-15.5-2.2A5.4 5.4 0 0 1 20 6.6C25.2 6.6 30 12.4 32 18Z" />
+        <path d="M32 18c4 0 13 .4 15.5-2.2A5.4 5.4 0 0 0 44 6.6C38.8 6.6 34 12.4 32 18Z" />
+      </svg>
+    ),
+    alt: "A gift box tied with a ribbon",
   },
   {
     n: "04",
     t: "Free Lifetime Care",
     d: "Complimentary cleaning and inspection for as long as they own it — a gift that keeps working.",
-    img: "/images/gift-boxed-alt.webp",
-    alt: "Diamond earrings in a ribboned gift box beside a handwritten card",
-    fit: "cover",
+    icon: (
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.1" strokeLinejoin="round" aria-hidden>
+        <path d="M28 22 20 31l8 20 8-20-8-9Z" />
+        <path d="M20 31h16M24.5 31 28 22l3.5 9M28 51l-3.5-20m3.5 20 3.5-20" strokeWidth="0.85" />
+        <path d="M45 10v10M40 15h10" strokeLinecap="round" strokeWidth="1.3" />
+        <path d="M50 28v7M46.5 31.5h7" strokeLinecap="round" strokeWidth="1.1" />
+        <path d="M13 14v6M10 17h6" strokeLinecap="round" strokeWidth="1.1" />
+      </svg>
+    ),
+    alt: "A diamond with polish sparkles",
   },
 ] as const;
 
@@ -68,20 +79,26 @@ function WhyGift() {
             <Reveal key={r.n} delay={i * 120}>
               <article className="group h-full">
                 <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-b from-cream-light to-cream border border-gold/30 border-t-2 border-t-gold/70 shadow-[0_18px_38px_-28px_rgba(122,32,64,0.45)] transition-all duration-500 group-hover:border-gold/60 group-hover:border-t-gold">
-                  {/* Only the cut-outs need the halo; a photograph already
-                      fills the tile and would just be veiled by it. */}
-                  {r.fit === "contain" && (
-                    <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(closest-side,var(--gold-pale)_0%,transparent_72%)] opacity-70 transition-opacity duration-500 group-hover:opacity-100" />
+                  <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(closest-side,var(--gold-pale)_0%,transparent_72%)] opacity-70 transition-opacity duration-500 group-hover:opacity-100" />
+
+                  {"img" in r ? (
+                    <Image
+                      src={withBase(r.img)}
+                      alt={r.alt}
+                      fill
+                      sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 23vw"
+                      className="relative object-contain p-9 transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+                    />
+                  ) : (
+                    <span
+                      role="img"
+                      aria-label={r.alt}
+                      className="absolute inset-0 flex items-center justify-center text-gold-dark transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+                    >
+                      <span className="w-[38%] max-w-[92px]">{r.icon}</span>
+                    </span>
                   )}
-                  <Image
-                    src={withBase(r.img)}
-                    alt={r.alt}
-                    fill
-                    sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 23vw"
-                    className={`relative transition-transform duration-700 ease-out group-hover:scale-[1.06] ${
-                      r.fit === "contain" ? "object-contain p-9" : "object-cover"
-                    }`}
-                  />
+
                   <span className="pointer-events-none absolute inset-3 border border-gold/20 transition-colors duration-500 group-hover:border-gold/40" />
                 </div>
 

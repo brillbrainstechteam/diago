@@ -56,24 +56,37 @@ const socials = [
 export default function Footer() {
   return (
     <footer className="relative surface-burgundy text-cream overflow-hidden">
+      {/* Cream wash behind the brand column so the logo has something to read
+          against — its gold sits almost on top of the burgundy otherwise.
+          From `sm` the brand is the left column, so the wash runs left to
+          right across the footer. Below `sm` the columns stack and this would
+          bleed into the link lists, whose type is cream; there the panel is
+          attached to the brand column itself instead (see below), which keeps
+          it tied to real content rather than to a percentage of a footer whose
+          height moves with its contents. */}
+      <div className="hidden sm:block absolute inset-0 bg-[linear-gradient(100deg,var(--cream)_0%,var(--cream)_19%,transparent_43%)]" />
       <div className="absolute inset-0 grain-gold opacity-[0.06]" />
 
       <div className="relative z-10 w-full max-w-[1240px] mx-auto px-6 sm:px-10 lg:px-16">
         {/* Mobile: 2 columns — brand full-width on top, the two link lists side
             by side, enquiries full-width below. sm keeps the 2×2, lg the 4-up. */}
         <div className="py-14 sm:py-16 lg:py-20 grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-2 sm:gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
-          <div className="col-span-2 sm:col-span-1">
+          <div className="relative col-span-2 sm:col-span-1">
+            {/* Stacked-layout counterpart of the wash above: bled to the
+                footer's edges and faded out inside the column's own height, so
+                the link lists below are never touched. */}
+            <span className="sm:hidden pointer-events-none absolute -inset-x-6 -top-14 bottom-0 bg-[linear-gradient(180deg,var(--cream)_0%,var(--cream)_74%,transparent_100%)]" />
             <Image
               src={withBase("/images/logo.webp")}
               alt="DIAGO"
               width={221}
               height={100}
-              className="h-14 lg:h-16 w-auto object-contain"
+              className="relative h-14 lg:h-16 w-auto object-contain"
             />
-            <p className="mt-6 text-cream/85 text-[15px] leading-relaxed" style={{ fontFamily: "var(--font-serif)" }}>
+            <p className="relative mt-6 text-ink-soft text-[15px] leading-relaxed" style={{ fontFamily: "var(--font-serif)" }}>
               Fine gold artistry paired with the authentic brilliance of certified natural diamonds.
             </p>
-            <p className="mt-4 text-gold text-sm italic" style={{ fontFamily: "var(--font-serif)" }}>
+            <p className="relative mt-4 text-gold-dark text-sm italic" style={{ fontFamily: "var(--font-serif)" }}>
               Real Diamond, Real You.
             </p>
           </div>
