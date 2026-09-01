@@ -228,8 +228,8 @@ function AboutTeaser() {
                 className="shadow-[0_30px_60px_-25px_rgba(67,15,34,0.35)]"
               />
               <FramedImage
-                src={withBase("/images/wearing-pendant.webp")}
-                alt="A fine gold pendant and stud worn against a white shirt"
+                src={withBase("/images/editorial-necklace.webp")}
+                alt="A fine gold diamond necklace and matching earrings worn on satin"
                 ratio="4/5"
                 inset
                 corners={false}

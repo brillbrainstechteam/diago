@@ -108,8 +108,8 @@ function Materials() {
               <span className="pointer-events-none absolute -bottom-4 -right-4 w-20 h-20 border-b border-r border-gold/60 z-10" />
               <div className="relative aspect-[4/5] overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.45)]">
                 <Image
-                  src={withBase("/images/earrings-feature.webp")}
-                  alt="Fine gold diamond earrings in close-up"
+                  src={withBase("/images/bench-setting.webp")}
+                  alt="A diamond being set into a gold mount with tweezers, loose stones alongside"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
@@ -189,7 +189,7 @@ function RetailMagnet() {
 
         <div className="relative min-h-[340px] lg:min-h-[520px] order-1 lg:order-2">
           <Image
-            src={withBase("/images/retail-packaging.webp")}
+            src={withBase("/images/gift-presentation.webp")}
             alt="DIAGO retail packaging and counter display"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
