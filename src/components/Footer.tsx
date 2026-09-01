@@ -54,63 +54,30 @@ const socials = [
   },
 ];
 
+/**
+ * One continuous full-width gradient and nothing over it.
+ *
+ * `surface-burgundy` is gone from the element, as are the horizontal wash with
+ * its vertical mask, the gold grain overlay, and the two stacked panels that
+ * used to sit behind the brand column — any of those would have covered part
+ * of this ramp or reintroduced a boundary. Every column below is transparent,
+ * so this is the only background in the footer and it runs unbroken behind
+ * all four.
+ */
 export default function Footer() {
   return (
-    <footer className="relative surface-burgundy text-cream overflow-hidden">
-      {/* Cream wash behind the brand column so the logo has something to read
-          against — its gold sits almost on top of the burgundy otherwise.
-          From `sm` the brand is the left column, so the wash runs left to
-          right across the footer. Below `sm` the columns stack and this would
-          bleed into the link lists, whose type is cream; there the panel is
-          attached to the brand column itself instead (see below), which keeps
-          it tied to real content rather than to a percentage of a footer whose
-          height moves with its contents.
-
-          Both fade to `rgba(250,245,232,0)` — transparent cream — and never to
-          the `transparent` keyword, which is `rgba(0,0,0,0)`. Fading to that
-          drags the colour toward black as the alpha drops, and the midpoint
-          comes out a grey smudge across the middle of the footer.
-
-          The ramp is now opaque and spans the whole width rather than fading
-          out to nothing part-way: cream, blush, dusty pink, dusty rose, mauve,
-          wine, then burgundy deepening to its darkest only at the far edge.
-          Ending the wash early left the remaining width sitting on one flat
-          burgundy, which is what made it read as a band.
-
-          Where it goes dark is set by the type it runs under, not by taste:
-          the link headings are gold and the links cream, so the ground beneath
-          the first of them has to be at least brand burgundy. Hence the light
-          half of the ramp is spent before the lists begin, and everything
-          after is a continuous darkening through the burgundies — which is
-          still movement, just within a narrow range.
-
-          Two ramps, because the cap on the brand copy is in rem while these
-          stops are in per cent: the same measure is a third of the footer at
-          760 and a quarter at 1440, and the link lists sit at 53% and 42%
-          respectively. One curve cannot serve both.
-
-          The vertical mask stops the wash above the copyright rules. Those
-          lines are cream and sit at the far left, so across the full height
-          the ramp was putting cream type on cream — they were invisible. */}
-      <div className="hidden sm:block absolute inset-0 [mask-image:linear-gradient(180deg,#000_0%,#000_74%,transparent_80.5%)] [-webkit-mask-image:linear-gradient(180deg,#000_0%,#000_74%,transparent_80.5%)] bg-[linear-gradient(100deg,#FAF5E8_0%,#F7EFE7_10%,#F3E6DF_18%,#EDD8D5_25%,#E3C7C8_31%,#DBBBBF_34%,#CBA3AC_38%,#B98A9B_42%,#A67087_46%,#925A72_49%,#7B2040_52%,#781F3E_58%,#741D3C_65%,#6D1B39_72%,#661836_79%,#5C1533_85%,#501230_91%,#430F22_100%)] lg:bg-[linear-gradient(100deg,#FAF5E8_0%,#F8F1E9_7%,#F4E9E2_13%,#EFDDD9_19%,#E6CDCD_24%,#DBBBBF_27%,#C9A0AA_30%,#B58597_33%,#A26D84_35.5%,#8E5470_38%,#7B2040_40%,#781F3E_46%,#741D3C_53%,#6E1B39_60%,#681836_67%,#601634_74%,#571433_80%,#4E1230_86%,#48112B_92%,#430F22_100%)]" />
-      <div className="absolute inset-0 grain-gold opacity-[0.06]" />
-
+    <footer
+      className="relative text-cream overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(90deg, #f8f2e7 0%, #f0e3dd 15%, #e3cdce 30%, #d1adb5 45%, #b98291 60%, #96576d 75%, #713047 88%, #4d1228 100%)",
+      }}
+    >
       <div className="relative z-10 w-full max-w-[1240px] mx-auto px-6 sm:px-10 lg:px-16">
         {/* Mobile: 2 columns — brand full-width on top, the two link lists side
             by side, enquiries full-width below. sm keeps the 2×2, lg the 4-up. */}
         <div className="py-14 sm:py-16 lg:py-20 grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-2 sm:gap-12 lg:grid-cols-[2.1fr_1fr_1fr_1.15fr]">
           <div className="relative col-span-2 sm:col-span-1">
-            {/* Stacked-layout counterpart of the wash above: bled to the
-                footer's edges and eased out inside the column's own height on
-                the same shape, so the link lists below are never touched. */}
-            <span className="sm:hidden pointer-events-none absolute -inset-x-6 -top-14 bottom-0 bg-cream" />
-            {/* The fade is its own strip in the row gap rather than the tail of
-                a gradient across the panel. Sized as a share of a panel whose
-                height moves with the copy, the tagline kept landing near the
-                zero end of the ramp — gold on burgundy. `top-full h-10` pins
-                the fade to the 40px gap instead, so the column above it is
-                always solid and the list below always clean. */}
-            <span className="sm:hidden pointer-events-none absolute -inset-x-6 top-full h-10 bg-[linear-gradient(180deg,var(--cream)_0%,rgba(250,245,232,0.88)_18%,rgba(250,245,232,0.68)_38%,rgba(250,245,232,0.42)_58%,rgba(250,245,232,0.2)_76%,rgba(250,245,232,0.06)_90%,rgba(250,245,232,0)_100%)]" />
             <Image
               src={withBase("/images/logo.webp")}
               alt="DIAGO"
