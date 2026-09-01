@@ -71,19 +71,28 @@ export default function Footer() {
           drags the colour toward black as the alpha drops, and the midpoint
           comes out a grey smudge across the middle of the footer.
 
-          The horizontal ramp eases from the very left edge on ten-odd stops:
-          shallow at first, steepest through the gutter, shallow again as it
-          lands. A flat plateau followed by a short fall reads as a hard edge
-          however the fall itself is shaped, which is what a shorter version of
-          this did. The brand column is widened to 2.1fr for the same reason —
-          it moves the link lists right and buys the ramp width to be gradual
-          and still arrive near zero beneath them.
+          The ramp is now opaque and spans the whole width rather than fading
+          out to nothing part-way: cream, blush, dusty pink, dusty rose, mauve,
+          wine, then burgundy deepening to its darkest only at the far edge.
+          Ending the wash early left the remaining width sitting on one flat
+          burgundy, which is what made it read as a band.
+
+          Where it goes dark is set by the type it runs under, not by taste:
+          the link headings are gold and the links cream, so the ground beneath
+          the first of them has to be at least brand burgundy. Hence the light
+          half of the ramp is spent before the lists begin, and everything
+          after is a continuous darkening through the burgundies — which is
+          still movement, just within a narrow range.
 
           Two ramps, because the cap on the brand copy is in rem while these
           stops are in per cent: the same measure is a third of the footer at
           760 and a quarter at 1440, and the link lists sit at 53% and 42%
-          respectively. One curve cannot be gentle at both and clear both. */}
-      <div className="hidden sm:block absolute inset-0 bg-[linear-gradient(100deg,var(--cream)_0%,rgba(250,245,232,0.96)_20%,rgba(250,245,232,0.9)_30%,rgba(250,245,232,0.8)_36%,rgba(250,245,232,0.64)_41%,rgba(250,245,232,0.44)_45%,rgba(250,245,232,0.26)_48%,rgba(250,245,232,0.12)_50%,rgba(250,245,232,0.04)_51.5%,rgba(250,245,232,0)_53%)] lg:bg-[linear-gradient(100deg,var(--cream)_0%,rgba(250,245,232,0.96)_16%,rgba(250,245,232,0.9)_24%,rgba(250,245,232,0.84)_28%,rgba(250,245,232,0.74)_31%,rgba(250,245,232,0.58)_34%,rgba(250,245,232,0.42)_36.5%,rgba(250,245,232,0.27)_38.5%,rgba(250,245,232,0.16)_40%,rgba(250,245,232,0.07)_41.5%,rgba(250,245,232,0.02)_43%,rgba(250,245,232,0)_45%)]" />
+          respectively. One curve cannot serve both.
+
+          The vertical mask stops the wash above the copyright rules. Those
+          lines are cream and sit at the far left, so across the full height
+          the ramp was putting cream type on cream — they were invisible. */}
+      <div className="hidden sm:block absolute inset-0 [mask-image:linear-gradient(180deg,#000_0%,#000_74%,transparent_80.5%)] [-webkit-mask-image:linear-gradient(180deg,#000_0%,#000_74%,transparent_80.5%)] bg-[linear-gradient(100deg,#FAF5E8_0%,#F7EFE7_10%,#F3E6DF_18%,#EDD8D5_25%,#E3C7C8_31%,#DBBBBF_34%,#CBA3AC_38%,#B98A9B_42%,#A67087_46%,#925A72_49%,#7B2040_52%,#781F3E_58%,#741D3C_65%,#6D1B39_72%,#661836_79%,#5C1533_85%,#501230_91%,#430F22_100%)] lg:bg-[linear-gradient(100deg,#FAF5E8_0%,#F8F1E9_7%,#F4E9E2_13%,#EFDDD9_19%,#E6CDCD_24%,#DBBBBF_27%,#C9A0AA_30%,#B58597_33%,#A26D84_35.5%,#8E5470_38%,#7B2040_40%,#781F3E_46%,#741D3C_53%,#6E1B39_60%,#681836_67%,#601634_74%,#571433_80%,#4E1230_86%,#48112B_92%,#430F22_100%)]" />
       <div className="absolute inset-0 grain-gold opacity-[0.06]" />
 
       <div className="relative z-10 w-full max-w-[1240px] mx-auto px-6 sm:px-10 lg:px-16">
