@@ -69,21 +69,39 @@ export default function Footer() {
           Both fade to `rgba(250,245,232,0)` — transparent cream — and never to
           the `transparent` keyword, which is `rgba(0,0,0,0)`. Fading to that
           drags the colour toward black as the alpha drops, and the midpoint
-          comes out a grey smudge across the middle of the footer. The extra
-          stops soften the ramp, since a straight two-stop fade reads as a
-          visible edge rather than a transition. */}
-      <div className="hidden sm:block absolute inset-0 bg-[linear-gradient(100deg,var(--cream)_0%,var(--cream)_28%,rgba(250,245,232,0.88)_30%,rgba(250,245,232,0.58)_32%,rgba(250,245,232,0.26)_33.5%,rgba(250,245,232,0.07)_34.5%,rgba(250,245,232,0)_35.5%)]" />
+          comes out a grey smudge across the middle of the footer.
+
+          The horizontal ramp eases from the very left edge on ten-odd stops:
+          shallow at first, steepest through the gutter, shallow again as it
+          lands. A flat plateau followed by a short fall reads as a hard edge
+          however the fall itself is shaped, which is what a shorter version of
+          this did. The brand column is widened to 2.1fr for the same reason —
+          it moves the link lists right and buys the ramp width to be gradual
+          and still arrive near zero beneath them.
+
+          Two ramps, because the cap on the brand copy is in rem while these
+          stops are in per cent: the same measure is a third of the footer at
+          760 and a quarter at 1440, and the link lists sit at 53% and 42%
+          respectively. One curve cannot be gentle at both and clear both. */}
+      <div className="hidden sm:block absolute inset-0 bg-[linear-gradient(100deg,var(--cream)_0%,rgba(250,245,232,0.96)_20%,rgba(250,245,232,0.9)_30%,rgba(250,245,232,0.8)_36%,rgba(250,245,232,0.64)_41%,rgba(250,245,232,0.44)_45%,rgba(250,245,232,0.26)_48%,rgba(250,245,232,0.12)_50%,rgba(250,245,232,0.04)_51.5%,rgba(250,245,232,0)_53%)] lg:bg-[linear-gradient(100deg,var(--cream)_0%,rgba(250,245,232,0.96)_16%,rgba(250,245,232,0.9)_24%,rgba(250,245,232,0.84)_28%,rgba(250,245,232,0.74)_31%,rgba(250,245,232,0.58)_34%,rgba(250,245,232,0.42)_36.5%,rgba(250,245,232,0.27)_38.5%,rgba(250,245,232,0.16)_40%,rgba(250,245,232,0.07)_41.5%,rgba(250,245,232,0.02)_43%,rgba(250,245,232,0)_45%)]" />
       <div className="absolute inset-0 grain-gold opacity-[0.06]" />
 
       <div className="relative z-10 w-full max-w-[1240px] mx-auto px-6 sm:px-10 lg:px-16">
         {/* Mobile: 2 columns — brand full-width on top, the two link lists side
             by side, enquiries full-width below. sm keeps the 2×2, lg the 4-up. */}
-        <div className="py-14 sm:py-16 lg:py-20 grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-2 sm:gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+        <div className="py-14 sm:py-16 lg:py-20 grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-2 sm:gap-12 lg:grid-cols-[2.1fr_1fr_1fr_1.15fr]">
           <div className="relative col-span-2 sm:col-span-1">
             {/* Stacked-layout counterpart of the wash above: bled to the
-                footer's edges and faded out inside the column's own height, so
-                the link lists below are never touched. */}
-            <span className="sm:hidden pointer-events-none absolute -inset-x-6 -top-14 bottom-0 bg-[linear-gradient(180deg,var(--cream)_0%,var(--cream)_58%,rgba(250,245,232,0.6)_80%,rgba(250,245,232,0.22)_92%,rgba(250,245,232,0)_100%)]" />
+                footer's edges and eased out inside the column's own height on
+                the same shape, so the link lists below are never touched. */}
+            <span className="sm:hidden pointer-events-none absolute -inset-x-6 -top-14 bottom-0 bg-cream" />
+            {/* The fade is its own strip in the row gap rather than the tail of
+                a gradient across the panel. Sized as a share of a panel whose
+                height moves with the copy, the tagline kept landing near the
+                zero end of the ramp — gold on burgundy. `top-full h-10` pins
+                the fade to the 40px gap instead, so the column above it is
+                always solid and the list below always clean. */}
+            <span className="sm:hidden pointer-events-none absolute -inset-x-6 top-full h-10 bg-[linear-gradient(180deg,var(--cream)_0%,rgba(250,245,232,0.88)_18%,rgba(250,245,232,0.68)_38%,rgba(250,245,232,0.42)_58%,rgba(250,245,232,0.2)_76%,rgba(250,245,232,0.06)_90%,rgba(250,245,232,0)_100%)]" />
             <Image
               src={withBase("/images/logo.webp")}
               alt="DIAGO"
@@ -102,10 +120,10 @@ export default function Footer() {
                 than it does at 1440, and it is the 760 case the fade has to
                 clear. Only from `sm` — below it the brand is the full-width
                 top block with no adjacent column to protect. */}
-            <p className="relative mt-6 sm:max-w-[11rem] text-ink-soft text-[15px] leading-relaxed" style={{ fontFamily: "var(--font-serif)" }}>
+            <p className="relative mt-6 sm:max-w-[13.5rem] text-ink-soft text-[15px] leading-relaxed" style={{ fontFamily: "var(--font-serif)" }}>
               Fine gold artistry paired with the authentic brilliance of certified natural diamonds.
             </p>
-            <p className="relative mt-4 sm:max-w-[11rem] text-gold-dark text-sm italic" style={{ fontFamily: "var(--font-serif)" }}>
+            <p className="relative mt-4 sm:max-w-[13.5rem] text-gold-dark text-sm italic" style={{ fontFamily: "var(--font-serif)" }}>
               Real Diamond, Real You.
             </p>
           </div>
