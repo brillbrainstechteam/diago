@@ -72,7 +72,7 @@ export default function Footer() {
           comes out a grey smudge across the middle of the footer. The extra
           stops soften the ramp, since a straight two-stop fade reads as a
           visible edge rather than a transition. */}
-      <div className="hidden sm:block absolute inset-0 bg-[linear-gradient(100deg,var(--cream)_0%,var(--cream)_15%,rgba(250,245,232,0.82)_26%,rgba(250,245,232,0.45)_36%,rgba(250,245,232,0.16)_46%,rgba(250,245,232,0)_58%)]" />
+      <div className="hidden sm:block absolute inset-0 bg-[linear-gradient(100deg,var(--cream)_0%,var(--cream)_28%,rgba(250,245,232,0.88)_30%,rgba(250,245,232,0.58)_32%,rgba(250,245,232,0.26)_33.5%,rgba(250,245,232,0.07)_34.5%,rgba(250,245,232,0)_35.5%)]" />
       <div className="absolute inset-0 grain-gold opacity-[0.06]" />
 
       <div className="relative z-10 w-full max-w-[1240px] mx-auto px-6 sm:px-10 lg:px-16">
@@ -91,10 +91,21 @@ export default function Footer() {
               height={100}
               className="relative h-14 lg:h-16 w-auto object-contain"
             />
-            <p className="relative mt-6 text-ink-soft text-[15px] leading-relaxed" style={{ fontFamily: "var(--font-serif)" }}>
+            {/* Held to a short measure on purpose. Run to the column's full
+                width it reached 32% across the footer, and the next column
+                begins at 35% — which left the wash three points of width to
+                fade across, far too little to do it without either veiling the
+                Navigate list or stopping dead. A narrower measure buys the
+                fade room, and reads better besides. The cap is in rem while
+                the wash is in per cent, so the narrowest layout governs: at
+                760 that same measure spans a far larger share of the footer
+                than it does at 1440, and it is the 760 case the fade has to
+                clear. Only from `sm` — below it the brand is the full-width
+                top block with no adjacent column to protect. */}
+            <p className="relative mt-6 sm:max-w-[11rem] text-ink-soft text-[15px] leading-relaxed" style={{ fontFamily: "var(--font-serif)" }}>
               Fine gold artistry paired with the authentic brilliance of certified natural diamonds.
             </p>
-            <p className="relative mt-4 text-gold-dark text-sm italic" style={{ fontFamily: "var(--font-serif)" }}>
+            <p className="relative mt-4 sm:max-w-[11rem] text-gold-dark text-sm italic" style={{ fontFamily: "var(--font-serif)" }}>
               Real Diamond, Real You.
             </p>
           </div>
