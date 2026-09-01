@@ -105,7 +105,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-gold text-[10px] font-bold tracking-[0.28em] uppercase mb-6">Navigate</h4>
+            <h4 className="footer-heading text-[10px] font-bold tracking-[0.28em] uppercase mb-6">Navigate</h4>
             <ul className="space-y-3.5">
               {nav.map((item) => (
                 <li key={item.href}>
@@ -118,7 +118,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-gold text-[10px] font-bold tracking-[0.28em] uppercase mb-6">Collections</h4>
+            <h4 className="footer-heading text-[10px] font-bold tracking-[0.28em] uppercase mb-6">Collections</h4>
             <ul className="space-y-4">
               {footerCollections.map((c) => (
                 <li key={c.label}>
@@ -134,7 +134,7 @@ export default function Footer() {
           </div>
 
           <div className="col-span-2 sm:col-span-1">
-            <h4 className="text-gold text-[10px] font-bold tracking-[0.28em] uppercase mb-6">Enquiries</h4>
+            <h4 className="footer-heading text-[10px] font-bold tracking-[0.28em] uppercase mb-6">Enquiries</h4>
             <a href="tel:+912268936666" className="block text-cream/85 text-sm hover:text-gold transition-colors duration-300">
               +91 22 6893 6666
             </a>
