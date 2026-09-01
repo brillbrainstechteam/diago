@@ -168,46 +168,44 @@ function Proposition() {
         <Reveal>
           <Heading eyebrow="Four Simple Promises" title="The DIAGO" accent="Promise" center className="max-w-xl mx-auto mb-12" />
         </Reveal>
-        {/* Burgundy cards on the cream section rather than cream-on-cream.
-            The pale cards this replaced gave the gold nothing to sit against,
-            and their fixed height left a third of each one empty below the
-            copy — `items-stretch` with content-led padding closes that. */}
+        {/* Light cards, but lit rather than flat. The burgundy version these
+            replaced was heavy against a cream section, and the plain cream one
+            before it left the gold with nothing to sit against. The answer is
+            a diagonal warm gradient with a gold seam and a pale-gold pool
+            behind the icon, and `gold-dark` for the icon stroke — the token
+            that exists precisely because metallic gold is too pale to read on
+            cream. */}
         <div className="grid gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {items.map((item, i) => (
             <Reveal key={item.t} delay={i * 120} className="h-full">
-              <article className="group relative h-full flex flex-col overflow-hidden surface-burgundy border border-gold/30 shadow-[0_20px_44px_-30px_rgba(67,15,34,0.7)] transition-all duration-500 hover:border-gold/70 hover:shadow-[0_32px_60px_-28px_rgba(67,15,34,0.75)] hover:-translate-y-1.5">
-                <span className="pointer-events-none absolute inset-0 grain-gold opacity-[0.08]" />
-                {/* Gold seam, brightest at the middle, so the top edge reads as
-                    a struck line rather than a flat border. */}
-                <span className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-gold/20 via-gold to-gold/20" />
-                {/* Warmth pooling up from the base of the card. */}
-                <span className="pointer-events-none absolute -bottom-16 left-1/2 -translate-x-1/2 w-[150%] h-40 bg-[radial-gradient(closest-side,rgba(197,165,90,0.28)_0%,transparent_70%)] opacity-70 transition-opacity duration-500 group-hover:opacity-100" />
+              <article className="group relative h-full flex flex-col overflow-hidden bg-gradient-to-br from-white via-cream-light to-cream-dark border border-gold/30 shadow-[0_18px_40px_-30px_rgba(122,32,64,0.45)] transition-all duration-500 hover:border-gold/65 hover:shadow-[0_30px_58px_-28px_rgba(122,32,64,0.5)] hover:-translate-y-1.5">
+                <span className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-gold/15 via-gold to-gold/15" />
+                {/* Warm pool rising from the base, so the card is not one even
+                    wash of cream from top to bottom. */}
+                <span className="pointer-events-none absolute -bottom-20 left-1/2 -translate-x-1/2 w-[150%] h-44 bg-[radial-gradient(closest-side,rgba(197,165,90,0.16)_0%,transparent_72%)] opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
 
-                <span className="pointer-events-none absolute top-3 left-3 w-5 h-5 border-t border-l border-gold/35 transition-colors duration-500 group-hover:border-gold/80" />
-                <span className="pointer-events-none absolute bottom-3 right-3 w-5 h-5 border-b border-r border-gold/35 transition-colors duration-500 group-hover:border-gold/80" />
+                <span className="pointer-events-none absolute top-3 left-3 w-5 h-5 border-t border-l border-gold/30 transition-colors duration-500 group-hover:border-gold/70" />
+                <span className="pointer-events-none absolute bottom-3 right-3 w-5 h-5 border-b border-r border-gold/30 transition-colors duration-500 group-hover:border-gold/70" />
 
                 <div className="relative z-10 flex flex-col items-center text-center px-6 pt-9 pb-8 lg:px-7">
-                  <span className="text-gold-light/50 text-[10px] font-bold tracking-[0.3em] tabular-nums" style={{ fontFamily: "var(--font-display)" }}>
+                  <span className="text-gold-dark/45 text-[10px] font-bold tracking-[0.3em] tabular-nums" style={{ fontFamily: "var(--font-display)" }}>
                     {String(i + 1).padStart(2, "0")}
                   </span>
 
-                  {/* Open gold ring, not a filled disc: on a dark card the icon
-                      already has its contrast, and the ring keeps the shape
-                      light instead of dropping a heavy blob into the middle. */}
                   <span className="relative mt-5 w-16 h-16 flex items-center justify-center">
-                    <span className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(closest-side,rgba(217,192,137,0.22)_0%,transparent_72%)] transition-opacity duration-500 opacity-80 group-hover:opacity-100" />
-                    <span className="absolute inset-0 rounded-full border border-gold/45 transition-all duration-500 group-hover:border-gold group-hover:scale-105" />
-                    <span className="absolute inset-[7px] rounded-full border border-gold/20 transition-colors duration-500 group-hover:border-gold/40" />
-                    <span className="relative text-gold-light transition-transform duration-500 group-hover:scale-110">
+                    <span className="pointer-events-none absolute -inset-1 rounded-full bg-[radial-gradient(closest-side,var(--gold-pale)_0%,transparent_74%)] opacity-90 transition-opacity duration-500 group-hover:opacity-100" />
+                    <span className="absolute inset-0 rounded-full border border-gold/50 transition-all duration-500 group-hover:border-gold group-hover:scale-105" />
+                    <span className="absolute inset-[7px] rounded-full border border-gold/25 transition-colors duration-500 group-hover:border-gold/45" />
+                    <span className="relative text-gold-dark transition-transform duration-500 group-hover:scale-110">
                       {item.icon}
                     </span>
                   </span>
 
-                  <h3 className="mt-6 text-cream text-[14px] font-bold leading-snug tracking-[0.12em] uppercase">
+                  <h3 className="mt-6 text-burgundy text-[14px] font-bold leading-snug tracking-[0.12em] uppercase">
                     {item.t}
                   </h3>
                   <span className="mt-3.5 block w-8 h-px bg-gold/60 transition-all duration-500 group-hover:w-16" />
-                  <p className="mt-3.5 text-[14px] leading-[1.75] text-cream/75" style={{ fontFamily: "var(--font-serif)" }}>
+                  <p className="mt-3.5 text-[14px] leading-[1.75] text-ink-soft" style={{ fontFamily: "var(--font-serif)" }}>
                     {item.d}
                   </p>
                 </div>
@@ -531,48 +529,56 @@ function RetailCta() {
   return (
     <section className="relative overflow-hidden">
       <div className="grid lg:grid-cols-2">
-        <div className="relative min-h-[340px] lg:min-h-[460px]">
+        {/* The display is shot on burgundy, so the copy panel beside it is
+            cream rather than burgundy — set against its own colour the frame
+            just merged into the panel. It also breaks up what was three
+            burgundy blocks running into the footer. `object-left` keeps the
+            necklace in frame; centring it cropped to the carry bag. */}
+        <div className="relative min-h-[340px] lg:min-h-[500px]">
           <Image
             src={withBase("/images/gift-presentation.webp")}
             alt="A DIAGO necklace on its counter display beside the signature box and bag"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-cover"
+            className="object-cover object-left"
           />
-          <div className="absolute inset-0 bg-burgundy-deep/25" />
+          <div className="absolute inset-0 bg-gradient-to-r from-burgundy-deep/10 to-burgundy-deep/25" />
         </div>
 
-        <div className="relative surface-burgundy flex items-center py-14 lg:py-20">
-          <div className="absolute inset-0 grain-gold opacity-[0.07]" />
+        <div className="relative surface-cream flex items-center py-14 lg:py-20">
+          <div className="absolute inset-0 grain-ink opacity-[0.025]" />
           <div className="relative z-10 w-full px-6 sm:px-10 lg:px-16 xl:pr-24">
             <Reveal>
-              <Eyebrow light>For Retailers</Eyebrow>
-              <h2 className="mt-6 text-[2rem] sm:text-4xl lg:text-5xl font-bold leading-[1.1] text-cream">
-                Stock that <span className="animate-shimmer">sells itself</span>
-                <span className="block mt-2 text-2xl sm:text-3xl font-normal italic text-cream/90" style={{ fontFamily: "var(--font-serif)" }}>
+              <Eyebrow>For Retailers</Eyebrow>
+              <h2 className="mt-6 text-[2rem] sm:text-4xl lg:text-5xl font-bold leading-[1.1] text-burgundy">
+                Stock that{" "}
+                <span className="font-normal italic text-gold-dark" style={{ fontFamily: "var(--font-serif)" }}>
+                  sells itself
+                </span>
+                <span className="block mt-2 text-2xl sm:text-3xl font-normal italic text-ink-soft" style={{ fontFamily: "var(--font-serif)" }}>
                   engineered for high turnover
                 </span>
               </h2>
-              <GoldRule light className="mt-7" />
-              <p className="mt-7 text-[1.0625rem] leading-[1.85] text-cream/85 max-w-md" style={{ fontFamily: "var(--font-serif)" }}>
+              <GoldRule className="mt-7" />
+              <p className="mt-7 text-[1.0625rem] leading-[1.85] text-ink-soft max-w-md" style={{ fontFamily: "var(--font-serif)" }}>
                 Lightweight designs that sell fast — not sit on the shelf.
               </p>
 
               <ul className="mt-9 grid grid-cols-2 gap-x-6 gap-y-4 max-w-md">
                 {["Signature categories", "Hallmarked stock", "Dedicated partner support", "High turnover potential"].map((f) => (
                   <li key={f} className="flex items-start gap-3">
-                    <span className="text-gold text-xs leading-none pt-[6px] shrink-0">&#10022;</span>
-                    <span className="text-[14px] text-cream/85" style={{ fontFamily: "var(--font-serif)" }}>{f}</span>
+                    <span className="text-gold-dark text-xs leading-none pt-[6px] shrink-0">&#10022;</span>
+                    <span className="text-[14px] text-ink-soft" style={{ fontFamily: "var(--font-serif)" }}>{f}</span>
                   </li>
                 ))}
               </ul>
 
-              <p className="mt-9 text-gold text-lg italic" style={{ fontFamily: "var(--font-serif)" }}>
+              <p className="mt-9 text-burgundy text-lg italic" style={{ fontFamily: "var(--font-serif)" }}>
                 Your showroom is the next.
               </p>
               <Link
                 href="/contact"
-                className="group mt-10 inline-flex items-center gap-3 px-9 py-4 bg-gold text-burgundy-deep text-[11px] font-bold tracking-[0.22em] uppercase hover:bg-gold-light transition-colors duration-300"
+                className="group mt-10 inline-flex items-center gap-3 px-9 py-4 bg-burgundy text-cream text-[11px] font-bold tracking-[0.22em] uppercase hover:bg-burgundy-dark transition-colors duration-300"
               >
                 Become a Partner
                 <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>

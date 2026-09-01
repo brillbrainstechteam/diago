@@ -10,13 +10,15 @@ import { withBase } from "@/lib/basePath";
 /* ── Why gift DIAGO ─────────────────────────────────────────────────── */
 
 /**
- * `fit: "contain"` marks the alpha cut-outs (the stone and the band); the
- * gifting frames are photographs and cover their tile.
+ * All four tiles now sit in the same warm, light register.
  *
- * Cards three and four previously showed the burgundy box and bag, shot on
- * burgundy, sitting on a burgundy tile — three values within a few points of
- * each other, so both read as dark smudges beside the bright cut-outs. The
- * warm frames that replaced them carry their own light.
+ * The previous pairing put two alpha cut-outs floating on dark burgundy beside
+ * two full-bleed cream photographs: same row, two unrelated treatments, and
+ * the join between them was the first thing the eye went to. The cut-outs move
+ * onto the same cream plinth the catalogue cards use, and both photographs are
+ * the ribboned-box stills, so the row reads as one set.
+ *
+ * `fit: "contain"` marks the cut-outs; the photographs cover their tile.
  */
 const reasons = [
   {
@@ -47,8 +49,8 @@ const reasons = [
     n: "04",
     t: "Free Lifetime Care",
     d: "Complimentary cleaning and inspection for as long as they own it — a gift that keeps working.",
-    img: "/images/gift-exchange.webp",
-    alt: "A wrapped gift box passed from one pair of hands to another",
+    img: "/images/gift-boxed-alt.webp",
+    alt: "Diamond earrings in a ribboned gift box beside a handwritten card",
     fit: "cover",
   },
 ] as const;
@@ -65,18 +67,22 @@ function WhyGift() {
           {reasons.map((r, i) => (
             <Reveal key={r.n} delay={i * 120}>
               <article className="group h-full">
-                <div className="relative aspect-[4/3] overflow-hidden surface-burgundy border border-gold/25 shadow-[0_18px_38px_-28px_rgba(67,15,34,0.5)] transition-all duration-500 group-hover:border-gold/55">
-                  <div className="absolute inset-0 grain-gold opacity-[0.07]" />
+                <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-b from-cream-light to-cream border border-gold/30 border-t-2 border-t-gold/70 shadow-[0_18px_38px_-28px_rgba(122,32,64,0.45)] transition-all duration-500 group-hover:border-gold/60 group-hover:border-t-gold">
+                  {/* Only the cut-outs need the halo; a photograph already
+                      fills the tile and would just be veiled by it. */}
+                  {r.fit === "contain" && (
+                    <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(closest-side,var(--gold-pale)_0%,transparent_72%)] opacity-70 transition-opacity duration-500 group-hover:opacity-100" />
+                  )}
                   <Image
                     src={withBase(r.img)}
                     alt={r.alt}
                     fill
                     sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 23vw"
                     className={`relative transition-transform duration-700 ease-out group-hover:scale-[1.06] ${
-                      r.fit === "contain" ? "object-contain p-8" : "object-cover"
+                      r.fit === "contain" ? "object-contain p-9" : "object-cover"
                     }`}
                   />
-                  <span className="pointer-events-none absolute inset-3 border border-gold/25 transition-colors duration-500 group-hover:border-gold/45" />
+                  <span className="pointer-events-none absolute inset-3 border border-gold/20 transition-colors duration-500 group-hover:border-gold/40" />
                 </div>
 
                 <div className="relative mt-7 pt-8 border-t border-gold/30">
