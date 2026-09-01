@@ -64,8 +64,15 @@ export default function Footer() {
           bleed into the link lists, whose type is cream; there the panel is
           attached to the brand column itself instead (see below), which keeps
           it tied to real content rather than to a percentage of a footer whose
-          height moves with its contents. */}
-      <div className="hidden sm:block absolute inset-0 bg-[linear-gradient(100deg,var(--cream)_0%,var(--cream)_19%,transparent_43%)]" />
+          height moves with its contents.
+
+          Both fade to `rgba(250,245,232,0)` — transparent cream — and never to
+          the `transparent` keyword, which is `rgba(0,0,0,0)`. Fading to that
+          drags the colour toward black as the alpha drops, and the midpoint
+          comes out a grey smudge across the middle of the footer. The extra
+          stops soften the ramp, since a straight two-stop fade reads as a
+          visible edge rather than a transition. */}
+      <div className="hidden sm:block absolute inset-0 bg-[linear-gradient(100deg,var(--cream)_0%,var(--cream)_15%,rgba(250,245,232,0.82)_26%,rgba(250,245,232,0.45)_36%,rgba(250,245,232,0.16)_46%,rgba(250,245,232,0)_58%)]" />
       <div className="absolute inset-0 grain-gold opacity-[0.06]" />
 
       <div className="relative z-10 w-full max-w-[1240px] mx-auto px-6 sm:px-10 lg:px-16">
@@ -76,7 +83,7 @@ export default function Footer() {
             {/* Stacked-layout counterpart of the wash above: bled to the
                 footer's edges and faded out inside the column's own height, so
                 the link lists below are never touched. */}
-            <span className="sm:hidden pointer-events-none absolute -inset-x-6 -top-14 bottom-0 bg-[linear-gradient(180deg,var(--cream)_0%,var(--cream)_74%,transparent_100%)]" />
+            <span className="sm:hidden pointer-events-none absolute -inset-x-6 -top-14 bottom-0 bg-[linear-gradient(180deg,var(--cream)_0%,var(--cream)_58%,rgba(250,245,232,0.6)_80%,rgba(250,245,232,0.22)_92%,rgba(250,245,232,0)_100%)]" />
             <Image
               src={withBase("/images/logo.webp")}
               alt="DIAGO"
