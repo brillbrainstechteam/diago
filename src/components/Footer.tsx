@@ -15,6 +15,7 @@ const nav = [
   { l: "Home", href: "/" },
   { l: "About", href: "/about" },
   { l: "Collections", href: "/collections" },
+  { l: "Shop by Occasion", href: "/occasions" },
   { l: "Our Craft", href: "/craft" },
   { l: "Gifting", href: "/gifting" },
   { l: "Contact", href: "/contact" },
