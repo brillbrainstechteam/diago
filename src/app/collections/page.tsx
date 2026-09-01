@@ -126,15 +126,6 @@ function CategoryRow({ cat, index }: { cat: (typeof categories)[number]; index: 
  */
 function PieceGallery({ cat }: { cat: (typeof categories)[number] }) {
   const pieces = cat.pieces ?? [];
-  // Below five, a fixed five-column track would strand the row against the
-  // left edge; matching the count keeps every gallery centred and even.
-  const gridClass =
-    pieces.length >= 5 ? "grid-cols-3 xl:grid-cols-5"
-      : pieces.length === 4 ? "grid-cols-4"
-      : pieces.length === 3 ? "grid-cols-3"
-      : pieces.length === 2 ? "grid-cols-2 max-w-2xl mx-auto"
-      : "grid-cols-1 max-w-sm mx-auto";
-
   return (
     <div className="pb-12 lg:pb-16">
       <Reveal>
@@ -154,7 +145,6 @@ function PieceGallery({ cat }: { cat: (typeof categories)[number] }) {
         <PieceShowcase
           pieces={pieces}
           label={`${cat.name} pieces`}
-          gridClass={gridClass}
           className="mt-7"
         />
       </Reveal>

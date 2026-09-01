@@ -19,12 +19,10 @@ export default function PieceShowcase({
   pieces,
   label,
   className = "",
-  gridClass = "grid-cols-3 xl:grid-cols-5",
 }: {
   pieces: Piece[];
   label: string;
   className?: string;
-  gridClass?: string;
 }) {
   const [openAt, setOpenAt] = useState<number | null>(null);
   const [mounted, setMounted] = useState(false);
@@ -142,13 +140,14 @@ export default function PieceShowcase({
           {/* Stop clicks on the panel itself from reaching the backdrop. */}
           <figure
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-[min(88vw,760px)] max-h-full flex flex-col items-center"
+            className="relative flex flex-col items-center max-h-full"
           >
-            {/* `flex-1 min-h-0` lets the square frame shrink on a short
-                viewport. With `max-h-full` alone the frame kept its full
-                aspect-square height and simply overflowed, pushing the caption
-                off the bottom of the screen where it was clipped. */}
-            <div className="relative aspect-square w-full flex-1 min-h-0 bg-gradient-to-b from-cream-light to-cream border border-gold/30 border-t-2 border-t-gold shadow-[0_40px_90px_-30px_rgba(0,0,0,0.7)]">
+            {/* The frame stays square and takes its side from whichever axis
+                runs out first: the viewport width, a 760px ceiling, or the
+                height left once the caption is accounted for (the 13rem). A
+                flex-basis approach either overflowed the bottom or, with no
+                width to resolve against, collapsed the box entirely. */}
+            <div className="relative aspect-square w-[min(88vw,760px,calc(100vh-13rem))] shrink-0 bg-gradient-to-b from-cream-light to-cream border border-gold/30 border-t-2 border-t-gold shadow-[0_40px_90px_-30px_rgba(0,0,0,0.7)]">
               <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(closest-side,var(--gold-pale)_0%,transparent_70%)] opacity-60" />
               <Image
                 key={active.piece.ref}
@@ -163,11 +162,8 @@ export default function PieceShowcase({
             </div>
 
             <figcaption className="mt-5 shrink-0 text-center">
-              <span className="block text-gold text-[10px] font-semibold tracking-[0.28em] uppercase tabular-nums">
-                {active.piece.ref}
-              </span>
               <span
-                className="mt-2 block text-cream text-xl sm:text-2xl italic"
+                className="block text-cream text-xl sm:text-2xl italic"
                 style={{ fontFamily: "var(--font-serif)" }}
               >
                 {active.piece.name}
@@ -185,8 +181,13 @@ export default function PieceShowcase({
 
   return (
     <div className={className}>
-      <div className={`hidden lg:grid gap-6 ${gridClass}`}>
-        {pieces.map((p, i) => tile(p, i, "20vw"))}
+      {/* Tracks are capped rather than fractional: five across a 1240 container
+          left each card near 200px, too small to read the setting work that is
+          the point of the photograph. auto-fit fills the row with tracks of at
+          most 290px and `justify-center` centres whatever is left over, so a
+          five-piece range lands as a centred 3 + 2 instead of one cramped row. */}
+      <div className="hidden lg:grid gap-7 justify-center grid-cols-[repeat(auto-fit,minmax(240px,290px))]">
+        {pieces.map((p, i) => tile(p, i, "290px"))}
       </div>
 
       <div className="lg:hidden">

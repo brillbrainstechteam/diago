@@ -221,8 +221,8 @@ function AboutTeaser() {
             <div className="relative grid grid-cols-2 gap-5">
               <div className="pointer-events-none absolute -inset-10 rounded-full bg-[radial-gradient(closest-side,var(--gold-pale)_0%,transparent_70%)] opacity-70 blur-2xl" />
               <FramedImage
-                src={withBase("/images/bench-portrait.webp")}
-                alt="A jeweller working a gold band at the bench under a torch"
+                src={withBase("/images/bench-setting.webp")}
+                alt="A diamond being set into a gold mount with tweezers, loose stones alongside"
                 ratio="4/5"
                 inset
                 className="shadow-[0_30px_60px_-25px_rgba(67,15,34,0.35)]"
@@ -406,7 +406,6 @@ function StyledForMoments() {
             key={moment.slug}
             pieces={moment.pieces}
             label={`Pieces for ${moment.name}`}
-            gridClass="grid-cols-5"
             className="mt-10"
           />
         </div>

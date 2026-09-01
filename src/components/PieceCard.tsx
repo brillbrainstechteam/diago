@@ -52,14 +52,12 @@ export default function PieceCard({
           <span className="pointer-events-none absolute inset-5 border border-gold/15 transition-colors duration-500 group-hover:border-gold/30" />
         </div>
 
-        {/* Reference code on a gold seam — the detail a retailer actually
-            orders against, so it earns a permanent place rather than a hover. */}
-        <div className="relative border-t border-gold/20 px-4 py-3 text-center">
-          <span className="block text-gold-dark text-[9px] font-semibold tracking-[0.26em] uppercase tabular-nums">
-            {piece.ref}
-          </span>
+        {/* The reference code stays out of the visible caption — it means
+            nothing to a retail visitor — but is kept in the image alt text so
+            it remains searchable and available to assistive tech. */}
+        <div className="relative border-t border-gold/20 px-4 py-3.5 text-center">
           <span
-            className="mt-1.5 block text-burgundy text-[15px] leading-snug italic"
+            className="block text-burgundy text-base leading-snug italic"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             {piece.name}

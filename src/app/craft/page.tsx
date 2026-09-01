@@ -108,8 +108,8 @@ function Materials() {
               <span className="pointer-events-none absolute -bottom-4 -right-4 w-20 h-20 border-b border-r border-gold/60 z-10" />
               <div className="relative aspect-[4/5] overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.45)]">
                 <Image
-                  src={withBase("/images/bench-setting.webp")}
-                  alt="A diamond being set into a gold mount with tweezers, loose stones alongside"
+                  src={withBase("/images/bench-portrait.webp")}
+                  alt="A jeweller working a gold band at the bench under a torch"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
