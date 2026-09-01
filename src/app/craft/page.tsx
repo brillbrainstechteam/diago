@@ -189,13 +189,15 @@ function RetailMagnet() {
 
         <div className="relative min-h-[340px] lg:min-h-[520px] order-1 lg:order-2">
           <Image
-            src={withBase("/images/earrings-feature.webp")}
-            alt="Fine gold diamond earrings lit against a dark ground"
+            src={withBase("/images/portrait-earrings.webp")}
+            alt="A woman at her desk wearing DIAGO diamond drop earrings"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-burgundy-deep/20" />
+          {/* Barely-there tint: the frame is bright and warm now, and the
+              heavier wash that suited the dark shot just made it dusty. */}
+          <div className="absolute inset-0 bg-burgundy-deep/[0.06]" />
         </div>
       </div>
     </section>
